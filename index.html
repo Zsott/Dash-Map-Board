@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "utf-8"/>
+		<title>Dashboard</title>
+        <!-- jQuery -->
+		<script src = "js/jquery.js"></script>
+		<!-- ArcGIS JS API -->
+        <script src = "https://js.arcgis.com/3.18/"></script>
+        <!-- AmChart JS -->
+        <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+        <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+        <script src="https://www.amcharts.com/lib/3/pie.js"></script>
+        <script src="https://www.amcharts.com/lib/3/gauge.js"></script>
+        <script src="https://www.amcharts.com/lib/3/xy.js"></script>
+        <script src="https://www.amcharts.com/lib/3/radar.js"></script>
+        <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>          
+        <!-- ESRI CSS -->
+		<link rel="stylesheet" href="https://js.arcgis.com/3.18/dijit/themes/claro/claro.css"/>
+		<link rel="stylesheet" href="https://js.arcgis.com/3.18/esri/css/esri.css"/>
+        <!-- Saját CSS és JS -->
+		<link rel = "stylesheet" href = "css/style.css"/>
+		<script src = "js/map.js"></script>
+	</head>
+    <body class="claro">
+		<div id="heading" class="roundedBox headTitle">
+            <img src = "img/logo.png" alt = "Lechner Tudásközpont" class="logo"/>
+            <header class="mainTitle">Tér-Figyelő 2017. május</header>
+            <p class="createdBy">Készítette a <a href="http://lechnerkozpont.hu/" class="headingLink" target="blank">Lechner Tudásközpont</a>, <a href="https://developers.arcgis.com/javascript/" class="headingLink" target="blank">ArcGIS API for JS</a> és <a href="http://www.amcharts.com/javascript-charts/" class="headingLink" target="blank">amCharts JS Charts</a> felhasználásával.</p>
+            <img id="infoIcon" src = "img/info.png" alt = "Információ" class="infoImg" onclick="controlInfoBox()"/>
+			<!-- ##### A lentit még meg kell csinálni rendesen! -->
+			<img id="createdByIcon" src = "img/info.png" alt = "Készítette" class="infoImg" onclick="controlCreatedByBox()"/>
+        </div>
+		<div id="timeSlider" class="roundedBox">
+		</div>
+		<div id="actualPanel" class="roundedBox">
+			<div id="placeYear">
+            Kattintson a térképen egy területegységre!
+			</div>
+			<div id="theme">
+                <button class="dropDownButton"></button>
+                <div id="dropDownContent" class="dropdown-content">
+                </div>
+			</div>
+		</div>
+		<div id="leftPanel">
+			<div id="map" class="roundedBox panels">
+			</div>		
+		</div>
+		<!-- ##### A lentit még meg kell csinálni rendesen! Vszeg jjQuery-vel kéne létrehozni ezt is. -->
+<!-- 		<div id="createdBy">
+			<p class="createdBy">Készítetők: Lellei László, Ónodi Zsolt (<a href="http://lechnerkozpont.hu/" class="headingLink" target="blank">Lechner Tudásközpont</a>), <a href="https://developers.arcgis.com/javascript/" class="headingLink" target="blank">ArcGIS API for JS</a> és <a href="http://www.amcharts.com/javascript-charts/" class="headingLink" target="blank">amCharts JS Charts</a> felhasználásával.</p>
+		</div> -->
+	</body>
+</html>
