@@ -1,25 +1,25 @@
 Urgent:
 ----------------------------------------------------
-Ablakok átméretezése
-#####-k ellenőrzése
-További diagram paraméterek kirakása a config-ba:
+Z - Ablakok átméretezése
+K - #####-k ellenőrzése
+L - További diagram paraméterek kirakása a config-ba:
     minAxisValue
     maxAxisValue
     dataUnit
-Service-kre felirat
-Táblázat formázása
+Z - Service-kre felirat
+Z - Táblázat formázása
     általános
     aktuális év
-init function (+ rákötése a témaválasztásra)
-témák konfigurálása
-serial chart
+K - init function (+ rákötése a témaválasztásra)
+LZ - témák konfigurálása (L: lak, ben; Z: bun)
+L - serial chart
     csak azok jelenjenek meg, amelyek szerepelnek a timeStops configban
     sorrendjük időben növekedjen
-bubble chart
+L - bubble chart
     bogyók csökkenő sorrendben rajzolódjanak ki
-table
+Z - table
     nem jelenik meg a táblázat címe (config)
-charts
+L - charts
     dataUnit config interpretálás
 
 Not So Urgent:
@@ -38,3 +38,4 @@ Readme készítése
 License kitöltése
 Credits kitöltése - console.log-ba is mehet
 többi console.log-ok kitörlése
+theme template készítése
