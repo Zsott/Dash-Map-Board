@@ -1,0 +1,290 @@
+{
+"themeOrder" : [{"nep" : "Népesség és népmozgalom"},
+                {"lak" : "Lakásállomány"},
+                {"bun" : "Bűnözési statisztika"},
+                {"ben" : "Gépjárműállomány és benzinkutak"}],
+"nep" : {
+	"layout" : {
+		"leftPanelWidthPercent" : 50,
+		"mapHeightPercent" : 50,
+		"upperRightChartHeightPercent" : 50,
+		"legendOn" : false,
+		"____comment____" : "Ha valamelyikre a lentiekből nincs szükség, írjon üres szöveget!",
+		"logoImg" : "logo.png",
+		"title" : "Népesség és népmozgalom",
+		"subTitle" : "",
+		"splashText" : "",
+		"infoBoxTest" : ""
+		},
+    "wkid" : 3857,
+    "xmin" : 1600000,
+    "ymin" : 5800000,
+    "xmax" : 2800000,
+    "ymax" : 6150000,
+	"timeStops" : ["2011","2012","2013","2014","2015"],
+	"timeSliderMovingRate" : 2000,
+    "dataServiceURL" : "http://arcgisserver.lechnerkozpont.hu/arcgisserverwa/rest/services/homokozo/Dashboard_Demografia_TestService_20170329/MapServer",
+	"dataServiceIndex" : 1,
+    "additionalLayerURLs" : ["http://arcgisserver.lechnerkozpont.hu/arcgisserverwa/rest/services/foldgomb/Foldgomb_2016_november_orszaghatar/MapServer"],
+	"areaNameField" : "nuts5name",
+    "chartPositions" : {
+        "LL" : "ser",
+        "UR" : "tab", 
+        "LR" : "bub" 
+        },
+    "serialSettings" : {
+        "title" : "Népesség kor szerinti megoszlása",
+        "colors" : ["#BFC46B","#85ACCE","#914441"],
+		"dataPrecision":0,
+        "fieldMap" : {
+			"fiatal" : "0-17 évesek",
+            "felnott" : "18-59 évesek",
+            "idos" : "60 év felettiek"
+			}
+        },
+    "pieSettings" : {
+		"title" : "Népesség kor szerinti megoszlása",
+		"colors" : ["#BFC46B","#85ACCE","#914441"],
+        "fieldMap" : {
+			"fiatal" : "0-17 évesek",
+            "felnott" : "18-59 évesek",
+            "idos" : "60 év felettiek"
+			}
+		},
+    "radarSettings" : {
+		"title" : "",
+		"colors" : [""],
+		"dataPrecision" : 1,
+        "fieldMap" : {
+            "field" : "alias"
+			}
+		},
+    "bubbleSettings" : {
+		"title" : "Szomszédos települések el- és odavándorlása",
+		"dataPrecision" : 1,
+        "____comment____" : "A fieldMapnél a mezőket X, Y, Z sorrendben kell megadni!",
+        "fieldMap" : {			
+            "elvand" : "Elvándorlás",
+            "odavand" : "Odavándorlás",
+            "nepesseg" : "Népességszám"			
+			}	
+		},
+    "tableSettings" : {
+		"title" : "Népességszám változása (tényleges szaporodás)",
+		"heading" : "Változás típusa",
+		"dataPrecision" : 2,
+        "fieldMap" : {
+            "szuletes" : "Születések száma",
+            "halalozas" : "Halálozások száma",
+            "odavand" : "Odavándorlások száma",
+            "elvand" : "Elvándorlások száma"
+			}	
+		}
+    },
+"lak" : {
+	"layout" : {
+		"leftPanelWidthPercent" : 50,
+		"mapHeightPercent" : 50,
+		"upperRightChartHeightPercent" : 50,
+		"legendOn" : false,
+		"____comment____" : "Ha valamelyikre a lentiekből nincs szükség, írjon üres szöveget!",
+		"logoImg" : "",
+		"title" : "",
+		"subTitle" : "",
+		"splashText" : "",
+		"infoBoxTest" : ""
+		},
+    "wkid" : 3857,
+    "xmin" : 1600000,
+    "ymin" : 5800000,
+    "xmax" : 2800000,
+    "ymax" : 6150000,
+	"timeStops" : [""],
+	"timeSliderMovingRate" : 1000,
+    "dataServiceURL" : "",
+	"dataServiceIndex" : 0,
+    "additionalLayerURLs" : [""],
+	"areaNameField" : "",
+    "chartPositions" : {
+        "LL" : "ser",
+        "UR" : "tab", 
+        "LR" : "bub" 
+        },
+    "serialSettings" : {
+        "title" : "",
+        "colors" : [""],
+		"dataPrecision":0,
+        "fieldMap" : {
+			"field" : "alias"
+			}
+        },
+    "pieSettings" : {
+		"title" : "",
+		"colors" : [""],
+        "fieldMap" : {
+			"field" : "alias"
+			}
+		},
+    "radarSettings" : {
+		"title" : "",
+		"colors" : [""],
+		"dataPrecision" : 1,
+        "fieldMap" : {
+            "field" : "alias"
+			}
+		},
+    "bubbleSettings" : {
+		"title" : "",
+		"dataPrecision" : 1,
+        "dataUnit" : "%",
+        "fieldMap" : {
+			"field" : "alias"
+			}	
+		},
+    "tableSettings" : {
+		"title" : "",
+		"heading" : "",
+		"dataPrecision" : 2,
+        "fieldMap" : {
+			"field" : "alias"
+			}	
+		}
+    },
+"bun" : {
+	"layout" : {
+		"leftPanelWidthPercent" : 50,
+		"mapHeightPercent" : 50,
+		"upperRightChartHeightPercent" : 50,
+		"legendOn" : false,
+		"____comment____" : "Ha valamelyikre a lentiekből nincs szükség, írjon üres szöveget!",
+		"logoImg" : "",
+		"title" : "",
+		"subTitle" : "",
+		"splashText" : "",
+		"infoBoxTest" : ""
+		},
+    "wkid" : 3857,
+    "xmin" : 1600000,
+    "ymin" : 5800000,
+    "xmax" : 2800000,
+    "ymax" : 6150000,
+	"timeStops" : [""],
+	"timeSliderMovingRate" : 1000,
+    "dataServiceURL" : "",
+	"dataServiceIndex" : 0,
+    "additionalLayerURLs" : [""],
+	"areaNameField" : "",
+    "chartPositions" : {
+        "LL" : "ser",
+        "UR" : "tab", 
+        "LR" : "bub" 
+        },
+    "serialSettings" : {
+        "title" : "",
+        "colors" : [""],
+		"dataPrecision":0,
+        "fieldMap" : {
+			"field" : "alias"
+			}
+        },
+    "pieSettings" : {
+		"title" : "",
+		"colors" : [""],
+        "fieldMap" : {
+			"field" : "alias"
+			}
+		},
+    "radarSettings" : {
+		"title" : "",
+		"colors" : [""],
+		"dataPrecision" : 1,
+        "fieldMap" : {
+            "field" : "alias"
+			}
+		},
+    "bubbleSettings" : {
+		"title" : "",
+		"dataPrecision" : 1,
+        "fieldMap" : {
+			"field" : "alias"
+			}	
+		},
+    "tableSettings" : {
+		"title" : "",
+		"heading" : "",
+		"dataPrecision" : 2,
+        "fieldMap" : {
+			"field" : "alias"
+			}	
+		}
+    },
+"ben" : {
+	"layout" : {
+		"leftPanelWidthPercent" : 50,
+		"mapHeightPercent" : 50,
+		"upperRightChartHeightPercent" : 50,
+		"legendOn" : false,
+		"____comment____" : "Ha valamelyikre a lentiekből nincs szükség, írjon üres szöveget!",
+		"logoImg" : "",
+		"title" : "",
+		"subTitle" : "",
+		"splashText" : "",
+		"infoBoxTest" : ""
+		},
+    "wkid" : 3857,
+    "xmin" : 1600000,
+    "ymin" : 5800000,
+    "xmax" : 2800000,
+    "ymax" : 6150000,
+	"timeStops" : [""],
+	"timeSliderMovingRate" : 1000,
+    "dataServiceURL" : "",
+	"dataServiceIndex" : 0,
+    "additionalLayerURLs" : [""],
+	"areaNameField" : "",
+    "chartPositions" : {
+        "LL" : "ser",
+        "UR" : "tab", 
+        "LR" : "bub" 
+        },
+    "serialSettings" : {
+        "title" : "",
+        "colors" : [""],
+		"dataPrecision":0,
+        "fieldMap" : {
+			"field" : "alias"
+			}
+        },
+    "pieSettings" : {
+		"title" : "",
+		"colors" : [""],
+        "fieldMap" : {
+			"field" : "alias"
+			}
+		},
+    "radarSettings" : {
+		"title" : "",
+		"colors" : [""],
+		"dataPrecision" : 1,
+        "fieldMap" : {
+            "field" : "alias"
+			}
+		},
+    "bubbleSettings" : {
+		"title" : "",
+		"dataPrecision" : 1,
+        "fieldMap" : {
+			"field" : "alias"
+			}	
+		},
+    "tableSettings" : {
+		"title" : "",
+		"heading" : "",
+		"dataPrecision" : 2,
+        "fieldMap" : {
+			"field" : "alias"
+			}	
+		}
+    },
+"creators" : "Készítők: Lellei László (Lechner Tudásközpont), Ónodi Zsolt (Lechner Tudásközpont)"
+}
