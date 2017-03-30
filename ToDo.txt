@@ -1,0 +1,40 @@
+Urgent:
+----------------------------------------------------
+Ablakok átméretezése
+#####-k ellenőrzése
+További diagram paraméterek kirakása a config-ba:
+    minAxisValue
+    maxAxisValue
+    dataUnit
+Service-kre felirat
+Táblázat formázása
+    általános
+    aktuális év
+init function (+ rákötése a témaválasztásra)
+témák konfigurálása
+serial chart
+    csak azok jelenjenek meg, amelyek szerepelnek a timeStops configban
+    sorrendjük időben növekedjen
+bubble chart
+    bogyók csökkenő sorrendben rajzolódjanak ki
+table
+    nem jelenik meg a táblázat címe (config)
+charts
+    dataUnit config interpretálás
+
+Not So Urgent:
+----------------------------------------------------
+Ellenőrizni, hogy semmi fontos ne maradjon "hard code"
+config.json validator
+Kolofon (angol-magyar)
+Ikon hover
+Nézetváltás animálása
+Minden kód kommentelése
+config.json kommentelése
+Témaválasztó egy elem esetén ne gördüljön le
+Jelmagyarázat, logó, cím, alcím config paraméterek kezelése
+Használati útmutató
+Readme készítése
+License kitöltése
+Credits kitöltése - console.log-ba is mehet
+többi console.log-ok kitörlése
