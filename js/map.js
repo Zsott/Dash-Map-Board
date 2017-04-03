@@ -229,7 +229,7 @@ console.log(center);
         function createThemeDropDown(){
             for(var t in c.themeOrder){
                 for(var key in c.themeOrder[t]){
-                    if(t == 1){
+                    if(t == 0){
                         actTheme = c[key];
                         $(".dropDownButton").html(c.themeOrder[t][key])
                     }
