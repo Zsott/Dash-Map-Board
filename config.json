@@ -39,6 +39,7 @@
         "dataPrecision" : 0,
         "dataUnit" : "fő",
         "xAxesMax" : "",
+        "xAxesMin" : "",
         "fieldMap" : {
 			"fiatal" : "0-17 évesek",
             "felnott" : "18-59 évesek",
@@ -66,11 +67,13 @@
     "bubbleSettings" : {
 		"title" : "Szomszédos települések el- és odavándorlása",
 		"dataPrecision" : 0,
-		"xUnit": "fő",
-		"yUnit": "fő",
+		"xUnit": "%",
+		"yUnit": "%",
 		"zUnit": "fő",
-		"xAxesMax": 8000,
-		"yAxesMax": 9000,		
+		"xAxesMax": "",
+		"xAxesMin": "",
+		"yAxesMax": "",		
+		"yAxesMin": "",		
         "____comment____" : "A fieldMapnél a mezőket X, Y, Z sorrendben kell megadni!",
         "fieldMap" : {			
             "elvandrata" : "Elvándorlás",
@@ -127,6 +130,7 @@
 		"dataPrecision":0,
 		"dataUnit": "db",
 		"xAxesMax": "",
+		"yAxesMin": "",				
         "fieldMap" : {
 			"egyszoba" : "egy szoba",
             "ketszoba" : "két szoba",
@@ -151,6 +155,8 @@
 		"colors" : ["#334455","#999999","#ddddee","#88ccff","#777799"],
 		"dataPrecision" : 1,
 		"dataUnit": "db",
+		"xAxesMax": 200000,
+		"xAxesMin": 100000,		
         "fieldMap" : {
             "viz" : "Víz",
             "aram" : "Áram",
@@ -290,6 +296,7 @@
 		"dataPrecision":0,
 		"dataUnit": "db",
 		"xAxesMax": "",
+		"yAxesMin": "",				
         "fieldMap" : {
 			"szgk" : "Személygépkocsi",
             "tgk" : "Tehergépkocsi",
@@ -336,3 +343,4 @@
     },
 "creators" : "Készítők: Lellei László (Lechner Tudásközpont), Ónodi Zsolt (Lechner Tudásközpont)"
 }
+
