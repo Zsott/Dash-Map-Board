@@ -148,7 +148,7 @@ console.log(center);
 			}
 			//Az adatréteget beilleszti a rétegek tömb-be a config-ban megadott index értékkel
 			var layerUrl = actTheme["additionalLayerURLs"];
-			layerUrl.splice(actTheme["dataServiceIndex"], 0, actTheme["dataServiceURL"]);
+			layerUrl.splice(actTheme.dataServiceLayerPosition, 0, actTheme.dataServiceURL);
 			
 			//Egyéb rétegek hozzáadása a térképhez.
 			layerUrl.forEach(function(entry) {
@@ -325,13 +325,13 @@ console.log(center);
                     $("#leftPanel").append('<div id="' + actTheme.chartPositions.LL + '" class="roundedBox panels"></div>');
                     $("#" + actTheme.chartPositions.LL).css({
                         "height" : "calc(100% - 2px)"
-                    });		
+                    });
                 }
                 else if(actTheme.layout.mapHeightPercent == 100){
                     // A térkép átméretezése
                     $("#map").css({
                         "height" : "calc(100% - 2px)"
-                    });		
+                    });
                 }
                 else if(actTheme.layout.mapHeightPercent > 0 && actTheme.layout.mapHeightPercent < 100){
                     // A térkép magasságának átméretezése
@@ -339,13 +339,14 @@ console.log(center);
                         "height" : "calc(" + actTheme.layout.mapHeightPercent + "% - 6px)",
                         "margin-bottom" : "4px"
                     });
+                    $("#map").append('<img src="img/enlarge.png" class="enlargeImg"/>');
                     // A bal alsó diagram panel létrehozása, méretezése
                     $("#leftPanel").append('<div id="' + actTheme.chartPositions.LL + '" class="roundedBox panels"></div>');
                     var h = 100 - actTheme.layout.mapHeightPercent;
                     $("#" + actTheme.chartPositions.LL).css({
                         "height" : "calc(" + h + "% - 6px)",
                         "margin-top" : "4px"
-                    });		
+                    });
                 }
                 else{
                     // ##### Kiírja a hibaüzenetet, de aztán megcsinálja a function többi részét. Jó ez így?
@@ -410,7 +411,7 @@ console.log(center);
                     outFields=["*"];
                     neighQuery.outFields = outFields;
                     neighQuery.spatialRelationship = esri.tasks.Query.SPATIAL_REL_TOUCHES;
-                    var selNeighbour = new QueryTask(actTheme["dataServiceURL"] + "/0"); 
+                    var selNeighbour = new QueryTask(actTheme.dataServiceURL + "/" + actTheme.dataServiceLayerIndex); 
                     selNeighbour.execute(neighQuery, createBubDP);                    
 				}
 				else if(actTheme["chartPositions"][keyTitle]=="rad"){
@@ -569,7 +570,7 @@ console.log(center);
 				firstTheme=false;
 			}
 			terkep.setTimeSlider(timeSlider);
-
+          
             timeSlider.on("time-extent-change",extentChanged);
             
             timeSlider.setThumbCount(1);
@@ -637,7 +638,7 @@ console.log(center);
                     "markerSize": 14,
                     "valueText": ""
                 }
-            });            
+            });
         }
 		
 		//Serial chart elkészítése
@@ -708,7 +709,7 @@ console.log(center);
                 },
                 "export": {"enabled": true}
             });
-			
+        
 			// x, y tengely értekek maximumának beállítása, ha az meg volt adva a configba
 			if ($.isNumeric(actTheme["serialSettings"].xAxesMax)){
 				serialChart.valueAxes[0].maximum=actTheme["serialSettings"].xAxesMax
@@ -720,38 +721,46 @@ console.log(center);
         }
 
 		
-		//Tálázat elkészítése
+		//Create HTML table in #tab div
 		function createTable(dp){
-			console.log("NAIDE");
-			console.log(dp);
-			var htmlString = '<table>';
+            $("#tab").append('<div id="tableTitle"></div>');
+            $("#tab").append('<div id="tableContent"></div>');
+            var htmlString = '<table>';
 			htmlString = htmlString + '<tr class="tableHeading"><td>' + actTheme.tableSettings.heading + '</td>';
 			for(var ev in actTheme.timeStops){
 				htmlString = htmlString + '<td>' + actTheme.timeStops[ev] + '</td>';
 			}
 			htmlString = htmlString + '</tr>';
-			for (var keyTitle in actTheme["tableSettings"].fieldMap) {
-				htmlString = htmlString + '<tr>';
+			for (var keyTitle in actTheme["tableSettings"].fieldMap){
+				htmlString = htmlString + '<tr><td class="tableRowId">' + actTheme.tableSettings.fieldMap[keyTitle] + '</td>';
 				for (var i = 0; i < dp.length; i++) {
-					htmlString = htmlString + '<td>' + dp[i][keyTitle] + '</td>';
-					if(i == dp.length - 1){
+                    // checkRounding(dp[i][keyTitle],actTheme.tableSettings.dataPrecision);
+					// htmlString = htmlString + '<td>' + dp[i][keyTitle] + '</td>';
+					var cValue = checkRounding(dp[i][keyTitle],actTheme.tableSettings.dataPrecision);
+                    htmlString = htmlString + '<td>' + cValue + '</td>';
+                    if(i == dp.length - 1){
 						htmlString = htmlString + '</tr>';
 					}
 				}
 			}
 			htmlString = htmlString + '</table>';
-            $("#tab").html(htmlString);
-            $("#tab table").css({
-                "font-size" : "10px",
-                "margin" : "0 auto",
-                "border-collapse" : "collapse"
-            });
-            $("#tab table tr, #tab table td").css({
-                "border" : "1px solid black",
-                "padding" : "1px"
-            });
+            $("#tableContent").html(htmlString);
+            $("#tableTitle").html(actTheme.tableSettings.title);
 		}
 
+        //Rounding function for table creation
+        function checkRounding(value,prec){
+            var rValue = value.toFixed(prec).split(".");
+            if(rValue[0] == 0 && rValue[1] == 0){
+                return 0;
+            }
+            else if(rValue[1] == 0){
+                return value;
+            }
+            else{
+                return value.toFixed(prec).replace(".",",");
+            }
+        }
 		
 		//Bubble chart elkészítése
         function createBubbleChart(dp){
