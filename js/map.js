@@ -331,7 +331,6 @@ console.log(center);
                         "height" : "calc(" + actTheme.layout.mapHeightPercent + "% - 6px)",
                         "margin-bottom" : "4px"
                     });
-                    $("#map").append('<img src="img/enlarge.png" class="enlargeImg"/>');
                     // A bal alsó diagram panel létrehozása, méretezése
                     $("#leftPanel").append('<div id="' + actTheme.chartPositions.LL + '" class="roundedBox panels"></div>');
                     var h = 100 - actTheme.layout.mapHeightPercent;
