@@ -160,7 +160,7 @@ html, body{
     position: relative;
     display: inline-block;
     line-height: 60px;
-    margin: 0px 5px;
+    margin: 0px 5px 0px 15px;
     float: left;
     font-weight: bold;
 }
@@ -315,6 +315,44 @@ html, body{
     height: calc(100% - 136px);
     margin: 4px 8px 8px 4px;
 	border: 0px;
+}
+
+/* Table */
+#tab{
+    overflow: auto;
+}
+
+#tableTitle{
+    font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+    margin: 10px 0px 20px 0px;
+}
+
+#tableContent table{
+    font-size: 12px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    text-align: right;
+}
+
+.tableHeading{
+    text-align: center;
+    font-weight: bold;
+    background: #cccccc;
+}
+
+.tableRowId{
+    text-align: left;
+}
+
+#tab tr, #tab td{
+    border: 1px solid black;
+    padding: 1px 3px;
+}
+
+#tab tr:nth-child(even){
+    background: #dddddd;
 }
 
 /* Make amChart marketing disappear */
