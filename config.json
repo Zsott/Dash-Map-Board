@@ -47,7 +47,7 @@
         },
     "pieSettings" : {
 		"title" : "Népesség kor szerinti megoszlása",
-		"colors" : ["#BFC46B","#85ACCE","#914441"],
+		"colors" : ["#BFC46B","#85ACCE","#914441"],        
         "fieldMap" : {
 			"fiatal" : "0-17 évesek",
             "felnott" : "18-59 évesek",
@@ -58,19 +58,19 @@
 		"title" : "",
 		"colors" : [""],
 		"dataPrecision" : 1,
-		"dataUnit": "fő",
+		"dataUnit": "",
         "fieldMap" : {
             "field" : "alias"
 			}
 		},
     "bubbleSettings" : {
 		"title" : "Szomszédos települések el- és odavándorlása",
-		"dataPrecision" : 0,
-		"xUnit": "fő",
-		"yUnit": "fő",
-		"zUnit": "fő",
-		"xAxesMax": 8000,
-		"yAxesMax": 9000,		
+		"dataPrecision" : 1,
+		"xUnit" : "%",
+		"yUnit" : "%",
+		"zUnit" : "fő",
+		"xAxesMax" : "",
+		"yAxesMax" : "",		
         "____comment____" : "A fieldMapnél a mezőket X, Y, Z sorrendben kell megadni!",
         "fieldMap" : {			
             "elvandrata" : "Elvándorlás",
@@ -100,7 +100,7 @@
 		"legendOn" : false,
 		"____comment____" : "Ha valamelyikre a lentiekből nincs szükség, írjon üres szöveget!",
 		"logoImg" : "logo.png",
-		"title" : "Népesség és népmozgalom",
+		"title" : "Lakásállomány",
 		"subTitle" : "",
 		"splashText" : "",
 		"infoBoxTest" : ""
@@ -113,7 +113,8 @@
 	"timeStops" : ["2012","2013","2014","2015"],
 	"timeSliderMovingRate" : 2000,
     "dataServiceURL" : "http://arcgisserver.lechnerkozpont.hu/arcgisserverwa/rest/services/homokozo/Dashboard_Lakasallomany_TestService_20170329/MapServer",
-	"dataServiceIndex" : 1,
+    "dataServiceLayerIndex" : 0,
+	"dataServiceLayerPosition" : 1,
     "additionalLayerURLs" : ["http://arcgisserver.lechnerkozpont.hu/arcgisserverwa/rest/services/foldgomb/Foldgomb_2016_november_orszaghatar/MapServer"],
 	"areaNameField" : "nuts3name",
     "chartPositions" : {
@@ -137,8 +138,6 @@
     "pieSettings" : {
 		"title" : "Lakások szobaszám szerinti megoszlása",
 		"colors" : ["#BFC46B","#85ACCE","#914441", "#444444"],
-		"dataPrecision":0,
-		"dataUnit": "db",
         "fieldMap" : {
 			"egyszoba" : "egy szoba",
             "ketszoba" : "két szoba",
@@ -162,6 +161,12 @@
     "bubbleSettings" : {
 		"title" : "",
 		"dataPrecision" : 1,
+		"xUnit": "",
+		"yUnit": "",
+		"zUnit": "",
+		"xAxesMax": "",
+		"yAxesMax": "",	        
+        "____comment____" : "A fieldMapnél a mezőket X, Y, Z sorrendben kell megadni!",
         "fieldMap" : {
 			"field" : "alias"
 			}	
@@ -182,8 +187,8 @@
 		"upperRightChartHeightPercent" : 50,
 		"legendOn" : false,
 		"____comment____" : "Ha valamelyikre a lentiekből nincs szükség, írjon üres szöveget!",
-		"logoImg" : "",
-		"title" : "",
+		"logoImg" : "logo.png",
+		"title" : "Bűnözési statisztika",
 		"subTitle" : "",
 		"splashText" : "",
 		"infoBoxTest" : ""
@@ -209,6 +214,8 @@
         "title" : "",
         "colors" : [""],
 		"dataPrecision":0,
+        "dataUnit" : "fő",
+        "xAxesMax" : "",        
         "fieldMap" : {
 			"field" : "alias"
 			}
@@ -226,6 +233,7 @@
 		"title" : "",
 		"colors" : [""],
 		"dataPrecision" : 1,
+        "dataUnit": "",
         "fieldMap" : {
             "field" : "alias"
 			}
@@ -233,6 +241,12 @@
     "bubbleSettings" : {
 		"title" : "",
 		"dataPrecision" : 1,
+		"xUnit" : "",
+		"yUnit" : "",
+		"zUnit" : "",
+		"xAxesMax" : "",
+		"yAxesMax" : "",		
+        "____comment____" : "A fieldMapnél a mezőket X, Y, Z sorrendben kell megadni!",        
         "fieldMap" : {
 			"field" : "alias"
 			}	
@@ -263,7 +277,7 @@
 		"legendOn" : false,
 		"____comment____" : "Ha valamelyikre a lentiekből nincs szükség, írjon üres szöveget!",
 		"logoImg" : "logo.png",
-		"title" : "Népesség és népmozgalom",
+		"title" : "Gépjárműállomány és benzinkutak",
 		"subTitle" : "",
 		"splashText" : "",
 		"infoBoxTest" : ""
@@ -276,7 +290,8 @@
 	"timeStops" : ["2008","2009","2010","2011","2012","2013","2014"],
 	"timeSliderMovingRate" : 2000,
     "dataServiceURL" : "http://arcgisserver.lechnerkozpont.hu/arcgisserverwa/rest/services/homokozo/Dashboard_Benzinkutak_TestService_20170329/MapServer",
-	"dataServiceIndex" : 1,
+    "dataServiceLayerIndex" : 0,
+	"dataServiceLayerPosition" : 1,
     "additionalLayerURLs" : ["http://arcgisserver.lechnerkozpont.hu/arcgisserverwa/rest/services/foldgomb/Foldgomb_2016_november_orszaghatar/MapServer"],
 	"areaNameField" : "jarasnev",
     "chartPositions" : {
@@ -301,8 +316,6 @@
     "pieSettings" : {
 		"title" : "Személyglpjátművek megoszlása üzemanyagtípusonként",
 		"colors" : ["#BFC46B","#85ACCE","#914441", "#444444"],
-		"dataPrecision":0,
-		"dataUnit": "db",
         "fieldMap" : {
 			"szgk_ben" : "benzines",
             "szgk_diz" : "dízel",
@@ -321,6 +334,11 @@
     "bubbleSettings" : {
 		"title" : "",
 		"dataPrecision" : 1,
+		"xUnit" : "",
+		"yUnit" : "",
+		"zUnit" : "",
+		"xAxesMax" : "",
+		"yAxesMax" : "",        
         "fieldMap" : {
 			"field" : "alias"
 			}	
