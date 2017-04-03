@@ -22,9 +22,10 @@
     "xmax" : 2800000,
     "ymax" : 6150000,
 	"timeStops" : ["2011","2012","2013","2014","2015"],
-	"timeSliderMovingRate" : 2000,
+	"timeSliderMovingRate" : 1500,
     "dataServiceURL" : "http://arcgisserver.lechnerkozpont.hu/arcgisserverwa/rest/services/homokozo/Dashboard_Demografia_TestService_20170329/MapServer",
-	"dataServiceIndex" : 1,
+    "dataServiceLayerIndex" : 0,
+	"dataServiceLayerPosition" : 1,
     "additionalLayerURLs" : ["http://arcgisserver.lechnerkozpont.hu/arcgisserverwa/rest/services/foldgomb/Foldgomb_2016_november_orszaghatar/MapServer"],
 	"areaNameField" : "nuts5name",
     "chartPositions" : {
@@ -35,7 +36,7 @@
     "serialSettings" : {
         "title" : "Népesség kor szerinti megoszlása",
         "colors" : ["#BFC46B","#85ACCE","#914441"],
-		"dataPrecision":0,
+		"dataPrecision" : 0,
         "fieldMap" : {
 			"fiatal" : "0-17 évesek",
             "felnott" : "18-59 évesek",
@@ -64,20 +65,22 @@
 		"dataPrecision" : 1,
         "____comment____" : "A fieldMapnél a mezőket X, Y, Z sorrendben kell megadni!",
         "fieldMap" : {			
-            "elvand" : "Elvándorlás",
-            "odavand" : "Odavándorlás",
+            "elvandrata" : "Elvándorlás",
+            "odavandrata" : "Odavándorlás",
             "nepesseg" : "Népességszám"			
 			}	
 		},
     "tableSettings" : {
 		"title" : "Népességszám változása (tényleges szaporodás)",
 		"heading" : "Változás típusa",
-		"dataPrecision" : 2,
+		"dataPrecision" : 3,
         "fieldMap" : {
-            "szuletes" : "Születések száma",
-            "halalozas" : "Halálozások száma",
-            "odavand" : "Odavándorlások száma",
-            "elvand" : "Elvándorlások száma"
+            "szuletes" : "Születések száma (fő)",
+            "halalozas" : "Halálozások száma (fő)",
+            "odavand" : "Odavándorlások száma (fő)",
+            "elvand" : "Elvándorlások száma (fő)",
+            "tenyszaporodas" : "Tényleges szaporodás (fő)",
+            "tenyszaporodasrata" : "Tényleges szaporodási ráta (%)"
 			}	
 		}
     },
@@ -152,8 +155,8 @@
     },
 "bun" : {
 	"layout" : {
-		"leftPanelWidthPercent" : 50,
-		"mapHeightPercent" : 50,
+		"leftPanelWidthPercent" : 40,
+		"mapHeightPercent" : 100,
 		"upperRightChartHeightPercent" : 50,
 		"legendOn" : false,
 		"____comment____" : "Ha valamelyikre a lentiekből nincs szükség, írjon üres szöveget!",
@@ -168,16 +171,17 @@
     "ymin" : 5800000,
     "xmax" : 2800000,
     "ymax" : 6150000,
-	"timeStops" : [""],
-	"timeSliderMovingRate" : 1000,
-    "dataServiceURL" : "",
-	"dataServiceIndex" : 0,
-    "additionalLayerURLs" : [""],
-	"areaNameField" : "",
+	"timeStops" : ["2010", "2011", "2012", "2013", "2014", "2015"],
+	"timeSliderMovingRate" : 1500,
+    "dataServiceURL" : "http://arcgisserver.lechnerkozpont.hu/arcgisserverwa/rest/services/homokozo/Dashboard_Bunozes_TestService_20170329/MapServer",
+	"dataServiceLayerIndex" : 0,
+    "dataServiceLayerPosition" : 0,
+    "additionalLayerURLs" : [],
+	"areaNameField" : "jarasnev",
     "chartPositions" : {
-        "LL" : "ser",
+        "LL" : "",
         "UR" : "tab", 
-        "LR" : "bub" 
+        "LR" : "pie" 
         },
     "serialSettings" : {
         "title" : "",
@@ -188,10 +192,12 @@
 			}
         },
     "pieSettings" : {
-		"title" : "",
-		"colors" : [""],
+		"title" : "Bűnesetek megoszlása főtípusok szerint",
+		"colors" : ["#BFC46B","#85ACCE","#914441"],
         "fieldMap" : {
-			"field" : "alias"
+            "vagyon" : "Vagyon elleni bűncselekmények",
+            "szemely" : "Személy elleni bűncselekmények",
+            "kozrend" : "Közrend elleni bűncselekmények"
 			}
 		},
     "radarSettings" : {
@@ -210,11 +216,21 @@
 			}	
 		},
     "tableSettings" : {
-		"title" : "",
-		"heading" : "",
+		"title" : "Bűnesetek megoszlása típusok szerint",
+		"heading" : "Típusok",
 		"dataPrecision" : 2,
         "fieldMap" : {
-			"field" : "alias"
+			"buncsel_db" : "Regisztrált bűnesetek száma [eset]",
+            "vagyon" : "Vagyon elleni bűncselekmények együtt (jármű önkényes elvétele + lopás + rablás) [eset]",
+            "jarmu" : "Jármű önkényes elvétele [eset]",
+            "lopas" : "Lopás [eset]",
+            "rablas" : "Rablás [eset]",            
+            "szemely" : "Személy elleni bűncselekmények együtt (befejezett emberölés + testi sértés) [eset]",
+            "emberoles" : "Befejezett emberölés [eset]",
+            "testi_sertes" : "Testi sértés [eset]",
+            "kozrend" : "Közrend elleni bűncselekmények együtt (garázdaság + visszaélés kábítószerrel) [eset]",
+            "garazdasag" : "Garázdaság [eset]",
+            "kabszer" : "Visszaélés kábítószerrel [eset]"
 			}	
 		}
     },
