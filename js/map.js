@@ -128,17 +128,12 @@ require(
 			});			
 			
 			if(firstTheme){
-console.log("first")
-				scale=terkep.getScale();
-				center= terkep.extent.getCenter();
-console.log(center);				
+				scale = terkep.getScale();
+				center = terkep.extent.getCenter();				
 			}
-			else{
-console.log("nem first")
-				
-				terkep.setScale(scale);
-				terkep.centerAt(center);
-console.log(center);	
+			else{				
+                terkep.width = $("#map").outerWidth();
+                terkep.height = $("#map").outerHeight();
 			}
             
 			//Az adatréteget beilleszti a rétegek tömb-be a config-ban megadott index értékkel
@@ -247,8 +242,8 @@ console.log(center);
 						else{
 							firstClick = true;
 							terkep.graphics.clear();
-							initTheme();
 							initLayout();
+                            initTheme();							
 						}
                     }
                 }
