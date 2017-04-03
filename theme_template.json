@@ -1,0 +1,69 @@
+"theme" : {
+	"layout" : {
+		"leftPanelWidthPercent" : 50,
+		"mapHeightPercent" : 50,
+		"upperRightChartHeightPercent" : 50,
+		"legendOn" : false,
+		"____comment____" : "Ha valamelyikre a lentiekből nincs szükség, írjon üres szöveget!",
+		"logoImg" : "",
+		"title" : "",
+		"subTitle" : "",
+		"splashText" : "",
+		"infoBoxTest" : ""
+		},
+    "wkid" : 3857,
+    "xmin" : 1600000,
+    "ymin" : 5800000,
+    "xmax" : 2800000,
+    "ymax" : 6150000,
+	"timeStops" : [""],
+	"timeSliderMovingRate" : 1000,
+    "dataServiceURL" : "",
+	"dataServiceIndex" : 0,
+    "additionalLayerURLs" : [""],
+	"areaNameField" : "",
+    "chartPositions" : {
+        "LL" : "ser",
+        "UR" : "tab", 
+        "LR" : "bub" 
+        },
+    "serialSettings" : {
+        "title" : "",
+        "colors" : [""],
+		"dataPrecision":0,
+        "fieldMap" : {
+			"field" : "alias"
+			}
+        },
+    "pieSettings" : {
+		"title" : "",
+		"colors" : [""],
+        "fieldMap" : {
+			"field" : "alias"
+			}
+		},
+    "radarSettings" : {
+		"title" : "",
+		"colors" : [""],
+		"dataPrecision" : 1,
+        "fieldMap" : {
+            "field" : "alias"
+			}
+		},
+    "bubbleSettings" : {
+		"title" : "",
+		"dataPrecision" : 1,
+        "fieldMap" : {
+			"field" : "alias"
+			}	
+		},
+    "tableSettings" : {
+		"title" : "",
+		"heading" : "",
+		"dataPrecision" : 2,
+        "____comment____" : "A fieldMapnél a mezőket X, Y, Z sorrendben kell megadni!",
+        "fieldMap" : {
+			"field" : "alias"
+			}	
+		}
+    },

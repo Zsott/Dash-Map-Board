@@ -86,6 +86,7 @@ require(
         
 		//Az egész featureset (térképi bökés válasza)		
         var actFeatureSet = {};
+
         
 		//Az aktulis év feature
 		var actYearFeature;
@@ -95,15 +96,17 @@ require(
 		
 		var terkep;
 
-		var jarasQuery;
+		var dataQuery;
 
 		var timeSlider;
 		
 		initTheme();
+		var scale;
+		var center;
 		
 		
 		function initTheme(){
-			
+
 		
 			//Megadjuk, hogy az EOV legyen a vetület.
 			var spRef = new SpatialReference({
@@ -127,6 +130,22 @@ require(
 				showAttribution : false
 			});
 
+			
+			
+			if(firstTheme){
+console.log("first")
+				scale=terkep.getScale();
+				center= terkep.extent.getCenter();
+console.log(center);				
+			}
+			else{
+console.log("nem first")
+				
+				terkep.setScale(scale);
+				terkep.centerAt(center);
+console.log(center);	
+
+			}
 			//Az adatréteget beilleszti a rétegek tömb-be a config-ban megadott index értékkel
 			var layerUrl = actTheme["additionalLayerURLs"];
 			layerUrl.splice(actTheme.dataServiceLayerPosition, 0, actTheme.dataServiceURL);
@@ -149,16 +168,18 @@ require(
 
 
 			// Szűrés definiálása
-			jarasQuery = new esri.tasks.Query();
-			jarasQuery.returnGeometry = true;
-			jarasQuery.outFields = ["*"];
-			jarasQueryTask = new QueryTask(actTheme.dataServiceURL + "/" + actTheme.dataServiceLayerIndex);
+			dataQuery = new esri.tasks.Query();
+			dataQuery.returnGeometry = true;
+			dataQuery.outFields = ["*"];
+			dataQuery.orderByFields = ["ev ASC"];
+			dataQueryTask = new QueryTask(actTheme["dataServiceURL"] + "/0");
 
 			//TimeSlider inicializálása
 			initTimeSlider();
 				 
 			// Kattintás esemény kezelése
 			terkep.on("click", initDashBoard);
+
 		}
 
 
@@ -166,9 +187,9 @@ require(
 		//A kattintásra inicializálódik(később frissül) a dashboard
         function initDashBoard(evt){
             //A kattintás által metszett geometria
-            jarasQuery.geometry = evt.mapPoint;
+            dataQuery.geometry = evt.mapPoint;
 			//A lekérdezés futtatása
-            jarasQueryTask.execute(jarasQuery, createDashBoard);
+            dataQueryTask.execute(dataQuery, createDashBoard);
         }
 
 		//Kattintásra a dashboard inicializálása/frissítése
@@ -187,7 +208,7 @@ require(
                 var newHeight = document.getElementById("map").offsetHeight;
                 terkep.width = newWidth;
                 terkep.height = newHeight;
-                terkep.centerAndZoom(jarasQuery.geometry,actZoomLevel);                
+                terkep.centerAndZoom(dataQuery.geometry,actZoomLevel);                
 				
                 //A kijelölt település kirajzolása
                 var graphic = actFeatureSet.features[0];
@@ -208,7 +229,7 @@ require(
         function createThemeDropDown(){
             for(var t in c.themeOrder){
                 for(var key in c.themeOrder[t]){
-                    if(t == 0){
+                    if(t == 1){
                         actTheme = c[key];
                         $(".dropDownButton").html(c.themeOrder[t][key])
                     }
@@ -224,6 +245,8 @@ require(
             for(var t in c.themeOrder){
                 for(var key in c.themeOrder[t]){
                     if(key == elem){
+						firstTheme=false;
+						terkep.destroy();
                         actTheme = c[elem];
                         $(".dropDownButton").html(c.themeOrder[t][elem]);
 						if(firstClick){
@@ -439,19 +462,23 @@ require(
 			var serDP = [];		
 			var json;
 			actFeatureSet.features.forEach(function(entry) {
-				json = {};
-				json["year"] = entry.attributes["ev"];
 
-	            for (var key in entry.attributes){
-					for (var keyTitle in actTheme["serialSettings"].fieldMap) {
-						if(key==keyTitle){
-							json[keyTitle]=entry.attributes[key];
+				if(actTheme["timeStops"].indexOf(entry.attributes["ev"].toString())!=-1){
+					json = {};
+					json["year"] = entry.attributes["ev"];
+
+					for (var key in entry.attributes){
+						for (var keyTitle in actTheme["serialSettings"].fieldMap) {
+							if(key==keyTitle){
+								json[keyTitle]=entry.attributes[key];
+							}
 						}
 					}
-                }
-				serDP.push(json);				
+					serDP.push(json);
+				}
 			});
-			createSerialChart(serDP);
+            var serOrderedDP = orderArrayByAttribute(serDP,"year","asc");
+			createSerialChart(serOrderedDP);
 		}
 
 		//A táblázat dataprovider-nek feltöltése
@@ -487,22 +514,31 @@ require(
 			var keys = [];
 			for(var k in actTheme["bubbleSettings"].fieldMap) keys.push(k);
 			//A z értéknek a tömb harmadik elemének kell lennie!!! Sorrend [0]: x, [1]:y, [2]:z
-            var bubOrderedDP = orderArrayByAttribute(bubDP,keys[2]);
+            var bubOrderedDP = orderArrayByAttribute(bubDP,keys[2],"desc");
 			//Sorba rendezés z érték alapján
-            createBubbleChart(bubDP);
+            createBubbleChart(bubOrderedDP);
         }
         			
-		//Sorbarendezés attributum alapján (Bubble diagramnál a kisebb kerüljön felülre)
-        function orderArrayByAttribute(arr,att){
+		//Sorbarendezés attributum alapján (Bubble diagramnál a kisebb kerüljön felülre, Serial fordítva)
+        function orderArrayByAttribute(arr,att,order){
             var newArr = [];
             for (i=0;i<arr.length;i++){
                 var item = arr[i][att];
                 var index = newArr.length;
                 for (j=0;j < newArr.length;j++){
-                    if(item > newArr[j][att]){
-                        index = j;
-                        break;
-                    }
+					if(order=="desc"){
+						if(item > newArr[j][att]){
+							index = j;
+							break;
+						}
+					}
+					if(order=="asc"){
+						if(item < newArr[j][att]){
+							index = j;
+							break;
+						}
+					}
+					
                 }
                 newArr.splice(index,0,arr[i]);
             }
@@ -533,7 +569,8 @@ require(
 				timeSlider = new TimeSlider({},"timeSlider");
 				firstTheme=false;
 			}
-            terkep.setTimeSlider(timeSlider);
+			terkep.setTimeSlider(timeSlider);
+          
             timeSlider.on("time-extent-change",extentChanged);
             
             timeSlider.setThumbCount(1);
@@ -541,9 +578,6 @@ require(
             timeSlider.setThumbMovingRate( actTheme["timeSliderMovingRate"]); 
 			var timeStops=[];
 			actTheme["timeStops"].forEach(function(entry) {
-				// ##### Igazából nem tudom, a lenti mit hivatott csinálni, de végülis nem csinál semmit, mivel megpróbál évszám URL-ű serviceket hozzáadni...
-				// ##### Ez okozza az 5 hibát a konzolon.
-				// terkep.addLayer(new ArcGISDynamicMapServiceLayer(entry));
 				timeStops.push(new Date(entry));
 			});
 			timeSlider.setTimeStops(timeStops);
@@ -650,11 +684,11 @@ require(
                 "valueAxes": [{
                     "axisAlpha": 0,
                     "position": "left",
-                    "title": "fő",
+                    "title": actTheme["serialSettings"].dataUnit,
                     "stackType": "regular"
                 }],
                 "startDuration": 1,
-                "graphs": graphs,
+//                "graphs": graphs,
                 "chartCursor": {
                     "categoryBalloonEnabled": false,
                     "cursorColor": "#DD0000",
@@ -675,8 +709,18 @@ require(
                 },
                 "export": {"enabled": true}
             });
+        
+			// x, y tengely értekek maximumának beállítása, ha az meg volt adva a configba
+			if ($.isNumeric(actTheme["serialSettings"].xAxesMax)){
+				serialChart.valueAxes[0].maximum=actTheme["serialSettings"].xAxesMax
+			}
+			//az értékeket újra meg kell adni, hogy tengelybeállítás érvényes legyen
+			for (i = 0; i < graphs.length; i++) {
+				serialChart.addGraph(graphs[i]);			
+			}
         }
 
+		
 		//Create HTML table in #tab div
 		function createTable(dp){
             $("#tab").append('<div id="tableTitle"></div>');
@@ -755,35 +799,35 @@ require(
                 "colors":["#F8EF22"],
                 "zoomOutText": "Mind",
                 "valueAxes": [{
-                    "title": xTitle,
+                    "title": xTitle+"("+actTheme["bubbleSettings"].xUnit+")",
                     "position": "bottom",
                     "axisAlpha": 0,
-                    "unit": "%",
+//                    "unit": "%",
                     "fontSize": 12
                 },{
-                    "title": yTitle,
+                    "title": yTitle +"("+actTheme["bubbleSettings"].yUnit+")",
                     "minMaxMultiplier": 1.2,
                     "axisAlpha": 0,
                     "position": "left",
-                    "unit": "%",
+//                    "unit": "%",
                     "fontSize": 12
                 }],
                 "startDuration": 1.5,
-                "graphs": [{
-                    "balloonText": "<b>[[description]]</b><br>"+xTitle+": <b>[[x]]%</b><br>"+yTitle+": <b>[[y]]%</b><br>"+zTitle+": <b>[[value]]</b>",
-                    "bullet": "circle",
-                    "bulletBorderAlpha": 0.2,
-                    "bulletAlpha": 0.65,
-                    "lineAlpha": 0,
-                    "fillAlphas": 0,
-                    "valueField": zField,
-                    "xField": xField,
-                    "yField": yField,
-                    "colorField": "color",
-                    "descriptionField": actTheme["areaNameField"],
-                    "maxBulletSize": 100,
-                    "fontSize": 12
-                }],
+                // "graphs": [{
+                    // "balloonText": "<b>[[description]]</b><br>"+xTitle+": <b>[[x]] "+actTheme["bubbleSettings"].xUnit+"</b><br>"+yTitle+": <b>[[y]] "+actTheme["bubbleSettings"].yUnit+"</b><br>"+zTitle+": <b>[[value]] "+actTheme["bubbleSettings"].zUnit+"</b>",
+                    // "bullet": "circle",
+                    // "bulletBorderAlpha": 0.2,
+                    // "bulletAlpha": 0.65,
+                    // "lineAlpha": 0,
+                    // "fillAlphas": 0,
+                    // "valueField": zField,
+                    // "xField": xField,
+                    // "yField": yField,
+                    // "colorField": "color",
+                    // "descriptionField": actTheme["areaNameField"],
+                    // "maxBulletSize": 100,
+                    // "fontSize": 12
+                // }],
                 "legend":{
                     "align": "center",
                     "fontSize": 12,
@@ -821,6 +865,34 @@ require(
                 "export": {"enabled": false}
             });            
 		
+			// x, y tengely értekek maximumának beállítása, ha az meg volt adva a configba
+			if ($.isNumeric(actTheme["bubbleSettings"].xAxesMax)){
+				bubbleChart.valueAxes[0].maximum=actTheme["bubbleSettings"].xAxesMax
+			}
+			//Y-nál valamennyit ráhagy pl beállítom 9000 és 10000 rak ki...
+			if ($.isNumeric(actTheme["bubbleSettings"].yAxesMax)){
+				bubbleChart.valueAxes[1].maximum=actTheme["bubbleSettings"].yAxesMax
+			}
+
+			//az értékeket újra meg kell adni, az értékeket újra meg kell adni, hogy tengelybeállítás érvényes legyen
+            var graphs= [{
+                    "balloonText": "<b>[[description]]</b><br>"+xTitle+": <b>[[x]] "+actTheme["bubbleSettings"].xUnit+"</b><br>"+yTitle+": <b>[[y]] "+actTheme["bubbleSettings"].yUnit+"</b><br>"+zTitle+": <b>[[value]] "+actTheme["bubbleSettings"].zUnit+"</b>",
+                    "bullet": "circle",
+                    "bulletBorderAlpha": 0.2,
+                    "bulletAlpha": 0.65,
+                    "lineAlpha": 0,
+                    "fillAlphas": 0,
+                    "valueField": zField,
+                    "xField": xField,
+                    "yField": yField,
+                    "colorField": "color",
+                    "descriptionField": actTheme["areaNameField"],
+                    "maxBulletSize": 100,
+                    "fontSize": 12
+                }];
+			bubbleChart.addGraph(graphs[0]);
+		
+		
 		}
 		
         function createRadarChart(dp){
@@ -852,7 +924,7 @@ require(
 //                },
                 "graphs": [{
 //                    "title": "xxxx",
-                    "balloonText": "[[title]]: [[value]]",
+                    "balloonText": "[[title]]: [[value]]"+actTheme["radarSettings"].dataUnit,
                     "bullet": "round",
                     "lineThickness": 2,
                     "valueField": "value",
@@ -895,4 +967,4 @@ function controlInfoBox(){
 		$("#map, #heading, #search, #chart, #table, #timeSlider, #legend").css("pointer-events","none");
 		$("#infoIcon").css("pointer-events","auto");
     }
-}        
+} 
