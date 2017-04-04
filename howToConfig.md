@@ -48,10 +48,42 @@ The purpose of this document is to help you with the
 **Example value**: "logo.png"  
 **Tips**: To use your own logo copy it first into the 'img' folder!
 
+#### [theme]/layout/title
+`"title" : "Please give the title in the header as a string!"`  
+**Description**: Sets the text of the title shown in the header.  
+**Type**: string  
+**Valid values**: Any string
+**Example value**: "Demography of Hungary"
+**Tips**: Too long title can cause that the title and/or the subtitle will disappear.
+
+#### [theme]/layout/subTitle
+`"subTitle" : "Please give the subtitle in the header as a string!"`  
+**Description**: Sets the text of the subtitle shown in the header.  
+**Type**: string  
+**Valid values**: Any string  
+**Example value**: "Population change by settlements"  
+**Tips**: Too long subtitle can cause that the subtitle will disappear.
+
+#### [theme]/layout/splashText
+`"splashText" : "Please give the HTML text you want to show in the splash window!"`  
+**Description**: Sets the content of the splash (welcome) window.  
+**Type**: string  
+**Valid values**: Any string (HTML tags can be used also)
+**Example value**: "Welcome to the <b>Demography of Hungary</b> project's webpage!</br>Click on any settlement to check its population related data!"
+**Tips**: Use empty string ("") if you don't want to use splash window. You can use HTML tags in the string.
+
+#### [theme]/layout/infoBoxTest
+`"infoBoxTest" : "Please give the HTML text you want to show in the info window!"`  
+**Description**: Sets the content of the information window (shown if info icon clicked).  
+**Type**: string  
+**Valid values**: Any string (HTML tags can be used also)
+**Example value**: "Welcome to the <b>Demography of Hungary</b> project's webpage!</br>Click on any settlement to check its population related data!"
+**Tips**: Use empty string ("") if you don't want to use information window. You can use HTML tags in the string.
+
 #### [theme]/layout/...
-` `
-**Description**:
-**Type**:
-**Valid values**:
-**Example value**:
-**Tips**:
+`...`  
+**Description**: ...  
+**Type**: ...  
+**Valid values**: ...
+**Example value**: ...
+**Tips**: ...
