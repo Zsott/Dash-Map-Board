@@ -52,8 +52,8 @@ The purpose of this document is to help you with the
 `"title" : "Please give the title in the header as a string!"`  
 **Description**: Sets the text of the title shown in the header.  
 **Type**: string  
-**Valid values**: Any string
-**Example value**: "Demography of Hungary"
+**Valid values**: Any string  
+**Example value**: "Demography of Hungary"  
 **Tips**: Too long title may cause that the title and/or the subtitle will disappear.
 
 #### [theme]/layout/subTitle
@@ -69,7 +69,7 @@ The purpose of this document is to help you with the
 **Description**: Sets the content of the splash (welcome) window.  
 **Type**: string  
 **Valid values**: Any string (HTML tags can be used also)  
-**Example value**: "Welcome to the <b>Demography of Hungary</b> project's webpage!</br>Click on any settlement to check its population related data!"
+**Example value**: "Welcome to the <b>Demography of Hungary</b> project's webpage!</br>Click on any settlement to check its population related data!"  
 **Tips**: Use empty string ("") if you don't want to use splash window. You can use HTML tags in the string.
 
 #### [theme]/layout/infoBoxTest
@@ -77,7 +77,7 @@ The purpose of this document is to help you with the
 **Description**: Sets the content of the information window (shown if info icon clicked).  
 **Type**: string  
 **Valid values**: Any string (HTML tags can be used also)  
-**Example value**: "Welcome to the <b>Demography of Hungary</b> project's webpage!</br>Click on any settlement to check its population related data!"
+**Example value**: "Welcome to the <b>Demography of Hungary</b> project's webpage!</br>Click on any settlement to check its population related data!"  
 **Tips**: Use empty string ("") if you don't want to use information window. You can use HTML tags in the string.
 
 #### [theme]/layout/clickOnWhat
@@ -87,14 +87,6 @@ The purpose of this document is to help you with the
 **Valid values**: Any string
 **Example value**: "Click on a settlement!"
 **Tips**: Too long string may cause that the dropdown menu will disappear or appear in a wrong place.
-
-#### [theme]/layout/...
-`...`  
-**Description**: ...  
-**Type**: ...  
-**Valid values**: ...
-**Example value**: ...
-**Tips**: ...
 
 #### [theme]/wkid
 `"wkid" : Please give the EPSG code (as a number) of the spatial reference system!`  
