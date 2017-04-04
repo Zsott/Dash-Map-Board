@@ -3,7 +3,7 @@ _How to set up config.json?_
 The purpose of this document is to help you with the 
 
 ### Common advices
-- JSON, key-value, special characters (: , {} []
+- JSON, key-value, special characters : , {} [] ""
 - ___comment___
 - time avare service
 - 
