@@ -702,11 +702,11 @@ require(
             });
         
 			// x tengely értekek maximumának és minimumának beállítása, ha az meg volt adva a configba
-			if ($.isNumeric(actTheme["serialSettings"].xAxesMax)){
-				serialChart.valueAxes[0].maximum=actTheme["serialSettings"].xAxesMax;
+			if ($.isNumeric(actTheme["serialSettings"].yAxesMax)){
+				serialChart.valueAxes[0].maximum=actTheme["serialSettings"].yAxesMax;
 			}
-			if ($.isNumeric(actTheme["serialSettings"].xAxesMin)){
-				serialChart.valueAxes[0].minimum=actTheme["serialSettings"].xAxesMin;
+			if ($.isNumeric(actTheme["serialSettings"].yAxesMin)){
+				serialChart.valueAxes[0].minimum=actTheme["serialSettings"].yAxesMin;
 			}
 			//az értékeket újra meg kell adni, hogy tengelybeállítás érvényes legyen
 			for (i = 0; i < graphs.length; i++) {
