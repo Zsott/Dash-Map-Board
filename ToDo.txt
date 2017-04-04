@@ -4,15 +4,13 @@ L - További diagram paraméterek kirakása a config-ba:
     minAxisValue
     maxAxisValue -> radarra is
 L - Serial chart ne frissüljön évváltásnál
-Z - config egységesítése (legyen mindenhol minden paraméter)    
-Z - Service-kre felirat
-    Lakás -> infrastruktúra % képzése
-Z - Táblázat formázása -> aktuális év színezése
+Z - config egységesítése (új paraméterek mindenhol vannak-e?)
 K - init function (+ rákötése a témaválasztásra)
 K - #####-k ellenőrzése
 
 Not So Urgent:
 ----------------------------------------------------
+Témaváltás esetén nagyítson a rétegre
 Ellenőrizni, hogy semmi fontos ne maradjon "hard code"
 config.json validator
 Kolofon (angol-magyar)
@@ -26,8 +24,8 @@ Használati útmutató
 Readme készítése
 License kitöltése
 Credits kitöltése - console.log-ba is mehet
-többi console.log-ok kitörlése
-theme template készítése
+többi console.log kitörlése
+theme template JSON készítése
 
 Later development:
 ----------------------------------------------------

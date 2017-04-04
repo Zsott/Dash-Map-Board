@@ -355,6 +355,10 @@ html, body{
     background: #dddddd;
 }
 
+.actualYearColumn{
+    color: #2B34B1;
+}
+
 /* Make amChart marketing disappear */
 /* Reference to amChart in heading instead */
 .amcharts-chart-div a{

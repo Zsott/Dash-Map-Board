@@ -86,7 +86,6 @@ require(
         
 		//Az egész featureset (térképi bökés válasza)		
         var actFeatureSet = {};
-
         
 		//Az aktulis év feature
 		var actYearFeature;
@@ -102,11 +101,9 @@ require(
 		
 		initTheme();
 		var scale;
-		var center;
-		
+		var center;		
 		
 		function initTheme(){
-
 		
 			//Megadjuk, hogy az EOV legyen a vetület.
 			var spRef = new SpatialReference({
@@ -128,24 +125,17 @@ require(
 				extent : extHun,
 				logo : false,
 				showAttribution : false
-			});
-
-			
+			});			
 			
 			if(firstTheme){
-console.log("first")
-				scale=terkep.getScale();
-				center= terkep.extent.getCenter();
-console.log(center);				
+				scale = terkep.getScale();
+				center = terkep.extent.getCenter();				
 			}
-			else{
-console.log("nem first")
-				
-				terkep.setScale(scale);
-				terkep.centerAt(center);
-console.log(center);	
-
+			else{				
+                terkep.width = $("#map").outerWidth();
+                terkep.height = $("#map").outerHeight();
 			}
+            
 			//Az adatréteget beilleszti a rétegek tömb-be a config-ban megadott index értékkel
 			var layerUrl = actTheme["additionalLayerURLs"];
 			layerUrl.splice(actTheme.dataServiceLayerPosition, 0, actTheme.dataServiceURL);
@@ -166,7 +156,6 @@ console.log(center);
 			// },"legend");
 			// legend.startup();
 
-
 			// Szűrés definiálása
 			dataQuery = new esri.tasks.Query();
 			dataQuery.returnGeometry = true;
@@ -179,10 +168,7 @@ console.log(center);
 				 
 			// Kattintás esemény kezelése
 			terkep.on("click", initDashBoard);
-
 		}
-
-
         
 		//A kattintásra inicializálódik(később frissül) a dashboard
         function initDashBoard(evt){
@@ -201,11 +187,12 @@ console.log(center);
                     firstClick = false;
                     setLayout();
                 }
-
 				
                 var actZoomLevel = terkep.getLevel();
-                var newWidth = document.getElementById("map").offsetWidth;
-                var newHeight = document.getElementById("map").offsetHeight;
+                //var newWidth = document.getElementById("map").offsetWidth;
+                //var newHeight = document.getElementById("map").offsetHeight;
+                var newWidth = $("#map").outerWidth();
+                var newHeight = $("#map").outerHeight();
                 terkep.width = newWidth;
                 terkep.height = newHeight;
                 terkep.centerAndZoom(dataQuery.geometry,actZoomLevel);                
@@ -255,8 +242,8 @@ console.log(center);
 						else{
 							firstClick = true;
 							terkep.graphics.clear();
-							initTheme();
 							initLayout();
+                            initTheme();							
 						}
                     }
                 }
@@ -339,7 +326,6 @@ console.log(center);
                         "height" : "calc(" + actTheme.layout.mapHeightPercent + "% - 6px)",
                         "margin-bottom" : "4px"
                     });
-                    $("#map").append('<img src="img/enlarge.png" class="enlargeImg"/>');
                     // A bal alsó diagram panel létrehozása, méretezése
                     $("#leftPanel").append('<div id="' + actTheme.chartPositions.LL + '" class="roundedBox panels"></div>');
                     var h = 100 - actTheme.layout.mapHeightPercent;
@@ -387,7 +373,7 @@ console.log(center);
                     });
                 }
                 else{
-                    alert("Hibás konfigurációs beállítás! Ellenőrizd a config.json fájlban a upperRightChartHeightPercent értékét! (Érvényes értékkészlet: 0-100)");		
+                    alert("Hibás konfigurációs beállítás! Ellenőrizd a config.json fájlban a upperRightChartHeightPercent értékét! (Érvényes értékkészlet: 0-100)");
                 }
             }
         }
@@ -423,8 +409,8 @@ console.log(center);
 		//A FeatureSet szűrése a timeslider-nek megfelelő évre
         function searchCurrentYear(featureSet){
 			featureSet.features.forEach(function(entry) {
-				if(entry.attributes["ev"]==currYear){
-					actYearFeature=entry;
+				if(entry.attributes["ev"] == currYear){
+					actYearFeature = entry;
 				}
 			});			
 		}
@@ -500,7 +486,8 @@ console.log(center);
                 }
 				tabDP.push(json);				
 			});
-			createTable(tabDP);
+            var tabOrderedDP = orderArrayByAttribute(tabDP,"year","asc");
+			createTable(tabOrderedDP);
 		}
 
 		//A bubble diagram dataprovider-nek feltöltése
@@ -592,11 +579,12 @@ console.log(center);
         
 		//Timeslider változás esemény
         function extentChanged(evt){
-			currYear=timeSlider.getCurrentTimeExtent().startTime.getFullYear();
+            currYear = timeSlider.getCurrentTimeExtent().startTime.getFullYear();
 			if(!firstClick){
 				searchCurrentYear(actFeatureSet);
-				chooseChart(1);	
-				document.getElementById("placeYear").innerHTML=actAreaName+ " - " + currYear ;				
+				chooseChart(1);
+				$("#placeYear").html(actAreaName + " - " + currYear);
+                colorTable();
 			}
         }		
 		
@@ -692,7 +680,6 @@ console.log(center);
 //					"minimum": 1000
                 }],
                 "startDuration": 1,
-//                "graphs": graphs,
                 "chartCursor": {
                     "categoryBalloonEnabled": false,
                     "cursorColor": "#DD0000",
@@ -735,16 +722,14 @@ console.log(center);
             var htmlString = '<table>';
 			htmlString = htmlString + '<tr class="tableHeading"><td>' + actTheme.tableSettings.heading + '</td>';
 			for(var ev in actTheme.timeStops){
-				htmlString = htmlString + '<td>' + actTheme.timeStops[ev] + '</td>';
+                htmlString = htmlString + '<td class="' + actTheme.timeStops[ev] + '">' + actTheme.timeStops[ev] + '</td>';
 			}
 			htmlString = htmlString + '</tr>';
-			for (var keyTitle in actTheme["tableSettings"].fieldMap){
-				htmlString = htmlString + '<tr><td class="tableRowId">' + actTheme.tableSettings.fieldMap[keyTitle] + '</td>';
+			for (var keyTitle in actTheme.tableSettings.fieldMap){
+                htmlString = htmlString + '<tr><td class="tableRowId">' + actTheme.tableSettings.fieldMap[keyTitle] + '</td>';
 				for (var i = 0; i < dp.length; i++) {
-                    // checkRounding(dp[i][keyTitle],actTheme.tableSettings.dataPrecision);
-					// htmlString = htmlString + '<td>' + dp[i][keyTitle] + '</td>';
 					var cValue = checkRounding(dp[i][keyTitle],actTheme.tableSettings.dataPrecision);
-                    htmlString = htmlString + '<td>' + cValue + '</td>';
+                    htmlString = htmlString + '<td class="' + dp[i]["year"] + '">' + cValue + '</td>';
                     if(i == dp.length - 1){
 						htmlString = htmlString + '</tr>';
 					}
@@ -753,8 +738,14 @@ console.log(center);
 			htmlString = htmlString + '</table>';
             $("#tableContent").html(htmlString);
             $("#tableTitle").html(actTheme.tableSettings.title);
-		}
+            colorTable();
+		}    
 
+        function colorTable(){
+            $(".actualYearColumn").removeClass("actualYearColumn");
+            $("." + currYear).addClass("actualYearColumn");
+        }
+        
         //Rounding function for table creation
         function checkRounding(value,prec){
             var rValue = value.toFixed(prec).split(".");
