@@ -1,6 +1,10 @@
 Urgent:
 ----------------------------------------------------
 Z - config egységesítése (új paraméterek mindenhol vannak-e?)
+Z - Jelmagyarázat, logó, cím, alcím config paraméterek kezelése
+Z - config template
+Z - Configuration guide
+L - cikk bevezetés, felvezetés, stb.
 K - #####-k ellenőrzése
 
 Not So Urgent:
@@ -15,7 +19,7 @@ Nézetváltás animálása
 Minden kód kommentelése
 config.json kommentelése
 Témaválasztó egy elem esetén ne gördüljön le
-Jelmagyarázat, logó, cím, alcím config paraméterek kezelése
+
 Használati útmutató
 Readme készítése
 License kitöltése
@@ -27,3 +31,30 @@ Later development:
 ----------------------------------------------------
 Adatbázis kapcsolat (térképről csak egy ID-t kapunk, amivel szerver oldali lekérdezést futtatunk)
 Ablakok átméretezése (bármelyik kinagyítható legyen teljes képernyőre)
+Két azonos típusú diagram is elhelyezhető legyen (pl. 2 pie)
+
+Cikk vázlat:
+----------------------------------------------------
+Bevezetés
+  mi a cél?
+  időtudatosság fontossága
+  mi a vezetői információs rendszer?
+  alkalmazott technológiák említése
+Előzmények
+  létező dashboard megoldások (fizetős és OS)
+    általában a térkép a gyenge pont
+  LTK -> JS API (TEIR GIS; Földgömb, növekvő igények, WAB->JS API->egyre több dojo->dojo helyett amchart
+  LTK -> amchart (TEIR alkalmazások)
+  kettő ötvözése
+Projekt leírása
+  HTML+CSS+JS (+jQuery)
+  ami nagy durranás:
+    config.json szerepe és fontossága
+    kommentelés szerepe és fontossága
+  nyílt, GitHub
+Folyamat (ábra + 1-2 mondat)
+  time-aware service needed
+config.json bemutatása
+  1-2 mondat, sok kép
+továbbfejlesztési irányok
+github link
