@@ -1,15 +1,11 @@
 Urgent:
 ----------------------------------------------------
-L - További diagram paraméterek kirakása a config-ba:
-    minAxisValue
-    maxAxisValue -> radarra is
-L - Serial chart ne frissüljön évváltásnál
 Z - config egységesítése (új paraméterek mindenhol vannak-e?)
-K - init function (+ rákötése a témaválasztásra)
 K - #####-k ellenőrzése
 
 Not So Urgent:
 ----------------------------------------------------
+Milyen egyéb paraméter pakolható config-ba?
 Témaváltás esetén nagyítson a rétegre
 Ellenőrizni, hogy semmi fontos ne maradjon "hard code"
 config.json validator
