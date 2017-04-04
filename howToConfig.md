@@ -9,6 +9,22 @@ The purpose of this document is to help you with the
 - 
 
 ### config.json parameters
+#### themeOrder
+```
+"themeOrder" : [{"theme2" : "Theme2 alias"},
+                {"theme1" : "Theme1 alias"}]
+```  
+**Description**: Defines the order and names of the themes in the dropdown menu. This makes much more easier to reorder themes since you only have to change the order of the objects in the array. The first theme in the list will be the default (this will appear when the application starts). You can choose any theme name as a key, but the key of the theme **have to** match with the key in the latter part of the config.json.   
+**Type**: array of objects  
+**Valid values**: Any string as key and any string as value separated with colon enclosed by curly brackets make one object. These objects are seperated with comma and enclosed by square bracket.  
+**Example value**: [{"demography" : "Demography of Hungary"},{"crime" : "Crime statistics of Budapest"}]  
+**Tips**:
+
+- This is one of the very rare occasions when you have to change the key.
+- You can have only one theme it's not necessary to have more.
+- Too long aliases will cause line break in the dropdown menu.
+- Too long aliases may cause that the hint for clicking and the dropdown menu may overlap.
+
 #### [theme]/layout/leftPanelWidthPercent
 `"leftPanelWidthPercent" : Please give a number!`  
 **Description**: Sets the width (in percents of the screen width) of the left panel which contains the map and optionally one chart. Also sets the width of the right panel (100 - leftPanelWidthPercent).  
@@ -218,6 +234,93 @@ The purpose of this document is to help you with the
 **Tips**:
 - If layout has been set not to show lower right panel, the chart/table won't appear on screen.
 - In a theme you can use every chart/table type once. _Example: You can't have two pie charts in one theme, however you can use pie chart again in another theme._
+
+#### [theme]/serialSettings/title
+`"title" : "Please give the title of the serial chart as a string!"`  
+**Description**: Sets the title of the serial chart.  
+**Type**: string  
+**Valid values**: Any string  
+**Example value**: "Population by age"  
+
+#### [theme]/serialSettings/colors
+`"colors" : ["Please give array of hex colors as strings!"]`  
+**Description**: ...  
+**Type**: array of strings  
+**Valid values**: Any hex codes starting with # (in quotation marks, separated with commas, enclosed by square brackets)  
+**Example value**: ["#BFC46B","#85ACCE","#914441"]  
+**Tips**: If there are less color in the array than needed, random colors will be applied. Colors will be applied in the same order as they are defined in the array. If don't want to define colors, use empty array ( [] ) as value.
+
+#### [theme]/serialSettings/dataPrecision
+`"dataPrecision" : Please give a number!`  
+**Description**: Sets the number of decimal places for rounding values. 
+**Type**: number  
+**Valid values**: 0 or greater integer  
+**Example value**: 0  
+**Tips**: 0 dataPrecision means integer numbers.
+
+#### [theme]/serialSettings/dataUnit
+`"dataUnit" : "Please give the data unit of the serial chart as a string!"`  
+**Description**: Sets the unit shown at the Y axis.  
+**Type**: string  
+**Valid values**: Any string  
+**Example value**: "dollar/person"  
+
+#### [theme]/serialSettings/yAxesMax
+`"yAxesMax" : Please give the maximum Y axis value as a number!`  
+**Description**: Sets the maximum value of Y axis.  
+**Type**: number (or empty string)  
+**Valid values**: Any number and empty string ("")  
+**Example value**: 10000  
+**Tips**: If you don't want to use maximum value, use empty string as value (""). In some cases the maximum value can be override by amChart logic. (For mor information check amChart JS documentation.)
+
+#### [theme]/serialSettings/yAxesMin
+`"yAxesMin" : Please give the minimum Y axis value as a number!`  
+**Description**: Sets the minimum value of Y axis.  
+**Type**: number (or empty string)  
+**Valid values**: Any number and empty string ("")  
+**Example value**: 10000  
+**Tips**: If you don't want to use minimum value, use empty string as value (""). In some cases the minimum value can be override by amChart logic. (For mor information check amChart JS documentation.)
+
+#### [theme]/serialSettings/fieldMap
+```
+"fieldMap" : {
+    "field" : "alias",
+    "field" : "alias"
+}
+```  
+**Description**: Defines which fields of the data layer appear on the serial chart. If multiple fields are listed, stacked serial chart will be created. Fieldnames will be replaced with aliases on the chart.  
+**Type**: object  
+**Valid values**: Any string as keys, any string as aliases  
+**Example value**: {"young":"0-17 years","adult":"18-59 years","old":"60 year and above"}  
+**Tips**: This is one of the very rare occasions when you have to change the key.
+
+#### [theme]/pieSettings/title
+`"title" : "Please give the title of the pie chart as a string!"`  
+**Description**: Sets the title of the pie chart.  
+**Type**: string  
+**Valid values**: Any string  
+**Example value**: "Population by age"  
+
+#### [theme]/pieSettings/colors
+`"colors" : ["Please give array of hex colors as strings!"]`  
+**Description**: ...  
+**Type**: array of strings  
+**Valid values**: Any hex codes starting with # (in quotation marks, separated with commas, enclosed by square brackets)  
+**Example value**: ["#BFC46B","#85ACCE","#914441"]  
+**Tips**: If there are less color in the array than needed, random colors will be applied. Colors will be applied in the same order as they are defined in the array. If don't want to define colors, use empty array ( [] ) as value.
+
+#### [theme]/pieSettings/fieldMap
+```
+"fieldMap" : {
+    "field" : "alias",
+    "field" : "alias"
+}
+```  
+**Description**: Defines which fields of the data layer appear on the pie chart.  
+**Type**: object  
+**Valid values**: Any string as keys, any string as aliases  
+**Example value**: {"young":"0-17 years","adult":"18-59 years","old":"60 year and above"}  
+**Tips**: This is one of the very rare occasions when you have to change the key.
 
 #### [theme]/...
 `...`  
