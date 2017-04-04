@@ -8,6 +8,9 @@ The purpose of this document is to help you with the
 - time avare service
 - 
 
+### Available chart types
+Pl. bubble-nél a szomszédosokat szedi ki, így csak poligonnál alkalmazható
+
 ### config.json parameters
 #### themeOrder
 ```
@@ -298,7 +301,7 @@ The purpose of this document is to help you with the
 ```
 "colors" : ["Please give array of hex colors as strings!"]
 ```
-**Description**: ...  
+**Description**: Sets a color palette which will be used on the chart.  
 **Type**: array of strings  
 **Valid values**: Any hex codes starting with # (in quotation marks, separated with commas, enclosed by square brackets)  
 **Example value**: ["#BFC46B","#85ACCE","#914441"]  
@@ -369,7 +372,7 @@ The purpose of this document is to help you with the
 ```
 "colors" : ["Please give array of hex colors as strings!"]
 ```
-**Description**: ...  
+**Description**: Sets a color palette which will be used on the chart.  
 **Type**: array of strings  
 **Valid values**: Any hex codes starting with # (in quotation marks, separated with commas, enclosed by square brackets)  
 **Example value**: ["#BFC46B","#85ACCE","#914441"]  
@@ -401,10 +404,10 @@ The purpose of this document is to help you with the
 ```
 "colors" : ["Please give array of hex colors as strings!"]
 ```
-**Description**: ...  
+**Description**: Sets a color palette which will be used on the chart. One color will be enough as there's only one line on the radar chart.  
 **Type**: array of strings  
 **Valid values**: Any hex codes starting with # (in quotation marks, separated with commas, enclosed by square brackets)  
-**Example value**: ["#BFC46B","#85ACCE","#914441"]  
+**Example value**: ["#BFC46B"]  
 **Tips**: If there are less color in the array than needed, random colors will be applied. Colors will be applied in the same order as they are defined in the array. If don't want to define colors, use empty array ( [] ) as value.
 
 #### [theme]/radarSettings/dataPrecision
@@ -458,6 +461,79 @@ The purpose of this document is to help you with the
 **Valid values**: Any string as keys, any string as aliases  
 **Example value**: {"water" : "Water","waste" : "Waste water","elec" : "Electricity","gas" : "Gas", "internet": "Internet"}  
 **Tips**: This is one of the very rare occasions when you have to change the key. There will be as many axes on the radar chart as many key-value pairs in the fieldMap.
+
+
+#### [theme]/bubbleSettings/title
+```
+"title" : "Please give the title of the bubble chart as a string!"
+```
+**Description**: Sets the title of the bubble chart.  
+**Type**: string  
+**Valid values**: Any string  
+**Example value**: "Migration"  
+
+#### [theme]/bubbleSettings/colors
+```
+"colors" : ["Please give array of hex colors as strings!"]
+```
+**Description**: Sets a color palette which will be used on the chart. Two colors will be enough. First will apply to the selected object, the second will be applied to its neighbours.  
+**Type**: array of strings  
+**Valid values**: Any hex codes starting with # (in quotation marks, separated with commas, enclosed by square brackets)  
+**Example value**: ["#BFC46B","#85ACCE"]  
+**Tips**: If there are less color in the array than needed, random colors will be applied. Colors will be applied in the same order as they are defined in the array. If don't want to define colors, use empty array ( [] ) as value.
+
+#### [theme]/bubbleSettings/dataPrecision
+```
+"dataPrecision" : Please give a number!
+```
+**Description**: Sets the number of decimal places for rounding values. 
+**Type**: number  
+**Valid values**: 0 or greater integer  
+**Example value**: 0  
+**Tips**: 0 dataPrecision means integer numbers.
+
+#### [theme]/bubbleSettings/dataUnit
+```
+"dataUnit" : "Please give the data unit of the serial chart as a string!"
+```
+**Description**: Sets the unit shown at hover baloon.  
+**Type**: string  
+**Valid values**: Any string  
+**Example value**: "%"  
+
+#### [theme]/bubbleSettings/xAxesMax
+```
+"xAxesMax" : "Please give the maximum axis value as a number!
+```
+**Description**: Sets the maximum value of axes.  
+**Type**: number (or empty string)  
+**Valid values**: Any number and empty string ("")  
+**Example value**: 100  
+**Tips**: If you don't want to use maximum value, use empty string as value (""). In some cases the maximum value can be override by amChart logic. (For mor information check amChart JS documentation.)
+
+#### [theme]/bubbleSettings/xAxesMin
+```
+"xAxesMin" : "Please give the minimum axis value as a number!"
+```
+**Description**: Sets the minimum value of axes.  
+**Type**: number (or empty string)  
+**Valid values**: Any number and empty string ("")  
+**Example value**: 0  
+**Tips**: If you don't want to use minimum value, use empty string as value (""). In some cases the minimum value can be override by amChart logic. (For mor information check amChart JS documentation.)
+
+#### [theme]/bubbleSettings/fieldMap
+```
+"fieldMap" : {
+    "field" : "alias",
+    "field" : "alias"
+}
+```  
+**Description**: Defines which fields of the data layer appear on the radar chart.  
+**Type**: object  
+**Valid values**: Any string as keys, any string as aliases  
+**Example value**: {"water" : "Water","waste" : "Waste water","elec" : "Electricity","gas" : "Gas", "internet": "Internet"}  
+**Tips**: This is one of the very rare occasions when you have to change the key. There will be as many axes on the radar chart as many key-value pairs in the fieldMap.
+
 
 #### [theme]/...
 ```
