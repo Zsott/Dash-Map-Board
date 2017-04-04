@@ -494,7 +494,7 @@ require(
         function createBubDP(featureSet){
 			var bubDP=[];
             bubDP.push(actYearFeature.attributes);
-            bubDP[0]["color"] = "#7656AB";			
+            bubDP[0]["color"] = actTheme["bubbleSettings"].colors[0];			
 			featureSet.features.forEach(function(entry) {
 				if(entry.attributes["ev"]==currYear){
 					bubDP.push(entry.attributes);
@@ -794,7 +794,7 @@ require(
                     "decimalSeparator": ",",
                     "thousandsSeparator": " "
                 },
-                "colors":["#F8EF22"],
+                "colors":[actTheme["bubbleSettings"].colors[1]],
                 "zoomOutText": "Mind",
                 "valueAxes": [{
                     "title": xTitle+"("+actTheme["bubbleSettings"].xUnit+")",
@@ -831,12 +831,12 @@ require(
                     "fontSize": 12,
                     "data": [{
                         "title": actAreaName,
-                        "color": "#7656AB",
+                        "color": actTheme["bubbleSettings"].colors[0],
                         "fillAlphas": 0.65
                         },
                         {
                         "title": actAreaName+ " szomszédai",
-                        "color": "#F8EF22",
+                        "color": actTheme["bubbleSettings"].colors[1],
                         "fillAlpha": 0.65
                     }],
                     "markerSize": 20,
