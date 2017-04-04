@@ -32,6 +32,7 @@ Later development:
 Adatbázis kapcsolat (térképről csak egy ID-t kapunk, amivel szerver oldali lekérdezést futtatunk)
 Ablakok átméretezése (bármelyik kinagyítható legyen teljes képernyőre)
 Két azonos típusú diagram is elhelyezhető legyen (pl. 2 pie)
+Minden panelen legördülőben lehessen választani a diagram típusok között (front-end diagramtípus állítás)
 
 Cikk vázlat:
 ----------------------------------------------------
