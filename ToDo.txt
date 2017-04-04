@@ -49,7 +49,7 @@ Előzmények
   kettő ötvözése
 Projekt leírása
   HTML+CSS+JS (+jQuery)
-  ami nagy durranás:
+  ami nagy durranás: (ettől lesz jó pehelysúlyú kódolóknak!!!)
     config.json szerepe és fontossága
     kommentelés szerepe és fontossága
   nyílt, GitHub
