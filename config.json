@@ -39,6 +39,7 @@
         "dataPrecision" : 0,
         "dataUnit" : "fő",
         "xAxesMax" : "",
+        "xAxesMin" : "",
         "fieldMap" : {
 			"fiatal" : "0-17 évesek",
             "felnott" : "18-59 évesek",
@@ -66,11 +67,13 @@
     "bubbleSettings" : {
 		"title" : "Szomszédos települések el- és odavándorlása",
 		"dataPrecision" : 1,
-		"xUnit" : "%",
-		"yUnit" : "%",
-		"zUnit" : "fő",
-		"xAxesMax" : "",
-		"yAxesMax" : "",		
+		"xUnit": "%",
+		"yUnit": "%",
+		"zUnit": "fő",
+		"xAxesMax": "",
+		"xAxesMin": "",
+		"yAxesMax": "",		
+		"yAxesMin": "",		
         "____comment____" : "A fieldMapnél a mezőket X, Y, Z sorrendben kell megadni!",
         "fieldMap" : {			
             "elvandrata" : "Elvándorlás",
@@ -128,6 +131,7 @@
 		"dataPrecision":0,
 		"dataUnit": "db",
 		"xAxesMax": "",
+		"yAxesMin": "",				
         "fieldMap" : {
 			"egyszoba" : "egy szoba",
             "ketszoba" : "két szoba",
@@ -150,6 +154,8 @@
 		"colors" : ["#334455","#999999","#ddddee","#88ccff","#777799"],
 		"dataPrecision" : 1,
 		"dataUnit": "db",
+		"xAxesMax": 200000,
+		"xAxesMin": 100000,		
         "fieldMap" : {
             "viz" : "Víz",
             "aram" : "Áram",
@@ -165,7 +171,9 @@
 		"yUnit": "",
 		"zUnit": "",
 		"xAxesMax": "",
-		"yAxesMax": "",	        
+		"xAxesMin": "",
+		"yAxesMax": "",		
+		"yAxesMin": "",	        
         "____comment____" : "A fieldMapnél a mezőket X, Y, Z sorrendben kell megadni!",
         "fieldMap" : {
 			"field" : "alias"
@@ -244,8 +252,10 @@
 		"xUnit" : "",
 		"yUnit" : "",
 		"zUnit" : "",
-		"xAxesMax" : "",
-		"yAxesMax" : "",		
+		"xAxesMax": "",
+		"xAxesMin": "",
+		"yAxesMax": "",		
+		"yAxesMin": "",		
         "____comment____" : "A fieldMapnél a mezőket X, Y, Z sorrendben kell megadni!",        
         "fieldMap" : {
 			"field" : "alias"
@@ -305,6 +315,7 @@
 		"dataPrecision":0,
 		"dataUnit": "db",
 		"xAxesMax": "",
+		"yAxesMin": "",				
         "fieldMap" : {
 			"szgk" : "Személygépkocsi",
             "tgk" : "Tehergépkocsi",
@@ -337,8 +348,10 @@
 		"xUnit" : "",
 		"yUnit" : "",
 		"zUnit" : "",
-		"xAxesMax" : "",
-		"yAxesMax" : "",        
+		"xAxesMax": "",
+		"xAxesMin": "",
+		"yAxesMax": "",		
+		"yAxesMin": "",        
         "fieldMap" : {
 			"field" : "alias"
 			}	
@@ -354,3 +367,4 @@
     },
 "creators" : "Készítők: Lellei László (Lechner Tudásközpont), Ónodi Zsolt (Lechner Tudásközpont)"
 }
+

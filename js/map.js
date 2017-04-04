@@ -209,7 +209,7 @@ require(
 				$("#placeYear").html(actAreaName+ " - " + currYear);
 
 				//Diagramm adatok előállítása
-				chooseChart();
+				chooseChart(0);
             }			
 		}
 
@@ -379,12 +379,12 @@ require(
         }
         
         //A configból a szükséges diagramtípusok kiolvasása és diagramépítések meghívása
-		function chooseChart(){		
+		function chooseChart(timeSliderChange){		
 			for (var keyTitle in actTheme["chartPositions"]) {
 				if(actTheme["chartPositions"][keyTitle]=="pie"){
                     createPieDP();
 				}					
-				else if(actTheme["chartPositions"][keyTitle]=="ser"){
+				else if(actTheme["chartPositions"][keyTitle]=="ser" && !timeSliderChange){
                     createSerDP();
 				}
 				else if(actTheme["chartPositions"][keyTitle]=="tab"){
@@ -463,7 +463,9 @@ require(
 					serDP.push(json);
 				}
 			});
+
             var serOrderedDP = orderArrayByAttribute(serDP,"year","asc");
+			
 			createSerialChart(serOrderedDP);
 		}
 
@@ -502,6 +504,7 @@ require(
 			for(var k in actTheme["bubbleSettings"].fieldMap) keys.push(k);
 			//A z értéknek a tömb harmadik elemének kell lennie!!! Sorrend [0]: x, [1]:y, [2]:z
             var bubOrderedDP = orderArrayByAttribute(bubDP,keys[2],"desc");
+
 			//Sorba rendezés z érték alapján
             createBubbleChart(bubOrderedDP);
         }
@@ -579,7 +582,7 @@ require(
             currYear = timeSlider.getCurrentTimeExtent().startTime.getFullYear();
 			if(!firstClick){
 				searchCurrentYear(actFeatureSet);
-				chooseChart();
+				chooseChart(1);
 				$("#placeYear").html(actAreaName + " - " + currYear);
                 colorTable();
 			}
@@ -597,7 +600,7 @@ require(
                 }],
                 "dataProvider": dp,
                 "numberFormatter": {
-                    "precision": actTheme["pieSettings"].dataPrecision, //### Itt sajnos nem működik
+                    "precision": actTheme["pieSettings"].dataPrecision, //### Itt sajnos nem működik, mert a percent van kiiírva
                     "decimalSeparator": ",",
                     "thousandsSeparator": " "
                 },
@@ -670,10 +673,11 @@ require(
                 "mouseWheelScrollEnabled ": true,
                 "colors":actTheme["serialSettings"].colors,
                 "valueAxes": [{
-                    "axisAlpha": 0,
+//                    "axisAlpha": 0,
                     "position": "left",
                     "title": actTheme["serialSettings"].dataUnit,
                     "stackType": "regular"
+//					"minimum": 1000
                 }],
                 "startDuration": 1,
                 "chartCursor": {
@@ -697,9 +701,12 @@ require(
                 "export": {"enabled": true}
             });
         
-			// x, y tengely értekek maximumának beállítása, ha az meg volt adva a configba
+			// x tengely értekek maximumának és minimumának beállítása, ha az meg volt adva a configba
 			if ($.isNumeric(actTheme["serialSettings"].xAxesMax)){
-				serialChart.valueAxes[0].maximum=actTheme["serialSettings"].xAxesMax
+				serialChart.valueAxes[0].maximum=actTheme["serialSettings"].xAxesMax;
+			}
+			if ($.isNumeric(actTheme["serialSettings"].xAxesMin)){
+				serialChart.valueAxes[0].minimum=actTheme["serialSettings"].xAxesMin;
 			}
 			//az értékeket újra meg kell adni, hogy tengelybeállítás érvényes legyen
 			for (i = 0; i < graphs.length; i++) {
@@ -856,13 +863,20 @@ require(
                 "export": {"enabled": false}
             });            
 		
-			// x, y tengely értekek maximumának beállítása, ha az meg volt adva a configba
+			// x tengely értekek maximumának és minimumának beállítása, ha az meg volt adva a configba
 			if ($.isNumeric(actTheme["bubbleSettings"].xAxesMax)){
-				bubbleChart.valueAxes[0].maximum=actTheme["bubbleSettings"].xAxesMax
+				bubbleChart.valueAxes[0].maximum=actTheme["bubbleSettings"].xAxesMax;
 			}
+			if ($.isNumeric(actTheme["bubbleSettings"].xAxesMin)){
+				bubbleChart.valueAxes[0].minimum=actTheme["bubbleSettings"].xAxesMin;
+			}
+			// y tengely értekek maximumának és minimumának beállítása, ha az meg volt adva a configba
 			//Y-nál valamennyit ráhagy pl beállítom 9000 és 10000 rak ki...
 			if ($.isNumeric(actTheme["bubbleSettings"].yAxesMax)){
-				bubbleChart.valueAxes[1].maximum=actTheme["bubbleSettings"].yAxesMax
+				bubbleChart.valueAxes[1].maximum=actTheme["bubbleSettings"].yAxesMax;
+			}
+			if ($.isNumeric(actTheme["bubbleSettings"].yAxesMin)){
+				bubbleChart.valueAxes[1].mimimum=actTheme["bubbleSettings"].yAxesMin;
 			}
 
 			//az értékeket újra meg kell adni, az értékeket újra meg kell adni, hogy tengelybeállítás érvényes legyen
@@ -904,26 +918,27 @@ require(
                 "startDuration": 1,
                 "valueAxes":[{
                     //"minimum": 0,
-                    "maximum": 100                    
+//                    "maximum": 100                    
                 }],
-//                "legend":{
-//                    "useGraphSettings": true,
-//                    "align": "center",
-//                    "fontSize": 12,
-//                    "labelText": "[[title]]",
-//                    "markerSize": 20
-//                },
-                "graphs": [{
-//                    "title": "xxxx",
+
+                "categoryField": "title",
+                "export": {"enabled": false}
+            });
+			// x tengely értekek maximumának és minimumának beállítása, ha az meg volt adva a configba
+			if ($.isNumeric(actTheme["radarSettings"].xAxesMax)){
+				radarChart.valueAxes[0].maximum=actTheme["radarSettings"].xAxesMax;
+			}
+			if ($.isNumeric(actTheme["radarSettings"].xAxesMin)){
+				radarChart.valueAxes[0].minimum=actTheme["radarSettings"].xAxesMin;
+			}
+			var graphs=[{
                     "balloonText": "[[title]]: [[value]]"+actTheme["radarSettings"].dataUnit,
                     "bullet": "round",
                     "lineThickness": 2,
                     "valueField": "value",
                     "bullet": "round"
-                }],
-                "categoryField": "title",
-                "export": {"enabled": false}
-            });
+            }];
+			radarChart.addGraph(graphs[0]);			
         }
 	});
 });
