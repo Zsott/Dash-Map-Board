@@ -1,5 +1,6 @@
 # Configuration Guide
 _How to set up config.json?_
+The purpose of this document is to help you with the 
 
 ### Common advices
 
