@@ -174,8 +174,53 @@ The purpose of this document is to help you with the
 **Valid values**: Any string  
 **Example value**: "nuts5name"  
 
+#### [theme]/chartPositions/LL
+`"LL" : "Please give the codename of the chart type as a string!"`  
+**Description**: Defines which type of chart will be in the lower left panel (under the map).  
+**Type**: string  
+**Valid values**:
+- "ser" (for serial chart)
+- "pie" (for pie chart)
+- "rad" (for radar chart)
+- "bub" (for bubble chart)
+- "tab" (for table)
+**Example value**: "ser"  
+**Tips**:
+- If layout has been set not to show lower left panel, the chart/table won't appear on screen.
+- In a theme you can use every chart/table type once. _Example: You can't have two pie charts in one theme, however you can use pie chart again in another theme._
+
+#### [theme]/chartPositions/UR
+`"UR" : "Please give the codename of the chart type as a string!"`  
+**Description**: Defines which type of chart will be in the upper right panel (next to the map).  
+**Type**: string  
+**Valid values**:
+- "ser" (for serial chart)
+- "pie" (for pie chart)
+- "rad" (for radar chart)
+- "bub" (for bubble chart)
+- "tab" (for table)
+**Example value**: "tab"  
+**Tips**:
+- If layout has been set not to show upper right panel, the chart/table won't appear on screen.
+- In a theme you can use every chart/table type once. _Example: You can't have two pie charts in one theme, however you can use pie chart again in another theme._
+
+#### [theme]/chartPositions/LR
+`"LR" : "Please give the codename of the chart type as a string!"`  
+**Description**: Defines which type of chart will be in the lower right panel (diagonal to the map).  
+**Type**: string  
+**Valid values**:
+- "ser" (for serial chart)
+- "pie" (for pie chart)
+- "rad" (for radar chart)
+- "bub" (for bubble chart)
+- "tab" (for table)
+**Example value**: "pie"  
+**Tips**:
+- If layout has been set not to show lower right panel, the chart/table won't appear on screen.
+- In a theme you can use every chart/table type once. _Example: You can't have two pie charts in one theme, however you can use pie chart again in another theme._
+
 #### [theme]/...
-`"dataServiceLayerIndex" : Please give a number!`  
+`...`  
 **Description**: ...  
 **Type**: ...  
 **Valid values**: ...  
@@ -183,15 +228,7 @@ The purpose of this document is to help you with the
 **Tips**: ...
 
 #### [theme]/...
-`"dataServiceLayerIndex" : Please give a number!`  
-**Description**: ...  
-**Type**: ...  
-**Valid values**: ...  
-**Example value**: ...  
-**Tips**: ...
-
-#### [theme]/...
-`"dataServiceLayerIndex" : Please give a number!`  
+`...`  
 **Description**: ...  
 **Type**: ...  
 **Valid values**: ...  
