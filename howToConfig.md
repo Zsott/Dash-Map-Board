@@ -11,7 +11,7 @@ The purpose of this document is to help you with the
 ### config.json parameters
 #### [theme]/layout/leftPanelWidthPercent
 `"leftPanelWidthPercent" : Please give a number!`  
-**Description**: Sets the width (in percents of the screen width) of the left panel which contains the map and optionally one chart. Also sets the width of the right panel: 100 - leftPanelWidthPercent.
+**Description**: Sets the width (in percents of the screen width) of the left panel which contains the map and optionally one chart. Also sets the width of the right panel (100 - leftPanelWidthPercent).  
 **Type**: number  
 **Valid values**: 0 to 100  
 **Example value**: 50  
@@ -84,8 +84,8 @@ The purpose of this document is to help you with the
 `"clickOnWhat" : "Please give the text you want to show as a hint for the users!"`  
 **Description**: Sets the hint text shown on the actual panel before the first click.  
 **Type**: string  
-**Valid values**: Any string
-**Example value**: "Click on a settlement!"
+**Valid values**: Any string  
+**Example value**: "Click on a settlement!"  
 **Tips**: Too long string may cause that the dropdown menu will disappear or appear in a wrong place.
 
 #### [theme]/wkid
@@ -108,7 +108,6 @@ The purpose of this document is to help you with the
 **Type**: number  
 **Valid values**: Any number inside the spatial reference system's extent  
 **Example value**: 5800000  
-**Tips**: ...
 
 #### [theme]/xmax
 `"xmax" : Please give the easternmost coordinate (as a number) of the initial extent!`  
@@ -116,7 +115,6 @@ The purpose of this document is to help you with the
 **Type**: number  
 **Valid values**: Any number inside the spatial reference system's extent  
 **Example value**: 2800000  
-**Tips**: ...
 
 #### [theme]/ymax
 `"ymax" : Please give the northernmost coordinate (as a number) of the initial extent!`  
@@ -124,7 +122,6 @@ The purpose of this document is to help you with the
 **Type**: number  
 **Valid values**: Any number inside the spatial reference system's extent  
 **Example value**: 6150000  
-**Tips**: ...
 
 #### [theme]/timeStops
 `"timeStops" : ["Please give array of timestops as strings!"]`  
@@ -145,7 +142,7 @@ The purpose of this document is to help you with the
 `"dataServiceURL" : "Please give the URL of the time-aware Map Service as a string!"`  
 **Description**: Sets the URL of the time-aware Map Service used in the map.  
 **Type**: string  
-**Valid values**: Any active and shared time-aware Map Service URL in quotation marks
+**Valid values**: Any active and shared time-aware Map Service URL in quotation marks  
 **Example value**: "http://maps2.arcgisonline.com/ArcGIS/rest/services/World_Bank/WB_Age_and_Population/MapServer"
 
 #### [theme]/dataServiceLayerIndex
