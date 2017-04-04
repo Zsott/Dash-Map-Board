@@ -462,7 +462,6 @@ Pl. bubble-nél a szomszédosokat szedi ki, így csak poligonnál alkalmazható
 **Example value**: {"water" : "Water","waste" : "Waste water","elec" : "Electricity","gas" : "Gas", "internet": "Internet"}  
 **Tips**: This is one of the very rare occasions when you have to change the key. There will be as many axes on the radar chart as many key-value pairs in the fieldMap.
 
-
 #### [theme]/bubbleSettings/title
 ```
 "title" : "Please give the title of the bubble chart as a string!"
@@ -476,7 +475,7 @@ Pl. bubble-nél a szomszédosokat szedi ki, így csak poligonnál alkalmazható
 ```
 "colors" : ["Please give array of hex colors as strings!"]
 ```
-**Description**: Sets a color palette which will be used on the chart. Two colors will be enough. First will apply to the selected object, the second will be applied to its neighbours.  
+**Description**: Sets a color palette which will be used on the chart. Two colors will be enough. First color will apply to the selected object, the second color will be applied to its neighbours.  
 **Type**: array of strings  
 **Valid values**: Any hex codes starting with # (in quotation marks, separated with commas, enclosed by square brackets)  
 **Example value**: ["#BFC46B","#85ACCE"]  
@@ -492,20 +491,38 @@ Pl. bubble-nél a szomszédosokat szedi ki, így csak poligonnál alkalmazható
 **Example value**: 0  
 **Tips**: 0 dataPrecision means integer numbers.
 
-#### [theme]/bubbleSettings/dataUnit
+#### [theme]/bubbleSettings/xUnit
 ```
-"dataUnit" : "Please give the data unit of the serial chart as a string!"
+"xUnit": "Please give the data unit of the bubble chart's X axis as a string!"
 ```
-**Description**: Sets the unit shown at hover baloon.  
+**Description**: Sets the unit shown at X axis and in the hover baloon.  
 **Type**: string  
 **Valid values**: Any string  
 **Example value**: "%"  
+
+#### [theme]/bubbleSettings/yUnit
+```
+"yUnit": "Please give the data unit of the bubble chart's Y axis as a string!"
+```
+**Description**: Sets the unit shown at Y axis and in the hover baloon.  
+**Type**: string  
+**Valid values**: Any string  
+**Example value**: "%"  
+
+#### [theme]/bubbleSettings/zUnit
+```
+"zUnit": "Please give the data unit of the bubble chart bubble size as a string!"
+```
+**Description**: Sets the unit shown in the hover baloon.  
+**Type**: string  
+**Valid values**: Any string  
+**Example value**: "persons"  
 
 #### [theme]/bubbleSettings/xAxesMax
 ```
 "xAxesMax" : "Please give the maximum axis value as a number!
 ```
-**Description**: Sets the maximum value of axes.  
+**Description**: Sets the maximum value of X axis.  
 **Type**: number (or empty string)  
 **Valid values**: Any number and empty string ("")  
 **Example value**: 100  
@@ -515,7 +532,27 @@ Pl. bubble-nél a szomszédosokat szedi ki, így csak poligonnál alkalmazható
 ```
 "xAxesMin" : "Please give the minimum axis value as a number!"
 ```
-**Description**: Sets the minimum value of axes.  
+**Description**: Sets the minimum value of X axis.  
+**Type**: number (or empty string)  
+**Valid values**: Any number and empty string ("")  
+**Example value**: 0  
+**Tips**: If you don't want to use minimum value, use empty string as value (""). In some cases the minimum value can be override by amChart logic. (For mor information check amChart JS documentation.)
+
+#### [theme]/bubbleSettings/yAxesMax
+```
+"xAxesMax" : "Please give the maximum axis value as a number!
+```
+**Description**: Sets the maximum value of Y axis.  
+**Type**: number (or empty string)  
+**Valid values**: Any number and empty string ("")  
+**Example value**: 100  
+**Tips**: If you don't want to use maximum value, use empty string as value (""). In some cases the maximum value can be override by amChart logic. (For mor information check amChart JS documentation.)
+
+#### [theme]/bubbleSettings/xAxesMin
+```
+"xAxesMin" : "Please give the minimum axis value as a number!"
+```
+**Description**: Sets the minimum value of Y axis.  
 **Type**: number (or empty string)  
 **Valid values**: Any number and empty string ("")  
 **Example value**: 0  
@@ -525,15 +562,15 @@ Pl. bubble-nél a szomszédosokat szedi ki, így csak poligonnál alkalmazható
 ```
 "fieldMap" : {
     "field" : "alias",
+    "field" : "alias",
     "field" : "alias"
 }
 ```  
-**Description**: Defines which fields of the data layer appear on the radar chart.  
+**Description**: Defines which fields of the data layer appear on the bubble chart. It takes exactly 3 fields. First one will be used as X coordinate, second as Y coordinate and third will determine the size of the bubble.  
 **Type**: object  
 **Valid values**: Any string as keys, any string as aliases  
-**Example value**: {"water" : "Water","waste" : "Waste water","elec" : "Electricity","gas" : "Gas", "internet": "Internet"}  
-**Tips**: This is one of the very rare occasions when you have to change the key. There will be as many axes on the radar chart as many key-value pairs in the fieldMap.
-
+**Example value**: {"m_there" : "Moving there","m_from" : "Moving from","pop" : "Population"}  
+**Tips**: This is one of the very rare occasions when you have to change the key.
 
 #### [theme]/...
 ```
