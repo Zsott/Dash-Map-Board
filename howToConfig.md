@@ -92,7 +92,7 @@ The purpose of this document is to help you with the
 `"wkid" : Please give the EPSG code (as a number) of the spatial reference system!`  
 **Description**: Sets the spatial reference system of the map.  
 **Type**: number  
-**Valid values**: Any valid EPSG code  
+**Valid values**: Any EPSG code  
 **Example value**: 3857
 
 #### [theme]/xmin
@@ -122,38 +122,81 @@ The purpose of this document is to help you with the
 `"ymax" : Please give the northernmost coordinate (as a number) of the initial extent!`  
 **Description**: Sets the northernmost point of the initial map extent.  
 **Type**: number  
-**Valid values**: Any number inside the spatial reference system's extent
+**Valid values**: Any number inside the spatial reference system's extent  
 **Example value**: 6150000  
 **Tips**: ...
 
+#### [theme]/timeStops
+`"timeStops" : ["Please give array of timestops as strings!"]`  
+**Description**: Sets the stops on the timeslider, serial chart and table.   
+**Type**: array of strings  
+**Valid values**: Any time code (in quotation marks, separated by commas, enclosed in square brackets)   
+**Example value**: ["2010", "2011", "2012", "2013", "2014", "2015"]  
+**Tips**: Timestops doesn't have to match the map service's time extent, it can be narrower. (It can also be wider but that doesn't really make any sense.)
+
+#### [theme]/timeSliderMovingRate
+`"timeSliderMovingRate" : Please give a number!`  
+**Description**: Sets how long shows one timestop when timeslider is on autoplay.  
+**Type**: number  
+**Valid values**: 0 or greater (in milliseconds)  
+**Example value**: 1500  
+
+#### [theme]/dataServiceURL
+`"dataServiceURL" : "Please give the URL of the time-aware Map Service as a string!"`  
+**Description**: Sets the URL of the time-aware Map Service used in the map.  
+**Type**: string  
+**Valid values**: Any active and shared time-aware Map Service URL in quotation marks
+**Example value**: "http://maps2.arcgisonline.com/ArcGIS/rest/services/World_Bank/WB_Age_and_Population/MapServer"
+
+#### [theme]/dataServiceLayerIndex
+`"dataServiceLayerIndex" : Please give a number!`  
+**Description**: Defines which layers is the one within the service you want to use as source of data.  
+**Type**: number  
+**Valid values**: 0 or greater integer  
+**Example value**: 0  
+
+#### [theme]/dataServiceLayerPosition
+`""dataServiceLayerPosition" : Please give a number!`  
+**Description**: Defines the position of the data layer compared to other (supporting) layers.  
+**Type**: number  
+**Valid values**: 0 or greater integer  
+**Example value**: 1  
+**Tips**: The layer with 0 position is at the bottom and all other comes above this.
+
+#### [theme]/additionalLayerURLs
+`"additionalLayerURLs" : ["Please give array of Map Service URLs as strings!"]`  
+**Description**: ...  
+**Type**: array of strings  
+**Valid values**: Any active and shared Map Service URLs (in quotation marks, separated by commas, enclosed in square brackets)  
+**Example value**: ["https://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer","http://services.nationalmap.gov/ArcGIS/rest/services/nhd/MapServer"]  
+
+#### [theme]/areaNameField
+`"areaNameField" : "Please give the fieldname (as a string) that contains the name of map objects!"`  
+**Description**: Defines which field in the service data layer contains the name of the mapped objects.  
+**Type**: string  
+**Valid values**: Any string  
+**Example value**: "nuts5name"  
+
 #### [theme]/...
-`...`  
+`"dataServiceLayerIndex" : Please give a number!`  
 **Description**: ...  
 **Type**: ...  
-**Valid values**: ...
-**Example value**: ...
+**Valid values**: ...  
+**Example value**: ...  
 **Tips**: ...
 
 #### [theme]/...
-`...`  
+`"dataServiceLayerIndex" : Please give a number!`  
 **Description**: ...  
 **Type**: ...  
-**Valid values**: ...
-**Example value**: ...
+**Valid values**: ...  
+**Example value**: ...  
 **Tips**: ...
 
 #### [theme]/...
-`...`  
+`"dataServiceLayerIndex" : Please give a number!`  
 **Description**: ...  
 **Type**: ...  
-**Valid values**: ...
-**Example value**: ...
-**Tips**: ...
-
-#### [theme]/...
-`...`  
-**Description**: ...  
-**Type**: ...  
-**Valid values**: ...
-**Example value**: ...
+**Valid values**: ...  
+**Example value**: ...  
 **Tips**: ...
