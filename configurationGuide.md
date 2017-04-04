@@ -572,22 +572,43 @@ Pl. bubble-nél a szomszédosokat szedi ki, így csak poligonnál alkalmazható
 **Example value**: {"m_there" : "Moving there","m_from" : "Moving from","pop" : "Population"}  
 **Tips**: This is one of the very rare occasions when you have to change the key.
 
-#### [theme]/...
+#### [theme]/tableSettings/title
 ```
-...
+"title" : "Please give the title of the table as a string!"
 ```
-**Description**: ...  
-**Type**: ...  
-**Valid values**: ...  
-**Example value**: ...  
-**Tips**: ...
+**Description**: Sets the title of the table.  
+**Type**: string  
+**Valid values**: Any string  
+**Example value**: "Change of population"  
 
-#### [theme]/...
+#### [theme]/tableSettings/heading
 ```
-...
+"title" : "Please give the heading of the table as a string!"
 ```
-**Description**: ...  
-**Type**: ...  
-**Valid values**: ...  
-**Example value**: ...  
-**Tips**: ...
+**Description**: Sets the heading of the table.  
+**Type**: string  
+**Valid values**: Any string  
+**Example value**: "Type of change"  
+
+#### [theme]/tableSettings/dataPrecision
+```
+"dataPrecision" : Please give a number!
+```
+**Description**: Sets the number of decimal places for rounding values. 
+**Type**: number  
+**Valid values**: 0 or greater integer  
+**Example value**: 0  
+**Tips**: 0 dataPrecision means integer numbers.
+
+#### [theme]/tableSettings/fieldMap
+```
+"fieldMap" : {
+    "field" : "alias",
+    "field" : "alias"
+}
+```  
+**Description**: Defines which fields of the data layer appear in the. Each key-value pair will be a line in the table.  
+**Type**: object  
+**Valid values**: Any string as keys, any string as aliases  
+**Example value**: {"birth" : "Number of births","death" : "Number of deaths","m_out" : "Number of people moved out", "m_in" : "Number of people moved in","change" : "Change of population (%)"}  
+**Tips**: This is one of the very rare occasions when you have to change the key.
