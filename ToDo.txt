@@ -5,6 +5,8 @@ Z - Jelmagyarázat, logó, cím, alcím config paraméterek kezelése
 Z - config template
 Z - Configuration guide
 L - cikk bevezetés, felvezetés, stb.
+L - folyamatábra készítése
+
 K - #####-k ellenőrzése
 
 Not So Urgent:
@@ -19,7 +21,6 @@ Nézetváltás animálása
 Minden kód kommentelése
 config.json kommentelése
 Témaválasztó egy elem esetén ne gördüljön le
-
 Használati útmutató
 Readme készítése
 License kitöltése
