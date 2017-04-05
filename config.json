@@ -1,370 +1,185 @@
 {
-"themeOrder" : [{"nep" : "Népesség és népmozgalom"},
-                {"lak" : "Lakásállomány"},
-                {"bun" : "Bűnözési statisztika"},
-                {"ben" : "Gépjárműállomány és benzinkutak"}],
-"nep" : {
+"themeOrder" : [{"theme2" : "Theme2 alias"},
+                {"theme1" : "Theme1 alias"}],
+"theme1" : {
 	"layout" : {
-		"leftPanelWidthPercent" : 50,
-		"mapHeightPercent" : 50,
-		"upperRightChartHeightPercent" : 50,
-		"legendOn" : false,
-		"____comment____" : "Ha valamelyikre a lentiekből nincs szükség, írjon üres szöveget!",
-		"logoImg" : "logo.png",
-		"title" : "Népesség és népmozgalom",
-		"subTitle" : "",
-		"splashText" : "",
-		"infoBoxTest" : ""
+		"leftPanelWidthPercent" : Please give a number!,
+		"mapHeightPercent" : Please give a number!,
+		"upperRightChartHeightPercent" : Please give a number!,
+		"legendOn" : Please give a 'true' or 'false' value!,
+		"logoImg" : "Pleas give the logo image's filename as a string!",
+		"title" : "Please give the title in the header as a string!",
+		"subTitle" : "Please give the subtitle in the header as a string!",
+		"splashText" : "Please give the HTML text you want to show in the splash window!",
+		"infoBoxText" : "Please give the HTML text you want to show in the info window!",
+        "clickOnWhat" : "Please give the text you want to show as a hint for the users!"
 		},
-    "wkid" : 3857,
-    "xmin" : 1600000,
-    "ymin" : 5800000,
-    "xmax" : 2800000,
-    "ymax" : 6150000,
-	"timeStops" : ["2011","2012","2013","2014","2015"],
-	"timeSliderMovingRate" : 1500,
-    "dataServiceURL" : "http://arcgisserver.lechnerkozpont.hu/arcgisserverwa/rest/services/homokozo/Dashboard_Demografia_TestService_20170329/MapServer",
-    "dataServiceLayerIndex" : 0,
-	"dataServiceLayerPosition" : 1,
-    "additionalLayerURLs" : ["http://arcgisserver.lechnerkozpont.hu/arcgisserverwa/rest/services/foldgomb/Foldgomb_2016_november_orszaghatar/MapServer"],
-	"areaNameField" : "nuts5name",
+    "wkid" : Please give the EPSG code (as a number) of the spatial reference system!,
+    "xmin" : Please give the westernmost coordinate (as a number) of the initial extent!,
+    "ymin" : Please give the southernmost coordinate (as a number) of the initial extent!,
+    "xmax" : Please give the easternmost coordinate (as a number) of the initial extent!,
+    "ymax" : Please give the northernmost coordinate (as a number) of the initial extent!,
+	"timeStops" : ["Please give array of timestops as strings!"],
+	"timeSliderMovingRate" : Please give a number!,
+    "dataServiceURL" : "Please give the URL of the time-aware Map Service as a string!",
+    "dataServiceLayerIndex" : Please give a number!,
+	"dataServiceLayerPosition" : Please give a number!,
+    "additionalLayerURLs" : ["Please give array of Map Service URLs as strings!"],
+	"areaNameField" : "Please give the fieldname (as a string) that contains the name of map objects!",
+    "timeField" : "Please give the fieldname (as a string) that contains the time information!",
     "chartPositions" : {
-        "LL" : "ser",
-        "UR" : "tab", 
-        "LR" : "bub" 
+        "LL" : "Please give the codename of the chart type as a string!",
+        "UR" : "Please give the codename of the chart type as a string!", 
+        "LR" : "Please give the codename of the chart type as a string!" 
         },
     "serialSettings" : {
-        "title" : "Népesség kor szerinti megoszlása",
-        "colors" : ["#BFC46B","#85ACCE","#914441"],
-        "dataPrecision" : 0,
-        "dataUnit" : "fő",
-        "xAxesMax" : "",
-        "xAxesMin" : "",
+        "title" : "Please give the title of the serial chart as a string!",
+        "colors" : ["Please give array of hex colors as strings!"],
+        "dataPrecision" : Please give a number!,
+        "dataUnit" : "Please give the data unit of the serial chart as a string!",
+        "yAxesMax" : Please give the maximum Y axis value as a number!,
+        "yAxesMin" : Please give the minimum Y axis value as a number!,
         "fieldMap" : {
-			"fiatal" : "0-17 évesek",
-            "felnott" : "18-59 évesek",
-            "idos" : "60 év felettiek"
+            "field" : "alias",
+            "field" : "alias"
 			}
         },
     "pieSettings" : {
-		"title" : "Népesség kor szerinti megoszlása",
-		"colors" : ["#BFC46B","#85ACCE","#914441"],        
+		"title" : "Please give the title of the pie chart as a string!",
+		"colors" : ["Please give array of hex colors as strings!"],        
         "fieldMap" : {
-			"fiatal" : "0-17 évesek",
-            "felnott" : "18-59 évesek",
-            "idos" : "60 év felettiek"
+            "field" : "alias",
+            "field" : "alias"
 			}
 		},
     "radarSettings" : {
-		"title" : "",
-		"colors" : [""],
-		"dataPrecision" : 1,
-		"dataUnit": "",
+		"title" : "Please give the title of the radar chart as a string!",
+		"colors" : ["Please give array of hex colors as strings!"],
+		"dataPrecision" : Please give a number!,
+		"dataUnit": "Please give the data unit of the radar chart as a string!",
+        "xAxesMax" : "Please give the maximum axis value as a number!",
+        "xAxesMin" : "Please give the minimum axis value as a number!",        
         "fieldMap" : {
+            "field" : "alias",
             "field" : "alias"
 			}
 		},
     "bubbleSettings" : {
-		"title" : "Szomszédos települések el- és odavándorlása",
-		"dataPrecision" : 1,
-		"xUnit": "%",
-		"yUnit": "%",
-		"zUnit": "fő",
-		"xAxesMax": "",
-		"xAxesMin": "",
-		"yAxesMax": "",		
-		"yAxesMin": "",		
-        "____comment____" : "A fieldMapnél a mezőket X, Y, Z sorrendben kell megadni!",
-        "fieldMap" : {			
-            "elvandrata" : "Elvándorlás",
-            "odavandrata" : "Odavándorlás",
-            "nepesseg" : "Népességszám"			
+		"title" : "Please give the title of the bubble chart as a string!",
+		"colors" : ["Please give array of hex colors as strings!"],
+        "dataPrecision" : Please give a number!,
+		"xUnit": "Please give the data unit of the bubble chart's X axis as a string!",
+		"yUnit": "Please give the data unit of the bubble chart's Y axis as a string!",
+		"zUnit": "Please give the data unit of the bubble chart bubble size as a string!",
+		"xAxesMax": "Please give the maximum X axis value as a number!",
+		"xAxesMin": "Please give the minimum X axis value as a number!",
+		"yAxesMax": "Please give the maximum Y axis value as a number!",	
+		"yAxesMin": "Please give the minimum Y axis value as a number!",
+        "fieldMap" : {
+            "field" : "alias",
+            "field" : "alias",
+            "field" : "alias"
 			}	
 		},
     "tableSettings" : {
-		"title" : "Népességszám változása (tényleges szaporodás)",
-		"heading" : "Változás típusa",
-		"dataPrecision" : 3,
+		"title" : "Please give the title of the table as a string!",
+		"heading" : "Please give the heading of the table as a string!",
+		"dataPrecision" : Please give a number!,
         "fieldMap" : {
-            "szuletes" : "Születések száma (fő)",
-            "halalozas" : "Halálozások száma (fő)",
-            "odavand" : "Odavándorlások száma (fő)",
-            "elvand" : "Elvándorlások száma (fő)",
-            "tenyszaporodas" : "Tényleges szaporodás (fő)",
-            "tenyszaporodasrata" : "Tényleges szaporodási ráta (%)"
+            "field" : "alias",
+            "field" : "alias"
 			}	
 		}
     },
-"lak" : {
+"theme1" : {
 	"layout" : {
-		"leftPanelWidthPercent" : 50,
-		"mapHeightPercent" : 50,
-		"upperRightChartHeightPercent" : 50,
-		"legendOn" : false,
-		"____comment____" : "Ha valamelyikre a lentiekből nincs szükség, írjon üres szöveget!",
-		"logoImg" : "logo.png",
-		"title" : "Lakásállomány",
-		"subTitle" : "",
-		"splashText" : "",
-		"infoBoxTest" : ""
+		"leftPanelWidthPercent" : Please give a number!,
+		"mapHeightPercent" : Please give a number!,
+		"upperRightChartHeightPercent" : Please give a number!,
+		"legendOn" : Please give a 'true' or 'false' value!,
+		"logoImg" : "Pleas give the logo image's filename as a string!",
+		"title" : "Please give the title in the header as a string!",
+		"subTitle" : "Please give the subtitle in the header as a string!",
+		"splashText" : "Please give the HTML text you want to show in the splash window!",
+		"infoBoxText" : "Please give the HTML text you want to show in the info window!",
+        "clickOnWhat" : "Please give the text you want to show as a hint for the users!"
 		},
-    "wkid" : 3857,
-    "xmin" : 1600000,
-    "ymin" : 5800000,
-    "xmax" : 2800000,
-    "ymax" : 6150000,
-	"timeStops" : ["2012","2013","2014","2015"],
-	"timeSliderMovingRate" : 2000,
-    "dataServiceURL" : "http://arcgisserver.lechnerkozpont.hu/arcgisserverwa/rest/services/homokozo/Dashboard_Lakasallomany_TestService_20170329/MapServer",
-    "dataServiceLayerIndex" : 0,
-	"dataServiceLayerPosition" : 1,
-    "additionalLayerURLs" : ["http://arcgisserver.lechnerkozpont.hu/arcgisserverwa/rest/services/foldgomb/Foldgomb_2016_november_orszaghatar/MapServer"],
-	"areaNameField" : "nuts3name",
+    "wkid" : Please give the EPSG code (as a number) of the spatial reference system!,
+    "xmin" : Please give the westernmost coordinate (as a number) of the initial extent!,
+    "ymin" : Please give the southernmost coordinate (as a number) of the initial extent!,
+    "xmax" : Please give the easternmost coordinate (as a number) of the initial extent!,
+    "ymax" : Please give the northernmost coordinate (as a number) of the initial extent!,
+	"timeStops" : ["Please give array of timestops as strings!"],
+	"timeSliderMovingRate" : Please give a number!,
+    "dataServiceURL" : "Please give the URL of the time-aware Map Service as a string!",
+    "dataServiceLayerIndex" : Please give a number!,
+	"dataServiceLayerPosition" : Please give a number!,
+    "additionalLayerURLs" : ["Please give array of Map Service URLs as strings!"],
+	"areaNameField" : "Please give the fieldname (as a string) that contains the name of map objects!",
+    "timeField" : "Please give the fieldname (as a string) that contains the time information!",    
     "chartPositions" : {
-        "LL" : "ser",
-        "UR" : "rad", 
-        "LR" : "pie" 
+        "LL" : "Please give the codename of the chart type as a string!",
+        "UR" : "Please give the codename of the chart type as a string!", 
+        "LR" : "Please give the codename of the chart type as a string!" 
         },
     "serialSettings" : {
-        "title" : "Lakások szobaszám szerinti megoszlása",
-        "colors" : ["#BFC46B","#85ACCE","#914441","#444444"],
-		"dataPrecision":0,
-		"dataUnit": "db",
-		"xAxesMax": "",
-		"yAxesMin": "",				
+        "title" : "Please give the title of the serial chart as a string!",
+        "colors" : ["Please give array of hex colors as strings!"],
+        "dataPrecision" : Please give a number!,
+        "dataUnit" : "Please give the data unit of the serial chart as a string!",
+        "yAxesMax" : Please give the maximum Y axis value as a number!,
+        "yAxesMin" : Please give the minimum Y axis value as a number!,
         "fieldMap" : {
-			"egyszoba" : "egy szoba",
-            "ketszoba" : "két szoba",
-            "haromszoba" : "három szoba",
-            "sokszoba" : "több, mint három szoba"
+            "field" : "alias",
+            "field" : "alias"
 			}
         },
     "pieSettings" : {
-		"title" : "Lakások szobaszám szerinti megoszlása",
-		"colors" : ["#BFC46B","#85ACCE","#914441", "#444444"],
+		"title" : "Please give the title of the pie chart as a string!",
+		"colors" : ["Please give array of hex colors as strings!"],        
         "fieldMap" : {
-			"egyszoba" : "egy szoba",
-            "ketszoba" : "két szoba",
-            "haromszoba" : "három szoba",
-            "sokszoba" : "több, mint három szoba"
+            "field" : "alias",
+            "field" : "alias"
 			}
 		},
     "radarSettings" : {
-		"title" : "Közmű ellátottság",
-		"colors" : ["#334455","#999999","#ddddee","#88ccff","#777799"],
-		"dataPrecision" : 1,
-		"dataUnit": "db",
-		"xAxesMax": 200000,
-		"xAxesMin": 100000,		
+		"title" : "Please give the title of the radar chart as a string!",
+		"colors" : ["Please give array of hex colors as strings!"],
+		"dataPrecision" : Please give a number!,
+		"dataUnit": "Please give the data unit of the radar chart as a string!",
+        "xAxesMax" : "Please give the maximum axis value as a number!",
+        "xAxesMin" : "Please give the minimum axis value as a number!",        
         "fieldMap" : {
-            "viz" : "Víz",
-            "aram" : "Áram",
-            "gaz" : "Gáz",
-            "szenny" : "Szennyvíz",
-            "internet" : "Internet"
-			}
-		},
-    "bubbleSettings" : {
-		"title" : "",
-		"dataPrecision" : 1,
-		"xUnit": "",
-		"yUnit": "",
-		"zUnit": "",
-		"xAxesMax": "",
-		"xAxesMin": "",
-		"yAxesMax": "",		
-		"yAxesMin": "",	        
-        "____comment____" : "A fieldMapnél a mezőket X, Y, Z sorrendben kell megadni!",
-        "fieldMap" : {
-			"field" : "alias"
-			}	
-		},
-    "tableSettings" : {
-		"title" : "",
-		"heading" : "",
-		"dataPrecision" : 2,
-        "fieldMap" : {
-			"field" : "alias"
-			}	
-		}
-    },
-"bun" : {
-	"layout" : {
-		"leftPanelWidthPercent" : 40,
-		"mapHeightPercent" : 100,
-		"upperRightChartHeightPercent" : 50,
-		"legendOn" : false,
-		"____comment____" : "Ha valamelyikre a lentiekből nincs szükség, írjon üres szöveget!",
-		"logoImg" : "logo.png",
-		"title" : "Bűnözési statisztika",
-		"subTitle" : "",
-		"splashText" : "",
-		"infoBoxTest" : ""
-		},
-    "wkid" : 3857,
-    "xmin" : 1600000,
-    "ymin" : 5800000,
-    "xmax" : 2800000,
-    "ymax" : 6150000,
-	"timeStops" : ["2010", "2011", "2012", "2013", "2014", "2015"],
-	"timeSliderMovingRate" : 1500,
-    "dataServiceURL" : "http://arcgisserver.lechnerkozpont.hu/arcgisserverwa/rest/services/homokozo/Dashboard_Bunozes_TestService_20170329/MapServer",
-	"dataServiceLayerIndex" : 0,
-    "dataServiceLayerPosition" : 0,
-    "additionalLayerURLs" : [],
-	"areaNameField" : "jarasnev",
-    "chartPositions" : {
-        "LL" : "",
-        "UR" : "tab", 
-        "LR" : "pie" 
-        },
-    "serialSettings" : {
-        "title" : "",
-        "colors" : [""],
-		"dataPrecision":0,
-        "dataUnit" : "fő",
-        "xAxesMax" : "",        
-        "fieldMap" : {
-			"field" : "alias"
-			}
-        },
-    "pieSettings" : {
-		"title" : "Bűnesetek megoszlása főtípusok szerint",
-		"colors" : ["#BFC46B","#85ACCE","#914441"],
-        "fieldMap" : {
-            "vagyon" : "Vagyon elleni bűncselekmények",
-            "szemely" : "Személy elleni bűncselekmények",
-            "kozrend" : "Közrend elleni bűncselekmények"
-			}
-		},
-    "radarSettings" : {
-		"title" : "",
-		"colors" : [""],
-		"dataPrecision" : 1,
-        "dataUnit": "",
-        "fieldMap" : {
+            "field" : "alias",
             "field" : "alias"
 			}
 		},
     "bubbleSettings" : {
-		"title" : "",
-		"dataPrecision" : 1,
-		"xUnit" : "",
-		"yUnit" : "",
-		"zUnit" : "",
-		"xAxesMax": "",
-		"xAxesMin": "",
-		"yAxesMax": "",		
-		"yAxesMin": "",		
-        "____comment____" : "A fieldMapnél a mezőket X, Y, Z sorrendben kell megadni!",        
+		"title" : "Please give the title of the bubble chart as a string!",
+		"colors" : ["Please give array of hex colors as strings!"],
+        "dataPrecision" : Please give a number!,
+		"xUnit": "Please give the data unit of the bubble chart's X axis as a string!",
+		"yUnit": "Please give the data unit of the bubble chart's Y axis as a string!",
+		"zUnit": "Please give the data unit of the bubble chart bubble size as a string!",
+		"xAxesMax": "Please give the maximum X axis value as a number!",
+		"xAxesMin": "Please give the minimum X axis value as a number!",
+		"yAxesMax": "Please give the maximum Y axis value as a number!",	
+		"yAxesMin": "Please give the minimum Y axis value as a number!",
         "fieldMap" : {
-			"field" : "alias"
-			}	
-		},
-    "tableSettings" : {
-		"title" : "Bűnesetek megoszlása típusok szerint",
-		"heading" : "Típusok",
-		"dataPrecision" : 2,
-        "fieldMap" : {
-			"buncsel_db" : "Regisztrált bűnesetek száma [eset]",
-            "vagyon" : "Vagyon elleni bűncselekmények együtt (jármű önkényes elvétele + lopás + rablás) [eset]",
-            "jarmu" : "Jármű önkényes elvétele [eset]",
-            "lopas" : "Lopás [eset]",
-            "rablas" : "Rablás [eset]",            
-            "szemely" : "Személy elleni bűncselekmények együtt (befejezett emberölés + testi sértés) [eset]",
-            "emberoles" : "Befejezett emberölés [eset]",
-            "testi_sertes" : "Testi sértés [eset]",
-            "kozrend" : "Közrend elleni bűncselekmények együtt (garázdaság + visszaélés kábítószerrel) [eset]",
-            "garazdasag" : "Garázdaság [eset]",
-            "kabszer" : "Visszaélés kábítószerrel [eset]"
-			}	
-		}
-    },
-"ben" : {	"layout" : {
-		"leftPanelWidthPercent" : 50,
-		"mapHeightPercent" : 50,
-		"upperRightChartHeightPercent" : 100,
-		"legendOn" : false,
-		"____comment____" : "Ha valamelyikre a lentiekből nincs szükség, írjon üres szöveget!",
-		"logoImg" : "logo.png",
-		"title" : "Gépjárműállomány és benzinkutak",
-		"subTitle" : "",
-		"splashText" : "",
-		"infoBoxTest" : ""
-		},
-    "wkid" : 3857,
-    "xmin" : 1600000,
-    "ymin" : 5800000,
-    "xmax" : 2800000,
-    "ymax" : 6150000,
-	"timeStops" : ["2008","2009","2010","2011","2012","2013","2014"],
-	"timeSliderMovingRate" : 2000,
-    "dataServiceURL" : "http://arcgisserver.lechnerkozpont.hu/arcgisserverwa/rest/services/homokozo/Dashboard_Benzinkutak_TestService_20170329/MapServer",
-    "dataServiceLayerIndex" : 0,
-	"dataServiceLayerPosition" : 1,
-    "additionalLayerURLs" : ["http://arcgisserver.lechnerkozpont.hu/arcgisserverwa/rest/services/foldgomb/Foldgomb_2016_november_orszaghatar/MapServer"],
-	"areaNameField" : "jarasnev",
-    "chartPositions" : {
-        "LL" : "ser",
-        "UR" : "pie", 
-        "LR" : "" 
-        },
-    "serialSettings" : {
-        "title" : "Gépjárművek megoszlása típusonként",
-        "colors" : ["#BFC46B","#85ACCE","#914441","#444444"],
-		"dataPrecision":0,
-		"dataUnit": "db",
-		"xAxesMax": "",
-		"yAxesMin": "",				
-        "fieldMap" : {
-			"szgk" : "Személygépkocsi",
-            "tgk" : "Tehergépkocsi",
-            "busz" : "Busz",
-            "mot" : "Motor",
-            "von" : "Vontató"
-			}
-        },
-    "pieSettings" : {
-		"title" : "Személyglpjátművek megoszlása üzemanyagtípusonként",
-		"colors" : ["#BFC46B","#85ACCE","#914441", "#444444"],
-        "fieldMap" : {
-			"szgk_ben" : "benzines",
-            "szgk_diz" : "dízel",
-            "szgk_egy" : "egyéb"
-			}
-		},
-    "radarSettings" : {
-		"title" : "",
-		"colors" : [""],
-		"dataPrecision" : 0,
-		"dataUnit": "",
-        "fieldMap" : {
+            "field" : "alias",
+            "field" : "alias",
             "field" : "alias"
-			}
-		},
-    "bubbleSettings" : {
-		"title" : "",
-		"dataPrecision" : 1,
-		"xUnit" : "",
-		"yUnit" : "",
-		"zUnit" : "",
-		"xAxesMax": "",
-		"xAxesMin": "",
-		"yAxesMax": "",		
-		"yAxesMin": "",        
-        "fieldMap" : {
-			"field" : "alias"
 			}	
 		},
     "tableSettings" : {
-		"title" : "",
-		"heading" : "",
-		"dataPrecision" : 2,
+		"title" : "Please give the title of the table as a string!",
+		"heading" : "Please give the heading of the table as a string!",
+		"dataPrecision" : Please give a number!,
         "fieldMap" : {
-			"field" : "alias"
+            "field" : "alias",
+            "field" : "alias"
 			}	
 		}
     },
 "creators" : "Készítők: Lellei László (Lechner Tudásközpont), Ónodi Zsolt (Lechner Tudásközpont)"
 }
-
