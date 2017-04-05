@@ -143,7 +143,8 @@ require(
 			dataQuery = new esri.tasks.Query();
 			dataQuery.returnGeometry = true;
 			dataQuery.outFields = ["*"];
-			dataQuery.orderByFields = ["ev ASC"]; //##### config?
+
+			//TimeSlider inicializálása
 			dataQueryTask = new QueryTask(actTheme["dataServiceURL"] + "/0"); //##### config?
 
 			//Sets the title of the theme in the header
@@ -212,7 +213,16 @@ require(
 				searchCurrentYear(actFeatureSet);
 				
 				//A terület nevének lekérdezése és kiiratása
-				actAreaName = actYearFeature.attributes[actTheme["areaNameField"]];
+				//Kezelni kell ha nincs adat az adott évhez
+				// var keys = Object.keys(actYearFeature);
+				// if(keys.length==0){
+					// actAreaName="";
+				// }
+				// else{
+					// actAreaName = actYearFeature.attributes[actTheme["areaNameField"]];
+				// }
+
+				//actAreaName = actYearFeature.attributes[actTheme["areaNameField"]];
 				$("#placeYear").html(actAreaName+ " - " + currYear);
 
 				//Diagramm adatok előállítása
@@ -386,7 +396,7 @@ require(
         }
         
         //A configból a szükséges diagramtípusok kiolvasása és diagramépítések meghívása
-		function chooseChart(timeSliderChange){		
+		function chooseChart(timeSliderChange){	
 			for (var keyTitle in actTheme["chartPositions"]) {
 				if(actTheme["chartPositions"][keyTitle]=="pie"){
                     createPieDP();
@@ -398,14 +408,24 @@ require(
 					createTabDP();
 				}
 				else if(actTheme["chartPositions"][keyTitle]=="bub"){
-                    var neighQuery = new esri.tasks.Query();
-                    neighQuery.geometry = actYearFeature.geometry;
-                    neighQuery.returnGeometry = true;
-                    outFields=["*"];
-                    neighQuery.outFields = outFields;
-                    neighQuery.spatialRelationship = esri.tasks.Query.SPATIAL_REL_TOUCHES;
-                    var selNeighbour = new QueryTask(actTheme.dataServiceURL + "/" + actTheme.dataServiceLayerIndex); 
-                    selNeighbour.execute(neighQuery, createBubDP);                    
+					//Kezelni kell ha nincs adat az adott évhez
+					var keys = Object.keys(actYearFeature);
+					if(keys.length==0){
+						//Nincs adat üresen hívja meg a diagram készítést
+						createBubbleChart([]);						
+					}
+					else{
+						var neighQuery = new esri.tasks.Query();
+						neighQuery.geometry = actYearFeature.geometry;
+						neighQuery.returnGeometry = true;
+						outFields=["*"];
+						neighQuery.outFields = outFields;
+						neighQuery.spatialRelationship = esri.tasks.Query.SPATIAL_REL_TOUCHES;
+						var selNeighbour = new QueryTask(actTheme.dataServiceURL + "/" + actTheme.dataServiceLayerIndex); 
+						selNeighbour.execute(neighQuery, createBubDP);
+					}
+					
+
 				}
 				else if(actTheme["chartPositions"][keyTitle]=="rad"){
                     createRadDP(actFeatureSet);
@@ -415,11 +435,14 @@ require(
 		
 		//A FeatureSet szűrése a timeslider-nek megfelelő évre
         function searchCurrentYear(featureSet){
+			actYearFeature={};
+			actAreaName="";
 			featureSet.features.forEach(function(entry) {
-				if(entry.attributes["ev"] == currYear){
+				actAreaName=entry.attributes[actTheme["areaNameField"]];
+				if(entry.attributes[actTheme["timeField"]] == currYear){
 					actYearFeature = entry;
 				}
-			});			
+			});				
 		}
 		
 		//A térképen kijelöli a kiválasztott objektumot
@@ -456,9 +479,9 @@ require(
 			var json;
 			actFeatureSet.features.forEach(function(entry) {
 
-				if(actTheme["timeStops"].indexOf(entry.attributes["ev"].toString())!=-1){
+				if(actTheme["timeStops"].indexOf(entry.attributes[actTheme["timeField"]].toString())!=-1){
 					json = {};
-					json["year"] = entry.attributes["ev"];
+					json["year"] = entry.attributes[actTheme["timeField"]];
 
 					for (var key in entry.attributes){
 						for (var keyTitle in actTheme["serialSettings"].fieldMap) {
@@ -482,7 +505,7 @@ require(
 			var json;
 			actFeatureSet.features.forEach(function(entry) {
 				json = {};
-				json["year"] = entry.attributes["ev"];
+				json["year"] = entry.attributes[actTheme["timeField"]];
 
 	            for (var key in entry.attributes){
 					for (var keyTitle in actTheme["tableSettings"].fieldMap) {
@@ -500,20 +523,24 @@ require(
 		//A bubble diagram dataprovider-nek feltöltése
         function createBubDP(featureSet){
 			var bubDP=[];
-            bubDP.push(actYearFeature.attributes);
-            bubDP[0]["color"] = actTheme["bubbleSettings"].colors[0];			
+			
+			if(actYearFeature.attributes[actTheme["timeField"]]==currYear){
+				bubDP.push(actYearFeature.attributes);
+				bubDP[0]["color"] = actTheme["bubbleSettings"].colors[0];			
+			}
+		
 			featureSet.features.forEach(function(entry) {
-				if(entry.attributes["ev"]==currYear){
+				if(entry.attributes[actTheme["timeField"]]==currYear){
 					bubDP.push(entry.attributes);
 				}
 			});
 			var keys = [];
 			for(var k in actTheme["bubbleSettings"].fieldMap) keys.push(k);
 			//A z értéknek a tömb harmadik elemének kell lennie!!! Sorrend [0]: x, [1]:y, [2]:z
+			//Sorba rendezés z érték alapján
             var bubOrderedDP = orderArrayByAttribute(bubDP,keys[2],"desc");
 
-			//Sorba rendezés z érték alapján
-            createBubbleChart(bubOrderedDP);
+			createBubbleChart(bubOrderedDP);
         }
         			
 		//Sorbarendezés attributum alapján (Bubble diagramnál a kisebb kerüljön felülre, Serial fordítva)
@@ -773,6 +800,8 @@ require(
 			var xField=actTheme["bubbleSettings"].fieldMap;
 			var x=1;
 			var keys = [];
+
+			
 			for(var k in actTheme["bubbleSettings"].fieldMap) keys.push(k);
 			
 			
