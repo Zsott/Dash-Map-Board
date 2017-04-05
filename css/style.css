@@ -48,7 +48,7 @@ html, body{
 	margin: 0px 60px 0px 20px;
 }
 
-.createdBy{
+.subTitle{
 	display: inline-block;
 	color: #aaaaaa;
 	text-decoration: none;
@@ -357,6 +357,10 @@ html, body{
 
 .actualYearColumn{
     color: #2B34B1;
+}
+
+.hiddenElement{
+    display: none;
 }
 
 /* Make amChart marketing disappear */
