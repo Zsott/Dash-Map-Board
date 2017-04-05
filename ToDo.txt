@@ -5,6 +5,8 @@ Z - Jelmagyarázat, logó, cím, alcím config paraméterek kezelése
 Z - config template
 Z - Configuration guide
 L - cikk bevezetés, felvezetés, stb.
+L - folyamatábra készítése
+
 K - #####-k ellenőrzése
 
 Not So Urgent:
@@ -19,7 +21,6 @@ Nézetváltás animálása
 Minden kód kommentelése
 config.json kommentelése
 Témaválasztó egy elem esetén ne gördüljön le
-
 Használati útmutató
 Readme készítése
 License kitöltése
@@ -32,6 +33,7 @@ Later development:
 Adatbázis kapcsolat (térképről csak egy ID-t kapunk, amivel szerver oldali lekérdezést futtatunk)
 Ablakok átméretezése (bármelyik kinagyítható legyen teljes képernyőre)
 Két azonos típusú diagram is elhelyezhető legyen (pl. 2 pie)
+Minden panelen legördülőben lehessen választani a diagram típusok között (front-end diagramtípus állítás)
 
 Cikk vázlat:
 ----------------------------------------------------
@@ -48,7 +50,7 @@ Előzmények
   kettő ötvözése
 Projekt leírása
   HTML+CSS+JS (+jQuery)
-  ami nagy durranás:
+  ami nagy durranás: (ettől lesz jó pehelysúlyú kódolóknak!!!)
     config.json szerepe és fontossága
     kommentelés szerepe és fontossága
   nyílt, GitHub

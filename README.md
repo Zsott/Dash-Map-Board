@@ -3,7 +3,7 @@ _aka "Easy way to create dashboard with map for lightweight coders"_
 
 ## Created by
 - László Lellei (spatial data expert @Lechner Knowledge Center, Hungary)
-- Zsolt Ónodi (GIS export @Lechner Knowledge Center, Hungary)
+- Zsolt Ónodi (GIS expert @Lechner Knowledge Center, Hungary)
 
 ## Short description
 Our project goal is to create a configurable time-aware dashboard using ArcGIS JS API and amCharts JS Charts.
