@@ -68,48 +68,34 @@ require(
     // Wait until DOM is ready *and* all outstanding require() calls have been resolved
     ready(function(){
         // Parse DOM nodes decorated with the data-dojo-type attribute
-        // Ez futtatja a HTML element-ekbe írt dojo kódot.
         parser.parse();
 
-		//A térképen való első kattintás
-		var firstClick = true;
+		//Defining variables
+        var firstClick = true; //Checks if there was any click on the map or not
+		var firstTheme = true; //Checks if the actual is the first theme or not
+		var currYear; //The current position of the timeslider	
+        var actTheme; //Tracking the actual theme. By default it is the first element of the themeOrder array from config.json
+        var actFeatureSet = {}; //The featureset you get by clicking on the map
+        var actYearFeature; //The feature from the featureSet which corresponds to the current year
+        var actAreaName; //The name of the clicked element
+        var terkep;
+        var dataQuery;
+        var timeSlider;
 
-		var firstTheme = true;
-		
-        //Aktuális év, amin a timeslider áll		
-        var currYear;
+		//Creates the theme chooser dropdown menu and selects the first theme
+        createThemeDropDown();
         
-        // Aktuális téma kiválasztása és a témaválasztó elkészítése ##### Teszt
-		// Alapértelmezett téma a config.json themeOrder-jének első eleme
-        var actTheme;
-		createThemeDropDown();
-        
-		//Az egész featureset (térképi bökés válasza)		
-        var actFeatureSet = {};
-        
-		//Az aktulis év feature
-		var actYearFeature;
-		
-		//A kiválasztott terület neve
-		var actAreaName;
-		
-		var terkep;
+        //Sets up the theme according to the first theme's configuration
+        initTheme();
 
-		var dataQuery;
-
-		var timeSlider;
-		
-		initTheme();
-		var scale;
-		var center;		
-		
 		function initTheme(){
 		
-			//Megadjuk, hogy az EOV legyen a vetület.
+			//Define spatial reference system
 			var spRef = new SpatialReference({
 				wkid : actTheme.wkid
 			});
-			//Beállítjuk a térkép kezdő nézetének koordinátáit, valamint a vetületi rendszert.
+            
+			//Set the initial extent with the defined spatial reference system
 			var extHun = new Extent({
 				"xmin" : actTheme.xmin,
 				"ymin" : actTheme.ymin,
@@ -118,29 +104,26 @@ require(
 				"spatialReference" : spRef
 			});
 			
-			//Elkészítjük a térképet.
+			//Create map object
 			terkep = new Map("map", {
 				spatialReference: spRef,
-				basemap: "topo",
+				basemap: "topo", //##### config?
 				extent : extHun,
-				logo : false,
-				showAttribution : false
+				logo : false, //##### config?
+				showAttribution : false //##### config?
 			});			
 			
-			if(firstTheme){
-				scale = terkep.getScale();
-				center = terkep.extent.getCenter();				
-			}
-			else{				
+            //Resizing and repositioning map when changing theme
+			if(!firstTheme){
                 terkep.width = $("#map").outerWidth();
                 terkep.height = $("#map").outerHeight();
 			}
             
-			//Az adatréteget beilleszti a rétegek tömb-be a config-ban megadott index értékkel
+            //Adding the data layer to the correct position in the array of layers
 			var layerUrl = actTheme["additionalLayerURLs"];
 			layerUrl.splice(actTheme.dataServiceLayerPosition, 0, actTheme.dataServiceURL);
 			
-			//Egyéb rétegek hozzáadása a térképhez.
+			//Add layers to map
 			layerUrl.forEach(function(entry) {
 				terkep.addLayer(new ArcGISDynamicMapServiceLayer(entry));
 			});
@@ -156,17 +139,41 @@ require(
 			// },"legend");
 			// legend.startup();
 
-			// Szűrés definiálása
+			//Defining query - this will be used when clicking on the map
 			dataQuery = new esri.tasks.Query();
 			dataQuery.returnGeometry = true;
 			dataQuery.outFields = ["*"];
-			dataQuery.orderByFields = ["ev ASC"];
-			dataQueryTask = new QueryTask(actTheme["dataServiceURL"] + "/0");
+			dataQuery.orderByFields = ["ev ASC"]; //##### config?
+			dataQueryTask = new QueryTask(actTheme["dataServiceURL"] + "/0"); //##### config?
 
-			//TimeSlider inicializálása
+			//Sets the title of the theme in the header
+            $("#title").html(actTheme.layout.title);
+            //Sets the subtitle of the theme in the header
+            $("#subTitle").html(actTheme.layout.subTitle);
+            //Controls if splash should appear and if so sets its content
+            if(actTheme.layout.splashText == ""){
+                $("#splash").addClass("hiddenElement");
+            }
+            else{
+                $("#splash").removeClass("hiddenElement");                
+                $("#splash").html(actTheme.layout.splashText)
+            }
+            //Controls if infoBox should appear and if so sets its content
+            if(actTheme.layout.infoBoxText == ""){
+                $("#infoBox").addClass("hiddenElement");
+                $("#infoIcon").addClass("hiddenElement");
+            }
+            else{
+                $("#infoBox").removeClass("hiddenElement");
+                $("#infoIcon").removeClass("hiddenElement");
+                $("#infoBox").html(actTheme.layout.infoBoxText);
+            }
+            $("#placeYear").html(actTheme.layout.clickOnWhat);
+            
+            //Starting the timeslider
 			initTimeSlider();
 				 
-			// Kattintás esemény kezelése
+			//Defining the click event on the map
 			terkep.on("click", initDashBoard);
 		}
         
