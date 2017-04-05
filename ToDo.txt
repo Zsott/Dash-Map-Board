@@ -1,9 +1,8 @@
 Urgent:
 ----------------------------------------------------
-Z - config egységesítése (új paraméterek mindenhol vannak-e?)
-Z - Jelmagyarázat, logó, cím, alcím config paraméterek kezelése
-Z - config template
-Z - Configuration guide
+Z - Jelmagyarázat configból vezérelve
+Z - Splash, infobox
+
 L - cikk bevezetés, felvezetés, stb.
 L - folyamatábra készítése
 
