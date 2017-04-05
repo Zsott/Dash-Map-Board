@@ -155,6 +155,7 @@ require(
                 $("#splash").addClass("hiddenElement");
             }
             else{
+                $("#splash").removeClass("hiddenElement");                
                 $("#splash").html(actTheme.layout.splashText)
             }
             //Controls if infoBox should appear and if so sets its content
@@ -163,8 +164,8 @@ require(
                 $("#infoIcon").addClass("hiddenElement");
             }
             else{
-                $("#infoBox").addClass("hiddenElement");
-                $("#infoIcon").addClass("hiddenElement");
+                $("#infoBox").removeClass("hiddenElement");
+                $("#infoIcon").removeClass("hiddenElement");
                 $("#infoBox").html(actTheme.layout.infoBoxText);
             }
             $("#placeYear").html(actTheme.layout.clickOnWhat);
