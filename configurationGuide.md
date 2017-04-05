@@ -237,6 +237,15 @@ Pl. bubble-nél a szomszédosokat szedi ki, így csak poligonnál alkalmazható
 **Valid values**: Any string  
 **Example value**: "nuts5name"  
 
+#### [theme]/timeField
+```
+"timeField" : "Please give the fieldname (as a string) that contains the time information!"
+```
+**Description**: Defines which field in the service data layer contains the time data which makes the layer the time-aware.  
+**Type**: string  
+**Valid values**: Any string  
+**Example value**: "year"  
+
 #### [theme]/chartPositions/LL
 ```
 "LL" : "Please give the codename of the chart type as a string!"
