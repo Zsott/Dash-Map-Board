@@ -3,6 +3,8 @@ Urgent:
 Z - Jelmagyarázat configból vezérelve
 Z - Logó configból vezérelve
 Z - Splash, infobox
+Z - Configuration Guide befejezése
+Z - Dashboard MapService Creation Guide készítése (PDF)
 
 L - cikk bevezetés, felvezetés, stb.
 L - folyamatábra készítése
@@ -12,7 +14,6 @@ K - #####-k ellenőrzése
 Not So Urgent:
 ----------------------------------------------------
 Milyen egyéb paraméter pakolható config-ba?
-Témaváltás esetén nagyítson a rétegre
 Ellenőrizni, hogy semmi fontos ne maradjon "hard code"
 config.json validator
 Kolofon (angol-magyar)
@@ -21,12 +22,12 @@ Nézetváltás animálása
 Minden kód kommentelése
 config.json kommentelése
 Témaválasztó egy elem esetén ne gördüljön le
-Használati útmutató
 Readme készítése
 License kitöltése
 Credits kitöltése - console.log-ba is mehet
 többi console.log kitörlése
 theme template JSON készítése
+gyakorló time-aware map service készítése (EUROSTAT adatok)
 
 Later development:
 ----------------------------------------------------
@@ -34,29 +35,3 @@ Adatbázis kapcsolat (térképről csak egy ID-t kapunk, amivel szerver oldali l
 Ablakok átméretezése (bármelyik kinagyítható legyen teljes képernyőre)
 Két azonos típusú diagram is elhelyezhető legyen (pl. 2 pie)
 Minden panelen legördülőben lehessen választani a diagram típusok között (front-end diagramtípus állítás)
-
-Cikk vázlat:
-----------------------------------------------------
-Bevezetés
-  mi a cél?
-  időtudatosság fontossága
-  mi a vezetői információs rendszer?
-  alkalmazott technológiák említése
-Előzmények
-  létező dashboard megoldások (fizetős és OS)
-    általában a térkép a gyenge pont
-  LTK -> JS API (TEIR GIS; Földgömb, növekvő igények, WAB->JS API->egyre több dojo->dojo helyett amchart
-  LTK -> amchart (TEIR alkalmazások)
-  kettő ötvözése
-Projekt leírása
-  HTML+CSS+JS (+jQuery)
-  ami nagy durranás: (ettől lesz jó pehelysúlyú kódolóknak!!!)
-    config.json szerepe és fontossága
-    kommentelés szerepe és fontossága
-  nyílt, GitHub
-Folyamat (ábra + 1-2 mondat)
-  time-aware service needed
-config.json bemutatása
-  1-2 mondat, sok kép
-továbbfejlesztési irányok
-github link
