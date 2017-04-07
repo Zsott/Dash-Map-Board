@@ -1,5 +1,5 @@
-# About the "mapDashboard" project
-_aka "Easy way to create dashboard with map for lightweight coders"_
+# About the "Dash-Map-Board" project
+_aka Easy way to create map-based time-aware dashboard for "lightweight" coders_
 
 ## Created by
 - László Lellei (spatial data expert @Lechner Knowledge Center, Hungary)
