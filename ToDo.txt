@@ -1,6 +1,7 @@
 Urgent:
 ----------------------------------------------------
 Z - Jelmagyarázat configból vezérelve
+Z - Logó configból vezérelve
 Z - Splash, infobox
 
 L - cikk bevezetés, felvezetés, stb.
