@@ -1,33 +1,28 @@
-Urgent:
+ToDo
 ----------------------------------------------------
 Z - Jelmagyarázat configból vezérelve
 Z - Logó configból vezérelve
 Z - Splash, infobox
+Z - Kolofon (angol-magyar)
+Z - Credits kitöltése - console.log-ba is mehet
+Z - Ikon hover (kolofon, infobox, stb.)
 Z - Configuration Guide befejezése
 Z - Dashboard MapService Creation Guide készítése (PDF)
+Z - Nézetváltás animálása
+Z - Témaválasztó egy elem esetén ne gördüljön le
 
-L - cikk bevezetés, felvezetés, stb.
-L - folyamatábra készítése
+L - config.json validator
+L - theme template JSON készítése
 
 K - #####-k ellenőrzése
-
-Not So Urgent:
-----------------------------------------------------
-Milyen egyéb paraméter pakolható config-ba?
-Ellenőrizni, hogy semmi fontos ne maradjon "hard code"
-config.json validator
-Kolofon (angol-magyar)
-Ikon hover
-Nézetváltás animálása
-Minden kód kommentelése
-config.json kommentelése
-Témaválasztó egy elem esetén ne gördüljön le
-Readme készítése
-License kitöltése
-Credits kitöltése - console.log-ba is mehet
-többi console.log kitörlése
-theme template JSON készítése
-gyakorló time-aware map service készítése (EUROSTAT adatok)
+K - Milyen egyéb paraméter pakolható config-ba?
+K - Ellenőrizni, hogy semmi fontos ne maradjon "hard code"
+K - Minden kód kommentelése
+K - config.json kommentelése (?????)
+K - Readme készítése
+K - License kitöltése
+K - többi console.log kitörlése
+K - gyakorló time-aware map service készítése (EUROSTAT adatok)
 
 Later development:
 ----------------------------------------------------
