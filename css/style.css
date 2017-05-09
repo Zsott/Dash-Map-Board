@@ -33,7 +33,7 @@ html, body{
 }
 
 .logo{
-	display: inline-block;
+	display: none;
 	height: 30px;
 	margin: 5px 0px 0px 10px;
 	float: left;
@@ -53,18 +53,19 @@ html, body{
 	color: #aaaaaa;
 	text-decoration: none;
 	margin: 0px 15px;
+    float: left;
 }
 
 .infoImg{
     height: 30px;
-	position: absolute;
-	right: 13px;
-	top: 13px;
+    float: right;
+    margin: 5px;
+    cursor: pointer;
 }
 
 /* Infobox and splash screen */
 
-#splash, #infoBox{
+#splash, #infoBox, #colophon{
     position: fixed;
     display: block;
     background: rgb(72,85,102);
@@ -76,10 +77,10 @@ html, body{
     border-radius: 25px;
 	max-height: 80vh;
 	overflow: auto;
-	z-index:100;
+	z-index: 1000;
 }
 
-#infoBox{
+#infoBox, #colophon{
     display: none;
 }
 
@@ -90,7 +91,7 @@ html, body{
     width: 100px;
 }
 
-.splashText, .infoBoxText{
+.splashText, .infoBoxText, .colophonText{
     padding: 10px 20px;
     font-family: Verdana;
     font-size: 14px;
@@ -99,11 +100,16 @@ html, body{
     line-height: 24px;
 }
 
+.colophonText{
+    text-align: center;
+    margin: 5px 0px;
+}
+
 .splashLink, .infoBoxLink, .headingLink{
     color: rgb(248,239,38);
 }
 
-.splashButton, .infoBoxButton{
+.splashButton, .infoBoxButton, .colophonButton{
     display: block;
     margin: auto;
     margin-bottom: 20px;
@@ -264,7 +270,7 @@ html, body{
 }
 
 #legendIcon{
-    display: block;
+    display: none;
     background: #000000;
     width: 40px;
     height: 40px;
@@ -363,8 +369,20 @@ html, body{
     display: none;
 }
 
+/* Animation */
+.fadeOut{
+    visibility: hidden;
+    opacity: 0
+}
+
+.fadeIn{
+    transition: opacity ease-in 2s;
+    visibility: visible;
+    opacity: 1;
+}
+
 /* Make amChart marketing disappear */
-/* Reference to amChart in heading instead */
+/* Reference to amChart in colophon (heading) instead */
 .amcharts-chart-div a{
     display: none !important;
 }
