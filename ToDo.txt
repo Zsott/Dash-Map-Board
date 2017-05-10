@@ -1,32 +1,25 @@
 ToDo
 ----------------------------------------------------
-Alert logikáját átgondolni (pl. csak egy alert, aztán hibalista az oldal helyén)
-A config validator szedje össze az alert-ekben megjelenő hibákat és egy listaként rakja ki a legvégén az oldalra.
+L - Alert logikáját módosítani: csak egy alert, aztán hibalista az oldal helyén.
 
-
-Z - Jelmagyarázat configból vezérelve
-Z - Logó configból vezérelve
-Z - Splash, infobox
-Z - Kolofon (angol-magyar)
-Z - Credits kitöltése - console.log-ba is mehet
-Z - Ikon hover (kolofon, infobox, stb.)
+Z - A configTemplate módosítása a diagram Axes min-max értékek szövegként tárolt számok legyenek.
+Z - Megjelölni, milyen paraméterek pakolhatók át a config-ba a jövőben. (Használjuk hozzá a @@@ jelölést!)
+Z - Minden kód kommentelése
+Z - Felesleges console.log-ok kitörlése
+Z - #####-k ellenőrzése
+Z - Ellenőrizni, hogy semmi fontos ne maradjon "hard code"
+Z - Configuration Guide összevetése a config validatorral.
 Z - Configuration Guide befejezése
 Z - Dashboard MapService Creation Guide készítése (PDF)
-Z - Nézetváltás animálása
-Z - Témaválasztó egy elem esetén ne gördüljön le
 
-L - config.json validator
-L - theme template JSON készítése
-
-K - #####-k ellenőrzése
-K - Milyen egyéb paraméter pakolható config-ba?
-K - Ellenőrizni, hogy semmi fontos ne maradjon "hard code"
-K - Minden kód kommentelése
-K - config.json kommentelése (?????)
+K - Teszt time-aware service-ek készítése
+K - gyakorló time-aware map service készítése (EUROSTAT adatok)
+K - Tesztelni az alkalmazást:
+  -> nem poligon adatokkal
+  -> olyan service-el, ahol lehet null adat
+  -> nem évenként változik az adat
 K - Readme készítése
 K - License kitöltése
-K - többi console.log kitörlése
-K - gyakorló time-aware map service készítése (EUROSTAT adatok)
 
 Later development:
 ----------------------------------------------------
@@ -34,3 +27,5 @@ Adatbázis kapcsolat (térképről csak egy ID-t kapunk, amivel szerver oldali l
 Ablakok átméretezése (bármelyik kinagyítható legyen teljes képernyőre)
 Két azonos típusú diagram is elhelyezhető legyen (pl. 2 pie)
 Minden panelen legördülőben lehessen választani a diagram típusok között (front-end diagramtípus állítás)
+Még több paraméter kihelyezése a config.json-be
+Keresési funkció beépítése (Search Class or AdvancedSearch Class)
