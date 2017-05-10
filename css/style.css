@@ -84,13 +84,6 @@ html, body{
     display: none;
 }
 
-.splashLogo, .infoBoxLogo{
-    display: block;
-    margin: auto;
-    margin-top: 20px;
-    width: 100px;
-}
-
 .splashText, .infoBoxText, .colophonText{
     padding: 10px 20px;
     font-family: Verdana;
@@ -105,7 +98,7 @@ html, body{
     margin: 5px 0px;
 }
 
-.splashLink, .infoBoxLink, .headingLink{
+.colophonLink{
     color: rgb(248,239,38);
 }
 
@@ -379,6 +372,12 @@ html, body{
     transition: opacity ease-in 2s;
     visibility: visible;
     opacity: 1;
+}
+
+/* Configuration validator */
+.configErrorList{
+    font-size: 16px;
+    padding-left: 20px;
 }
 
 /* Make amChart marketing disappear */
