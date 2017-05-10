@@ -1,87 +1,87 @@
 // ##### Change all comments to English!!!
+
 //The common part of config.json the key and the type of values (in all theme) 
 var configMainJson={
-						"layout" : {
-							"leftPanelWidthPercent" : "number",
-							"mapHeightPercent" : "number",
-							"upperRightChartHeightPercent" : "number",
-							"legendOn" : "boolean",
-							"logoImg" : "string",
-							"title" : "string",
-							"subTitle" : "string",
-							"splashText" : "string",
-							"infoBoxTest" : "string",
-							"clickOnWhat" : "string"
-							},
-						"wkid" : "number",
-						"xmin" : "number",
-						"ymin" : "number",
-						"xmax" : "number",
-						"ymax" : "number",
-						"timeStops" : "array",
-						"dataServiceURL" : "string",
-						"dataServiceLayerIndex" : "number",
-						"dataServiceLayerPosition" : "number",
-						"additionalLayerURLs" : "array",
-						"areaNameField" : "string",
-						"timeField" : "string",
-						"chartPositions" : {
-							"LL" : "string",
-							"UR" : "string", 
-							"LR" : "string" 
-							}						
+    "layout" : {
+        "leftPanelWidthPercent" : "number",
+        "mapHeightPercent" : "number",
+        "upperRightChartHeightPercent" : "number",
+        "legendOn" : "boolean",
+        "logoImg" : "string",
+        "title" : "string",
+        "subTitle" : "string",
+        "splashText" : "string",
+        "infoBoxText" : "string",
+        "clickOnWhat" : "string"
+        },
+    "wkid" : "number",
+    "xmin" : "number",
+    "ymin" : "number",
+    "xmax" : "number",
+    "ymax" : "number",
+    "timeStops" : "array",
+    "dataServiceURL" : "string",
+    "dataServiceLayerIndex" : "number",
+    "dataServiceLayerPosition" : "number",
+    "additionalLayerURLs" : "array",
+    "areaNameField" : "string",
+    "timeField" : "string",
+    "chartPositions" : {
+        "LL" : "string",
+        "UR" : "string", 
+        "LR" : "string" 
+        }
 };
 				
 //The keys and the type of values in serial chart settings (use in config validator)
 var configSerialSettingsJson={
-        "title" : "string",
-        "colors" : "array",
-        "dataPrecision" : "number",
-        "dataUnit" : "string",
-        "yAxesMax" : "string",
-        "yAxesMin" : "string",
-        "fieldMap" : "object"	
-		
+    "title" : "string",
+    "colors" : "array",
+    "dataPrecision" : "number",
+    "dataUnit" : "string",
+    "yAxesMax" : "string",
+    "yAxesMin" : "string",
+    "fieldMap" : "object"
 };
 
 //The keys and the type of values in radar chart settings (use in config validator)
 var configRadarSettingsJson={
-        "title" : "string",
-        "colors" : "array",
-		"dataPrecision" : "number",
-        "dataUnit" : "string",
-        "yAxesMax" : "string",
-        "yAxesMin" : "string",
-        "fieldMap" : "object"
+    "title" : "string",
+    "colors" : "array",
+    "dataPrecision" : "number",
+    "dataUnit" : "string",
+    "xAxesMax" : "string",
+    "xAxesMin" : "string",
+    "fieldMap" : "object"
 };
 		
 //The keys and the type of values in bubble chart settings (use in config validator)
 var configBubbleSettingsJson={
-        "title" : "string",
-        "colors" : "array",
-        "dataPrecision" : "number",
-		"xUnit": "string",
-		"yUnit": "string",
-		"zUnit": "string",
-		"xAxesMax": "string",
-		"xAxesMin": "string",
-		"yAxesMax": "string",		
-		"yAxesMin": "string",
-        "fieldMap" : "object"			
+    "title" : "string",
+    "colors" : "array",
+    "dataPrecision" : "number",
+    "xUnit": "string",
+    "yUnit": "string",
+    "zUnit": "string",
+    "xAxesMax": "string",
+    "xAxesMin": "string",
+    "yAxesMax": "string",		
+    "yAxesMin": "string",
+    "fieldMap" : "object"
 };
 
 //The keys and the type of values in table settings (use in config validator)
 var configTableSettingsJson={
-        "title" : "string",
-		"heading" : "string",
-        "fieldMap" : "object"
+    "title" : "string",
+    "heading" : "string",
+    "fieldMap" : "object"
 };
 		
 //The keys and the type of values in serial chart settings (use in config validator)
 var configPieSettingsJson={
-        "title" : "string",
-        "colors" : "array",
-        "fieldMap" : "object"
+    "title" : "string",
+    "colors" : "array",
+    "fieldMap" : "object"
 };		
 
 //Valid type of image		
@@ -89,8 +89,6 @@ var imgType=["png","jpg","tif","bmp","gif"];
 		
 var c = {};
 $.getJSON("config.json", function(data){
-	
-	
 	
 //-------------------------------------------------------------------------	
 //JSON Validator
@@ -103,36 +101,34 @@ $.getJSON("config.json", function(data){
 	if(jQuery.isEmptyObject(data["themeOrder"])){
 		alertMessage("The configuration is incorrect! Array of themeOrder is empty!");
 	}
-
 	
 	//Checking if the settings of theme were exist
     for(var t in data.themeOrder){
         for(var key in data.themeOrder[t]){
 			if (!(key in data)){
-				alertMessage("The configuration is incorrect! The theme of '"+key+"' is missing!");
+				alertMessage("The configuration is incorrect! The theme of '" + key + "' is missing!");
 			}
-
         }
     }
 	
 	//Checking the settings of all theme
     for(var t in data.themeOrder){
         for(var key in data.themeOrder[t]){
-			var chartArray=[];
+			var chartArray = [];
 			var theme = data[key];
 			for(var ckey in configMainJson){
 				//Checking the keys
 				if (!(ckey in theme)){
-					alertMessage("The configuration is incorrect! The "+ckey+" key in the theme of '"+key+"' is missing!");
+					alertMessage("The configuration is incorrect! The " + ckey + " key in the theme of '" + key + "' is missing!");
 				}
 				//Checking the type of values
-				if(jQuery.type( theme[ckey])=="object"){
+				if(jQuery.type(theme[ckey]) == "object"){
 					for(var cikey in configMainJson[ckey]){
-						//Checking keys					
+						//Checking keys	
 						if (!(cikey in theme[ckey])){
 							alertMessage("The configuration is incorrect! The "+ckey+"/"+cikey+" key in the theme of '"+key+"' is missing!");
 						}
-						//Checking type	
+						//Checking type
 						var keyArray=[key,ckey,cikey];
 						typeChecking(keyArray,configMainJson[ckey][cikey],jQuery.type( theme[ckey][cikey]))
 						//Checking number
@@ -143,7 +139,7 @@ $.getJSON("config.json", function(data){
 						if(jQuery.type( theme[ckey][cikey])=="array"){
 							arrayChecking(keyArray,theme[ckey][cikey])
 						}
-						//Checking image
+						//Checking image //##### Üres is legyen valid!!!
 						if(cikey=="logoImg"){
 							if(imgType.indexOf(theme[ckey][cikey].slice(-3))==-1){
 								alertMessage("The configuration is incorrect! The value of the "+ckey+"/"+cikey+" key in the theme of '"+key+"' is not valid. Only png, jpg, tif, gif and bmp allowed!")
@@ -154,7 +150,6 @@ $.getJSON("config.json", function(data){
 						if((ckey=="chartPositions") && (theme[ckey][cikey]!="")){
 							chartArray.push(theme[ckey][cikey]);
 						}
-
 					}
 				}
 				else{
@@ -173,9 +168,6 @@ $.getJSON("config.json", function(data){
 					if(ckey=="dataServiceURL"){
 						urlChecking(keyArray,theme[ckey]);
 					}
-
-
-					
 				}
 			}
 
@@ -204,7 +196,6 @@ $.getJSON("config.json", function(data){
 						break;
 				    default:
 						alertMessage("The configuration is incorrect! Invalid type of diagram ("+chartType+") is in the theme of '"+key+"'! Valid set of values is ser, pie, bub, rad, tab!");
-					
 				}
 				var chart=data[key][chartKey];
 
@@ -229,16 +220,13 @@ $.getJSON("config.json", function(data){
 						if(Object.getOwnPropertyNames(chart[ckey]).length === 0){
 							alertMessage("The configuration is incorrect! The "+chartKey+"/"+ckey+" key in the theme of '"+key+"' is empty!");
 						}
-						// for(var fmkey in chart[ckey]){
-							// if (jQuery.type(chart[ckey][fmkey])!="string"){
-								// alertMessage("The configuration is incorrect! A "+key+" kulcsú téma "+chartKey+"/"+ckey+"/"+fmkey+" értéke csak string lehet!");
-								
-							// }
-							
-						// }
+						for(var fmkey in chart[ckey]){ //##### Ezt az ellenőrzést átnézni, angolosítani.
+							if (jQuery.type(chart[ckey][fmkey])!="string"){
+								alertMessage("The configuration is incorrect! A "+key+" kulcsú téma "+chartKey+"/"+ckey+"/"+fmkey+" értéke csak string lehet!");
+							}
+						}
 					}
-				}
-				
+				}	
 			});			
         }
     }
@@ -272,8 +260,7 @@ $.getJSON("config.json", function(data){
 				urlChecking(keyArray,entry);
 
 			})
-		}
-			
+		}	
     }	
 
 
@@ -315,7 +302,7 @@ $.getJSON("config.json", function(data){
 	
 	//Validating of urls
 	function urlChecking(keyArray,url) {
-		var isOk  = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/i.test(url);
+		var isOk  = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/i.test(url);
 		var keyString=keyArray[1];
 		for (i = 2; i < keyArray.length; i++) {
 			keyString +="/"+keyArray[i];
@@ -323,25 +310,21 @@ $.getJSON("config.json", function(data){
 		if(!isOk){
 			alertMessage("The configuration is incorrect! The value of "+keyString+" in the theme of '"+keyArray[0]+"' is incorrect! The url is invalid!");
 		}
-		
 	}
 
 	//Showing the error message
 	function alertMessage(alertText){
 		alert(alertText);
 		$("div").remove();
-		$("body").html('<p style="font-size:16px">'+alertText+'</p>');
+		$("body").append('<p class="configErrorList">'+alertText+'</p>');
 	}
 //-------------------------------------------------------------------------	
 
-	
 	//loading config.json
     for(var key in data){
         c[key] = data[key];
     }
     initWebApp();
-    // Ide lehetne berakni a konfig hibaellenőrzését.
-    // Ha az elején csinálunk egy ellenőrzést, akkor hiba esetén le tudjuk lőni az egész webapp építését.
 });
 
 function initWebApp(){
@@ -353,25 +336,22 @@ function initWebApp(){
             "esri/geometry/Extent",
             "esri/SpatialReference",
             "esri/dijit/Legend",
-            "esri/dijit/Search",
-            "esri/layers/FeatureLayer",
             "esri/tasks/query",
             "esri/tasks/QueryTask",
             "esri/symbols/SimpleFillSymbol",
             "esri/symbols/SimpleLineSymbol",
             "esri/Color",
-            "esri/symbols/SimpleMarkerSymbol",
-            "esri/layers/layer",
+            //"esri/layers/layer",
             "esri/dijit/TimeSlider",
             "esri/TimeExtent",
             
-            "dojo/dom-construct",
-            "dojo/_base/array",
+            //"dojo/dom-construct",
+            //"dojo/_base/array",
             "dojo/dom",
             "dojo/ready",
             "dojo/parser",
-            "dojo/query",
-            "dijit/registry",
+            //"dojo/query",
+            //"dijit/registry",
             "dojo/on"
         ],
         function(
@@ -380,25 +360,22 @@ function initWebApp(){
             Extent,
             SpatialReference,
             Legend,
-            Search,
-            FeatureLayer,
             Query,
             QueryTask,
             SimpleFillSymbol,
             SimpleLineSymbol,
             Color,
-            SimpleMarkerSymbol,
-            Layer,
+            //Layer,
             TimeSlider,
             TimeExtent,
             
-            domConstruct,
-            arrayUtils,
+            //domConstruct,
+            //arrayUtils,
             dom,
             ready,
             parser,
-            query,
-            registry,
+            //query,
+            //registry,
             on
         ){
         // Wait until DOM is ready *and* all outstanding require() calls have been resolved
@@ -406,7 +383,6 @@ function initWebApp(){
             // Parse DOM nodes decorated with the data-dojo-type attribute
             parser.parse();
             
-            // ##### Majd valami szívszaggatót írunk ide.
             console.log(c.creators);
 
             //Defining variables
@@ -419,7 +395,9 @@ function initWebApp(){
             var actAreaName; //The name of the clicked element
             var terkep;
             var dataQuery;
-            var timeSlider;       
+            var timeSlider;
+            var legend; //The legend object
+            var isFirstLegend = true;
             
             //Creates the theme chooser dropdown menu and selects the first theme
             createThemeDropDown();
@@ -441,6 +419,7 @@ function initWebApp(){
                         "display" : "none"
                     });                    
                 }
+                
                 //Sets the title of the theme in the header
                 if(!actTheme.layout.title == ""){
                     $("#title").css({
@@ -453,6 +432,7 @@ function initWebApp(){
                         "display" : "none"
                     });
                 }
+                
                 //Sets the subtitle of the theme in the header
                 if(!actTheme.layout.subTitle == ""){
                     $("#subTitle").css({
@@ -465,6 +445,7 @@ function initWebApp(){
                         "display" : "none"
                     });                    
                 }
+                
                 //Controls if splash should appear and if so sets its content
                 if(actTheme.layout.splashText == ""){
                     $("#splash").addClass("hiddenElement");
@@ -475,7 +456,8 @@ function initWebApp(){
                     splashText = '<p class="splashText">' + splashText + '</p>';
                     splashText = splashText + '<button class="splashButton" onclick="hideSplash()">OK</button>';
                     $("#splash").html(splashText);
-                } //##### Splaslink, splashlogo class?
+                }
+                
                 //Controls if infoBox should appear and if so sets its content
                 if(actTheme.layout.infoBoxText == ""){
                     $("#infoBox").addClass("hiddenElement");
@@ -498,7 +480,7 @@ function initWebApp(){
             // Thank you!
             // !!!!!!!!!!!!!!!
             function initColophon(){
-                var colophonText = '<p class="colophonText"><strong>Az alkalmazás a <a href="https://github.com/Zsott/Dash-Map-Board" class="headingLink" target="blank">Dash-Map-Board</a> keretrendszer segítségével készült.</strong></p><p></p><p class="colophonText">A Dash-Map-Board keretrendszert Lellei László és Ónodi Zsolt (<a href="http://lechnerkozpont.hu/" class="headingLink" target="blank">Lechner Tudásközpont</a>) készítették, <a href="https://developers.arcgis.com/javascript/" class="headingLink" target="blank">ArcGIS API for JS</a> és <a href="http://www.amcharts.com/javascript-charts/" class="headingLink" target="blank">amCharts JS Charts</a> felhasználásával.</p><hr><hr><p class="colophonText"><strong>This application was created with <a href="https://github.com/Zsott/Dash-Map-Board" class="headingLink" target="blank">Dash-Map-Board</a>.</strong></p><p></p><p class="colophonText">The Dash-Map-Board project was created by László Lellei and Zsolt Ónodi (<a href="http://lechnerkozpont.hu/" class="headingLink" target="blank">Lechner Knowledge Center</a>), using <a href="https://developers.arcgis.com/javascript/" class="headingLink" target="blank">ArcGIS API for JS</a> and <a href="http://www.amcharts.com/javascript-charts/" class="headingLink" target="blank">amCharts JS Charts</a>.</p><button class="colophonButton" onclick="controlColophonBox()">OK</button>';
+                var colophonText = '<p class="colophonText"><strong>Az alkalmazás a <a href="https://github.com/Zsott/Dash-Map-Board" class="colophonLink" target="blank">Dash-Map-Board</a> keretrendszer segítségével készült.</strong></p><p></p><p class="colophonText">A Dash-Map-Board keretrendszert Lellei László és Ónodi Zsolt (<a href="http://lechnerkozpont.hu/" class="colophonLink" target="blank">Lechner Tudásközpont</a>) készítették, <a href="https://developers.arcgis.com/javascript/" class="colophonLink" target="blank">ArcGIS API for JS</a> és <a href="http://www.amcharts.com/javascript-charts/" class="colophonLink" target="blank">amCharts JS Charts</a> felhasználásával.</p><hr><hr><p class="colophonText"><strong>This application was created with <a href="https://github.com/Zsott/Dash-Map-Board" class="colophonLink" target="blank">Dash-Map-Board</a>.</strong></p><p></p><p class="colophonText">The Dash-Map-Board project was created by László Lellei and Zsolt Ónodi (<a href="http://lechnerkozpont.hu/" class="colophonLink" target="blank">Lechner Knowledge Center</a>), using <a href="https://developers.arcgis.com/javascript/" class="colophonLink" target="blank">ArcGIS API for JS</a> and <a href="http://www.amcharts.com/javascript-charts/" class="colophonLink" target="blank">amCharts JS Charts</a>.</p><button class="colophonButton" onclick="controlColophonBox()">OK</button>';
                 $("#colophon").html(colophonText);
             }
             
@@ -524,11 +506,11 @@ function initWebApp(){
                 //Create map object
                 terkep = new Map("map", {
                     spatialReference: spRef,
-                    basemap: "topo", //##### config?
+                    basemap: actTheme.basemap, //##### config?
                     extent : extHun,
                     logo : false, //##### config?
                     showAttribution : false //##### config?
-                });			
+                });
                 
                 //Resizing and repositioning map when changing theme
                 if(!firstTheme){
@@ -546,11 +528,12 @@ function initWebApp(){
                 });
                 
                 //Add or hide legend depending on the config.json setup
-                if(actTheme.layout.legendOn){
+                if(actTheme.layout.legendOn && isFirstLegend){
+                    isFirstLegend = false;
                     $("#legendIcon").css({
                        "display" : "block"
-                    });                    
-                    var legend = new Legend({
+                    });
+                    legend = new Legend({
                         map: terkep,
                         autoUpdate: true,
                         layerInfos : [{
@@ -558,6 +541,12 @@ function initWebApp(){
                         }]
                     },"legend");
                     legend.startup();
+                }
+                else if(actTheme.layout.legendOn){
+                    legend.layerInfos = [{
+                            layer : terkep.getLayer(terkep.layerIds[actTheme.dataServiceLayerPosition + 1])
+                        }];
+                    legend.refresh();                       
                 }
                 else{
                     $("#legendIcon").css({
@@ -571,7 +560,7 @@ function initWebApp(){
                 dataQuery.outFields = ["*"];
 
                 //TimeSlider inicializálása
-                dataQueryTask = new QueryTask(actTheme["dataServiceURL"] + "/0"); //##### config?
+                dataQueryTask = new QueryTask(actTheme["dataServiceURL"] + "/" + actTheme.dataServiceLayerIndex);
 
                 $("#placeYear").html(actTheme.layout.clickOnWhat);
                 
@@ -599,9 +588,6 @@ function initWebApp(){
                     if (firstClick){
                         firstClick = false;
                         setLayout();
-                        terkep.width = $("#map").outerWidth();
-                        terkep.height = $("#map").outerHeight();
-                        terkep.centerAndZoom(dataQuery.geometry,terkep.getLevel());
                     }
                     
                     //A kijelölt település kirajzolása
@@ -693,7 +679,7 @@ function initWebApp(){
                         "width" : "calc(100% - 16px)"
                     });
                 }
-                else if(actTheme.layout.leftPanelWidthPercent < 100 && actTheme.layout.leftPanelWidthPercent > 0){
+                else{
                     // A bal oldali panel átméretezése
                     $("#leftPanel").css({
                         "width" : "calc(" + actTheme.layout.leftPanelWidthPercent + "% - 12px)",
@@ -706,10 +692,6 @@ function initWebApp(){
                     $("#rightPanel").css({			
                         "width" : "calc(" + w + "% - 12px)"
                     });
-                }
-                else{
-                    // ##### Kiírja a hibaüzenetet, de aztán megcsinálja a function többi részét. Jó ez így?
-                    alert("Hibás konfigurációs beállítás! Ellenőrizd a config.json fájlban a leftPanelWidthPercent értékét! (Érvényes értékkészlet: 0-100)");
                 }
             
                 // A baloldali panel függőleges tagolásának kialakítása
@@ -731,7 +713,7 @@ function initWebApp(){
                             "height" : "calc(100% - 2px)"
                         });
                     }
-                    else if(actTheme.layout.mapHeightPercent > 0 && actTheme.layout.mapHeightPercent < 100){
+                    else{
                         // A térkép magasságának átméretezése
                         $("#map").css({
                             "height" : "calc(" + actTheme.layout.mapHeightPercent + "% - 6px)",
@@ -744,10 +726,6 @@ function initWebApp(){
                             "height" : "calc(" + h + "% - 6px)",
                             "margin-top" : "4px"
                         });
-                    }
-                    else{
-                        // ##### Kiírja a hibaüzenetet, de aztán megcsinálja a function többi részét. Jó ez így?
-                        alert("Hibás konfigurációs beállítás! Ellenőrizd a config.json fájlban a mapHeightPercent értékét! (Érvényes értékkészlet: 0-100)");
                     }
                 }
 
@@ -787,6 +765,9 @@ function initWebApp(){
                         alert("Hibás konfigurációs beállítás! Ellenőrizd a config.json fájlban a upperRightChartHeightPercent értékét! (Érvényes értékkészlet: 0-100)");
                     }
                 }
+                terkep.width = $("#map").outerWidth();
+                terkep.height = $("#map").outerHeight();
+                terkep.centerAndZoom(dataQuery.geometry,terkep.getLevel());
             }
             
             //A configból a szükséges diagramtípusok kiolvasása és diagramépítések meghívása
@@ -982,7 +963,6 @@ function initWebApp(){
             }
             
             //TimeSlider beállítások
-            // ##### Ezt tegyük rendbe, szerintem most jobban szét van bombázva, mint kéne.
             function initTimeSlider(){
 
                 if(firstTheme){
@@ -995,7 +975,7 @@ function initWebApp(){
                 
                 timeSlider.setThumbCount(1);
                 timeSlider.setThumbIndexes([0]);
-                timeSlider.setThumbMovingRate( actTheme["timeSliderMovingRate"]); 
+                timeSlider.setThumbMovingRate(actTheme["timeSliderMovingRate"]); 
                 var timeStops=[];
                 actTheme["timeStops"].forEach(function(entry) {
                     timeStops.push(new Date(entry));
@@ -1034,15 +1014,12 @@ function initWebApp(){
                         "decimalSeparator": ",",
                         "thousandsSeparator": " "
                     },
-                    "colors":  actTheme["pieSettings"].colors,       
-    //                "colors":  c.pieColors,       
-                    //"balloonText": "[[percents]]% ([[value]] fő)",
-                    "balloonText": "[[title]]: [[percents]]%",
-                    "fontSize": 14,
+                    "colors":  actTheme["pieSettings"].colors,
+                    "balloonText": "[[title]]: [[percents]]%", //##### config?
+                    "fontSize": 14, //##### config?
                     "valueField": "value",
                     "titleField": "title",
                     "labelRadius": -40,
-                    //"labelText": "[[title]]",
                     "labelText": "",
                     "balloon":{"fixedPosition":true},
                     "export": {"enabled": false},
@@ -1067,13 +1044,13 @@ function initWebApp(){
                 var graphs=[];
                 var json;
                 for (var keyTitle in actTheme["serialSettings"].fieldMap) {
-                    json={}
+                    json = {}
                     json["title"] = actTheme["serialSettings"].fieldMap[keyTitle];
-                    json["balloonText"]="<b>[[title]]: [[value]] fő</b>";
-                    json["fillAlphas"]=0.9;
-                    json["lineAlpha"]=1;
-                    json["type"]="column";
-                    json["valueField"]=keyTitle;
+                    json["balloonText"] = "<b>[[title]]: [[value]] " + actTheme["serialSettings"].dataUnit + "</b>";
+                    json["fillAlphas"] = 0.9;
+                    json["lineAlpha"] = 1;
+                    json["type"] = "column";
+                    json["valueField"] = keyTitle;
                     graphs.push(json);
                 }
 
@@ -1103,11 +1080,9 @@ function initWebApp(){
                     "mouseWheelScrollEnabled ": true,
                     "colors":actTheme["serialSettings"].colors,
                     "valueAxes": [{
-    //                    "axisAlpha": 0,
                         "position": "left",
                         "title": actTheme["serialSettings"].dataUnit,
                         "stackType": "regular"
-    //					"minimum": 1000
                     }],
                     "startDuration": 1,
                     "chartCursor": {
@@ -1228,35 +1203,18 @@ function initWebApp(){
                     "colors":[actTheme["bubbleSettings"].colors[1]],
                     "zoomOutText": "Mind",
                     "valueAxes": [{
-                        "title": xTitle+"("+actTheme["bubbleSettings"].xUnit+")",
+                        "title": xTitle + "(" + actTheme["bubbleSettings"].xUnit + ")",
                         "position": "bottom",
                         "axisAlpha": 0,
-    //                    "unit": "%",
                         "fontSize": 12
                     },{
-                        "title": yTitle +"("+actTheme["bubbleSettings"].yUnit+")",
+                        "title": yTitle + "(" + actTheme["bubbleSettings"].yUnit + ")",
                         "minMaxMultiplier": 1.2,
                         "axisAlpha": 0,
                         "position": "left",
-    //                    "unit": "%",
                         "fontSize": 12
                     }],
                     "startDuration": 1.5,
-                    // "graphs": [{
-                        // "balloonText": "<b>[[description]]</b><br>"+xTitle+": <b>[[x]] "+actTheme["bubbleSettings"].xUnit+"</b><br>"+yTitle+": <b>[[y]] "+actTheme["bubbleSettings"].yUnit+"</b><br>"+zTitle+": <b>[[value]] "+actTheme["bubbleSettings"].zUnit+"</b>",
-                        // "bullet": "circle",
-                        // "bulletBorderAlpha": 0.2,
-                        // "bulletAlpha": 0.65,
-                        // "lineAlpha": 0,
-                        // "fillAlphas": 0,
-                        // "valueField": zField,
-                        // "xField": xField,
-                        // "yField": yField,
-                        // "colorField": "color",
-                        // "descriptionField": actTheme["areaNameField"],
-                        // "maxBulletSize": 100,
-                        // "fontSize": 12
-                    // }],
                     "legend":{
                         "align": "center",
                         "fontSize": 12,
@@ -1327,8 +1285,6 @@ function initWebApp(){
                         "fontSize": 12
                     }];
                 bubbleChart.addGraph(graphs[0]);
-            
-            
             }
             
             function createRadarChart(dp){
@@ -1347,11 +1303,6 @@ function initWebApp(){
                     },
                     "dataProvider": dp,
                     "startDuration": 1,
-                    "valueAxes":[{
-                        //"minimum": 0,
-    //                    "maximum": 100                    
-                    }],
-
                     "categoryField": "title",
                     "export": {"enabled": false}
                 });
@@ -1363,7 +1314,7 @@ function initWebApp(){
                     radarChart.valueAxes[0].minimum=actTheme["radarSettings"].xAxesMin;
                 }
                 var graphs=[{
-                        "balloonText": "[[title]]: [[value]]"+actTheme["radarSettings"].dataUnit,
+                        "balloonText": "[[title]]: [[value]]" + actTheme["radarSettings"].dataUnit,
                         "bullet": "round",
                         "lineThickness": 2,
                         "valueField": "value",
@@ -1392,7 +1343,7 @@ function controlLegend(){
 //##### Pointer-events-et átnézni!!!
 function hideSplash(){
 	$("#splash").css("display","none");
-	$("#map, #heading, #search, #chart, #table, #timeSlider, #legend").css({
+	$("#map, #heading, #chart, #table, #timeSlider, #legend").css({
         "pointer-events" : "auto"
     });
 }
@@ -1402,13 +1353,13 @@ function hideSplash(){
 function controlInfoBox(){
     if ($("#infoBox").css("display") == "block"){
 		$("#infoBox").css("display","none");
-		$("#map, #heading, #search, #chart, #table, #timeSlider, #legend").css({
+		$("#map, #heading, #chart, #table, #timeSlider, #legend").css({
             "pointer-events" : "auto"
         });
     }
     else{
 		$("#infoBox").css("display","block");
-		$("#map, #heading, #search, #chart, #table, #timeSlider, #legend").css({
+		$("#map, #heading, #chart, #table, #timeSlider, #legend").css({
             "pointer-events" : "none"
         });
 		$("#infoIcon").css("pointer-events","auto");
@@ -1420,13 +1371,13 @@ function controlInfoBox(){
 function controlColophonBox(){
     if ($("#colophon").css("display") == "block"){
 		$("#colophon").css("display","none");
-		$("#map, #heading, #search, #chart, #table, #timeSlider, #legend").css({
+		$("#map, #heading, #chart, #table, #timeSlider, #legend").css({
             "pointer-events" : "auto"
         });
     }
     else{
 		$("#colophon").css("display","block");
-		$("#map, #heading, #search, #chart, #table, #timeSlider, #legend").css({
+		$("#map, #heading, #chart, #table, #timeSlider, #legend").css({
             "pointer-events" : "none"
         });
 		$("#colophonIcon").css("pointer-events","auto");
