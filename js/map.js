@@ -1,12 +1,348 @@
 // ##### Change all comments to English!!!
+//The common part of config.json the key and the type of values (in all theme) 
+var configMainJson={
+						"layout" : {
+							"leftPanelWidthPercent" : "number",
+							"mapHeightPercent" : "number",
+							"upperRightChartHeightPercent" : "number",
+							"legendOn" : "boolean",
+							"logoImg" : "string",
+							"title" : "string",
+							"subTitle" : "string",
+							"splashText" : "string",
+							"infoBoxTest" : "string",
+							"clickOnWhat" : "string"
+							},
+						"wkid" : "number",
+						"xmin" : "number",
+						"ymin" : "number",
+						"xmax" : "number",
+						"ymax" : "number",
+						"timeStops" : "array",
+						"dataServiceURL" : "string",
+						"dataServiceLayerIndex" : "number",
+						"dataServiceLayerPosition" : "number",
+						"additionalLayerURLs" : "array",
+						"areaNameField" : "string",
+						"timeField" : "string",
+						"chartPositions" : {
+							"LL" : "string",
+							"UR" : "string", 
+							"LR" : "string" 
+							}						
+};
+				
+//The keys and the type of values in serial chart settings (use in config validator)
+var configSerialSettingsJson={
+        "title" : "string",
+        "colors" : "array",
+        "dataPrecision" : "number",
+        "dataUnit" : "string",
+        "yAxesMax" : "string",
+        "yAxesMin" : "string",
+        "fieldMap" : "object"	
+		
+};
 
+//The keys and the type of values in radar chart settings (use in config validator)
+var configRadarSettingsJson={
+        "title" : "string",
+        "colors" : "array",
+		"dataPrecision" : "number",
+        "dataUnit" : "string",
+        "yAxesMax" : "string",
+        "yAxesMin" : "string",
+        "fieldMap" : "object"
+};
+		
+//The keys and the type of values in bubble chart settings (use in config validator)
+var configBubbleSettingsJson={
+        "title" : "string",
+        "colors" : "array",
+        "dataPrecision" : "number",
+		"xUnit": "string",
+		"yUnit": "string",
+		"zUnit": "string",
+		"xAxesMax": "string",
+		"xAxesMin": "string",
+		"yAxesMax": "string",		
+		"yAxesMin": "string",
+        "fieldMap" : "object"			
+};
+
+//The keys and the type of values in table settings (use in config validator)
+var configTableSettingsJson={
+        "title" : "string",
+		"heading" : "string",
+        "fieldMap" : "object"
+};
+		
+//The keys and the type of values in serial chart settings (use in config validator)
+var configPieSettingsJson={
+        "title" : "string",
+        "colors" : "array",
+        "fieldMap" : "object"
+};		
+
+//Valid type of image		
+var imgType=["png","jpg","tif","bmp","gif"];
+		
 var c = {};
 $.getJSON("config.json", function(data){
+	
+	
+	
+//-------------------------------------------------------------------------	
+//JSON Validator
+//-------------------------------------------------------------------------	
+
+	//Checking themeOrder key
+	if (!("themeOrder" in data)){
+            alertMessage("The configuration is incorrect! The themeOrder key is missing!");
+    }
+	if(jQuery.isEmptyObject(data["themeOrder"])){
+		alertMessage("The configuration is incorrect! Array of themeOrder is empty!");
+	}
+
+	
+	//Checking if the settings of theme were exist
+    for(var t in data.themeOrder){
+        for(var key in data.themeOrder[t]){
+			if (!(key in data)){
+				alertMessage("The configuration is incorrect! The theme of '"+key+"' is missing!");
+			}
+
+        }
+    }
+	
+	//Checking the settings of all theme
+    for(var t in data.themeOrder){
+        for(var key in data.themeOrder[t]){
+			var chartArray=[];
+			var theme = data[key];
+			for(var ckey in configMainJson){
+				//Checking the keys
+				if (!(ckey in theme)){
+					alertMessage("The configuration is incorrect! The "+ckey+" key in the theme of '"+key+"' is missing!");
+				}
+				//Checking the type of values
+				if(jQuery.type( theme[ckey])=="object"){
+					for(var cikey in configMainJson[ckey]){
+						//Checking keys					
+						if (!(cikey in theme[ckey])){
+							alertMessage("The configuration is incorrect! The "+ckey+"/"+cikey+" key in the theme of '"+key+"' is missing!");
+						}
+						//Checking type	
+						var keyArray=[key,ckey,cikey];
+						typeChecking(keyArray,configMainJson[ckey][cikey],jQuery.type( theme[ckey][cikey]))
+						//Checking number
+						if(jQuery.type( theme[ckey][cikey])=="number"){
+							numberChecking(keyArray,theme[ckey][cikey])
+						}
+						//Checking array
+						if(jQuery.type( theme[ckey][cikey])=="array"){
+							arrayChecking(keyArray,theme[ckey][cikey])
+						}
+						//Checking image
+						if(cikey=="logoImg"){
+							if(imgType.indexOf(theme[ckey][cikey].slice(-3))==-1){
+								alertMessage("The configuration is incorrect! The value of the "+ckey+"/"+cikey+" key in the theme of '"+key+"' is not valid. Only png, jpg, tif, gif and bmp allowed!")
+							}
+						}
+						
+						//Loading the diagram of the actual theme into chartArray
+						if((ckey=="chartPositions") && (theme[ckey][cikey]!="")){
+							chartArray.push(theme[ckey][cikey]);
+						}
+
+					}
+				}
+				else{
+					var keyArray=[key,ckey];
+					//Checking type
+					typeChecking(keyArray,configMainJson[ckey],jQuery.type(theme[ckey]));
+					//Checking number
+					if(jQuery.type( theme[ckey])=="number"){
+						numberChecking(keyArray,theme[ckey])
+					}
+					//Checking array
+					if(jQuery.type( theme[ckey])=="array"){
+						arrayChecking(keyArray,theme[ckey])
+					}
+					//Checking url
+					if(ckey=="dataServiceURL"){
+						urlChecking(keyArray,theme[ckey]);
+					}
+
+
+					
+				}
+			}
+
+			//Choosing the type of actual diagram
+			chartArray.forEach(function(chartType) {				
+				switch(chartType) {
+					case "ser":
+						chartKey="serialSettings";
+						chartJson=configSerialSettingsJson;
+						break;
+					case "pie":
+						chartKey="pieSettings";
+						chartJson=configPieSettingsJson;
+						break;
+					case "bub":
+						chartKey="bubbleSettings";
+						chartJson=configBubbleSettingsJson;
+						break;
+					case "rad":
+						chartKey="radarSettings";
+						chartJson=configRadarSettingsJson;
+						break;
+					case "tab":
+						chartKey="tableSettings";
+						chartJson=configTableSettingsJson;
+						break;
+				    default:
+						alertMessage("The configuration is incorrect! Invalid type of diagram ("+chartType+") is in the theme of '"+key+"'! Valid set of values is ser, pie, bub, rad, tab!");
+					
+				}
+				var chart=data[key][chartKey];
+
+				//Checking diagram settings
+				for(var ckey in chartJson){
+					var keyArray=[key,ckey];
+
+					//Checking keys					
+					if (!(ckey in chart)){
+						alertMessage("The configuration is incorrect!  The "+chartKey+"/"+ckey+" key in the theme of '"+key+"' is missing!");
+					}
+					//Checking type	
+					typeChecking(keyArray,chartJson[ckey],jQuery.type(chart[ckey]));
+					
+					//Checking color
+					if(ckey=="colors"){
+						colorChecking(keyArray,chart[ckey]);
+					}
+					//Checking fieldMap
+					if(ckey=="fieldMap"){
+						
+						if(Object.getOwnPropertyNames(chart[ckey]).length === 0){
+							alertMessage("The configuration is incorrect! The "+chartKey+"/"+ckey+" key in the theme of '"+key+"' is empty!");
+						}
+						// for(var fmkey in chart[ckey]){
+							// if (jQuery.type(chart[ckey][fmkey])!="string"){
+								// alertMessage("The configuration is incorrect! A "+key+" kulcsú téma "+chartKey+"/"+ckey+"/"+fmkey+" értéke csak string lehet!");
+								
+							// }
+							
+						// }
+					}
+				}
+				
+			});			
+        }
+    }
+
+	//Validating the type of configuration values
+    function typeChecking(keyArray,type1,type2){
+		if(type1!=type2){
+			var keyString=keyArray[1];
+			for (i = 2; i < keyArray.length; i++) {
+				keyString +="/"+keyArray[i];
+			}
+			alertMessage("The configuration is incorrect! The type of the value of the "+keyString+" in the theme of '"+keyArray[0]+"' is incorrect, have "+type1+" instead of "+type2+"!");
+		}
+    }	
+
+	//Validating of the arrays
+    function arrayChecking(keyArray,dataArray){
+		var keyString=keyArray[1];
+		for (i = 2; i < keyArray.length; i++) {
+			keyString +="/"+keyArray[i];
+		}
+
+		if(keyArray[keyArray.length-1] == "timeStops"){
+			if(dataArray.length<2){
+				alertMessage("The configuration is incorrect! The value of "+keyString+" in the theme of '"+keyArray[0]+"' is incorrect! The timeStops array must contain at least two elements!");
+			}
+		}
+		
+		if(keyArray[keyArray.length-1] == "additionalLayerURLs"){
+			dataArray.forEach(function(entry) {
+				urlChecking(keyArray,entry);
+
+			})
+		}
+			
+    }	
+
+
+	//Validating of the numbers
+    function numberChecking(keyArray, value){
+		var keyString=keyArray[1];
+		for (i = 2; i < keyArray.length; i++) {
+			keyString +="/"+keyArray[i];
+		}
+
+		var lastKey=keyArray[keyArray.length-1];
+				
+		if(value<0){
+			alertMessage("The configuration is incorrect! The value of "+keyString+" in the theme of '"+keyArray[0]+"' is incorrect! This value must not be negative!");
+		}
+		
+		if((lastKey=="leftPanelWidthPercent" || lastKey=="mapHeightPercent" || lastKey=="upperRightChartHeightPercent" ) && (value>100 || value <0)){
+			alertMessage("The configuration is incorrect! The value of "+keyString+" in the theme of '"+keyArray[0]+"' is incorrect! Valid set of values is 0 to 100!");			
+		}		
+    }	
+
+	//Validating of the color values
+    function colorChecking(keyArray, colorsArray){
+	
+		colorsArray.forEach(function(entry) {
+			var isOk  = /^#[0-9A-F]{6}$/i.test(entry);
+
+			var keyString=keyArray[1];
+			for (i = 2; i < keyArray.length; i++) {
+				keyString +="/"+keyArray[i];
+			}
+			if(!isOk){
+				alertMessage("The configuration is incorrect! One of the "+keyString+" array value in the theme of '"+keyArray[0]+"' is incorrect! ");
+			}
+			
+		});
+		
+    }	
+	
+	//Validating of urls
+	function urlChecking(keyArray,url) {
+		var isOk  = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/i.test(url);
+		var keyString=keyArray[1];
+		for (i = 2; i < keyArray.length; i++) {
+			keyString +="/"+keyArray[i];
+		}
+		if(!isOk){
+			alertMessage("The configuration is incorrect! The value of "+keyString+" in the theme of '"+keyArray[0]+"' is incorrect! The url is invalid!");
+		}
+		
+	}
+
+	//Showing the error message
+	function alertMessage(alertText){
+		alert(alertText);
+		$("div").remove();
+		$("body").html('<p style="font-size:16px">'+alertText+'</p>');
+	}
+//-------------------------------------------------------------------------	
+
+	
+	//loading config.json
     for(var key in data){
         c[key] = data[key];
     }
-    // Ide lehetne berakni a konfig hibaellenőrzését.
-    // Ha az elején csinálunk egy ellenőrzést, akkor hiba esetén le tudjuk lőni az egész webapp építését.
+
+
+
+
 });
 
 require(
@@ -315,7 +651,7 @@ require(
             }
             else{
                 // ##### Kiírja a hibaüzenetet, de aztán megcsinálja a function többi részét. Jó ez így?
-                alert("Hibás konfigurációs beállítás! Ellenőrizd a config.json fájlban a leftPanelWidthPercent értékét! (Érvényes értékkészlet: 0-100)");
+                alert("The configuration is incorrect! Ellenőrizd a config.json fájlban a leftPanelWidthPercent értékét! (Érvényes értékkészlet: 0-100)");
             }
         
             // A baloldali panel függőleges tagolásának kialakítása
@@ -353,7 +689,7 @@ require(
                 }
                 else{
                     // ##### Kiírja a hibaüzenetet, de aztán megcsinálja a function többi részét. Jó ez így?
-                    alert("Hibás konfigurációs beállítás! Ellenőrizd a config.json fájlban a mapHeightPercent értékét! (Érvényes értékkészlet: 0-100)");
+                    alert("The configuration is incorrect! Ellenőrizd a config.json fájlban a mapHeightPercent értékét! (Érvényes értékkészlet: 0-100)");
                 }
             }
 
@@ -390,7 +726,7 @@ require(
                     });
                 }
                 else{
-                    alert("Hibás konfigurációs beállítás! Ellenőrizd a config.json fájlban a upperRightChartHeightPercent értékét! (Érvényes értékkészlet: 0-100)");
+                    alert("The configuration is incorrect! Ellenőrizd a config.json fájlban a upperRightChartHeightPercent értékét! (Érvényes értékkészlet: 0-100)");
                 }
             }
         }
@@ -410,6 +746,7 @@ require(
 				else if(actTheme["chartPositions"][keyTitle]=="bub"){
 					//Kezelni kell ha nincs adat az adott évhez
 					var keys = Object.keys(actYearFeature);
+					
 					if(keys.length==0){
 						//Nincs adat üresen hívja meg a diagram készítést
 						createBubbleChart([]);						
@@ -614,6 +951,7 @@ require(
 		//Timeslider változás esemény
         function extentChanged(evt){
             currYear = timeSlider.getCurrentTimeExtent().startTime.getFullYear();
+
 			if(!firstClick){
 				searchCurrentYear(actFeatureSet);
 				chooseChart(1);
