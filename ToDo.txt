@@ -1,5 +1,9 @@
 ToDo
 ----------------------------------------------------
+Alert logikáját átgondolni (pl. csak egy alert, aztán hibalista az oldal helyén)
+A config validator szedje össze az alert-ekben megjelenő hibákat és egy listaként rakja ki a legvégén az oldalra.
+
+
 Z - Jelmagyarázat configból vezérelve
 Z - Logó configból vezérelve
 Z - Splash, infobox
