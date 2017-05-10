@@ -204,7 +204,7 @@ Pl. bubble-nél a szomszédosokat szedi ki, így csak poligonnál alkalmazható
 ```
 "dataServiceLayerIndex" : Please give a number!
 ```
-**Description**: Defines which layers is the one within the service you want to use as source of data.  
+**Description**: Defines which layer of the service you want to use as source of data.  
 **Type**: number  
 **Valid values**: 0 or greater integer  
 **Example value**: 0  
