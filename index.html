@@ -24,12 +24,12 @@
 	</head>
     <body class="claro">
 		<div id="heading" class="roundedBox headTitle">
-            <img src = "img/logo.png" alt = "Lechner Tudásközpont" class="logo"/>
+            <img src = "" class="logo"/>
             <header id="title" class="mainTitle"></header>
             <p id="subTitle" class="subTitle"></p>
-            <img id="infoIcon" src = "img/info.png" alt = "Információ" class="infoImg" onclick="controlInfoBox()"/>
 			<!-- ##### A lentit még meg kell csinálni rendesen! -->
-			<img id="createdByIcon" src = "img/info.png" alt = "Készítette" class="infoImg" onclick="controlCreatedByBox()"/>
+			<img id="colophonIcon" src = "img/createdby.png" alt = "Created by" class="infoImg" title="Készítette / Created by" onclick="controlColophonBox()"/>            
+            <img id="infoIcon" src = "img/info.png" alt = "Information" class="infoImg" title="Információ / Information" onclick="controlInfoBox()"/>
         </div>
 		<div id="timeSlider" class="roundedBox">
 		</div>
@@ -42,14 +42,16 @@
 			</div>
 		</div>
 		<div id="leftPanel">
-			<div id="map" class="roundedBox panels">
-			</div>		
+			<div id="map" class="roundedBox panels">                
+				<div id="legendIcon" class="legend" onclick="controlLegend()">
+					<img src = "img/legend.png" alt = "Jelmagyarázat" class="legendImg"/>
+				</div>
+				<div id="legend" class="legend" onclick="controlLegend()">
+				</div>
+			</div>
 		</div>
         <div id="splash"></div>
         <div id="infoBox"></div>
-		<!-- ##### A lentit még meg kell csinálni rendesen! Vszeg jQuery-vel kéne létrehozni ezt is. -->
-<!-- 		<div id="createdBy">
-			<p class="createdBy">Készítetők: Lellei László, Ónodi Zsolt (<a href="http://lechnerkozpont.hu/" class="headingLink" target="blank">Lechner Tudásközpont</a>), <a href="https://developers.arcgis.com/javascript/" class="headingLink" target="blank">ArcGIS API for JS</a> és <a href="http://www.amcharts.com/javascript-charts/" class="headingLink" target="blank">amCharts JS Charts</a> felhasználásával.</p>
-		</div> -->
+        <div id="colophon"></div>
 	</body>
 </html>
