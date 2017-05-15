@@ -14,7 +14,7 @@ html, body{
     background: #ffffff;
     border: solid 1px #cccccc;
     border-radius: 10px;
-    box-shadow: 1px 1px 1px #bbbbbb;    
+    box-shadow: 1px 1px 1px #bbbbbb;
 }
 
 /* Heading */
@@ -372,6 +372,10 @@ html, body{
     transition: opacity ease-in 2s;
     visibility: visible;
     opacity: 1;
+}
+
+#heading, #leftPanel, #rightPanel, #timeSlider, #legend, #infoIcon, #theme{
+    pointer-events: none;
 }
 
 /* Configuration validator */
