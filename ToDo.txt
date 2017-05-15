@@ -5,6 +5,7 @@ L - Alert logikáját módosítani: csak egy alert, aztán hibalista az oldal he
 Z - Configuration Guide összevetése a config validatorral.
 Z - Configuration Guide befejezése
 K - gyakorló time-aware map service készítése (EUROSTAT adatok)
+K - A konferenciára megcsinálni a bemutatós config.json-t
 
 Z - Dashboard MapService Creation Guide készítése (PDF)
 
