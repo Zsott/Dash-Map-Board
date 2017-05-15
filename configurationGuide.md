@@ -20,7 +20,7 @@ JSON format has a very strict structure about which you can read a lot for examp
 For the Dash-Map-Board webapp you'll need at least one time-aware, shared ESRI MapService. A common mistake you can make is after you've published the service you forget to share it. If the webapp loads but it's empty, check the sharing options of the service!
 
 ### Available chart types
-At this point Dash-Map-Board gives you the opportunity to use several chart types.
+Dash-Map-Board gives you the opportunity to use several chart types.
 ##### Serial chart
 This chart shows all timeStops so you can examine the whole period at a glance.
 ##### Pie chart
