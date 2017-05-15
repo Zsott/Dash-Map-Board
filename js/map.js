@@ -1,6 +1,6 @@
 // ##### Change all comments to English!!!
 
-//The common part of config.json the key and the type of values (in all theme) 
+//The common part of config.json: the key and the type of values (in all theme)
 var configMainJson={
     "layout" : {
         "leftPanelWidthPercent" : "number",
@@ -14,6 +14,7 @@ var configMainJson={
         "infoBoxText" : "string",
         "clickOnWhat" : "string"
         },
+	"basemap": "string",
     "wkid" : "number",
     "xmin" : "number",
     "ymin" : "number",
@@ -33,7 +34,7 @@ var configMainJson={
         }
 };
 				
-//The keys and the type of values in serial chart settings (use in config validator)
+//The keys and the type of values in serial chart settings (used in config validator)
 var configSerialSettingsJson={
     "title" : "string",
     "colors" : "array",
@@ -41,10 +42,11 @@ var configSerialSettingsJson={
     "dataUnit" : "string",
     "yAxesMax" : "string",
     "yAxesMin" : "string",
-    "fieldMap" : "object"
+	"sorting"  : "string",	
+    "fieldMap" : "object",
 };
 
-//The keys and the type of values in radar chart settings (use in config validator)
+//The keys and the type of values in radar chart settings (used in config validator)
 var configRadarSettingsJson={
     "title" : "string",
     "colors" : "array",
@@ -55,7 +57,7 @@ var configRadarSettingsJson={
     "fieldMap" : "object"
 };
 		
-//The keys and the type of values in bubble chart settings (use in config validator)
+//The keys and the type of values in bubble chart settings (used in config validator)
 var configBubbleSettingsJson={
     "title" : "string",
     "colors" : "array",
@@ -70,31 +72,54 @@ var configBubbleSettingsJson={
     "fieldMap" : "object"
 };
 
-//The keys and the type of values in table settings (use in config validator)
+//The keys and the type of values in table settings (used in config validator)
 var configTableSettingsJson={
     "title" : "string",
     "heading" : "string",
+	"sorting"  : "string",	
     "fieldMap" : "object"
 };
 		
-//The keys and the type of values in serial chart settings (use in config validator)
+//The keys and the type of values in serial chart settings (used in config validator)
 var configPieSettingsJson={
     "title" : "string",
     "colors" : "array",
     "fieldMap" : "object"
 };		
 
-//Valid type of image		
+//Valid type of image extensions
 var imgType=["png","jpg","tif","bmp","gif"];
+
+var baseMapType=[
+					"dark-gray",
+					"dark-gray-vector",
+					"gray",
+					"gray-vector",
+					"hybrid",
+					"national-geographic",
+					"oceans",
+					"osm",
+					"satellite",
+					"streets",
+					"streets-navigation-vector",
+					"streets-night-vector",
+					"streets-relief-vector",
+					"streets-vector",
+					"terrain",
+					"topo",
+					"topo-vector"
+				];
+var sortType=["asc","desc"];
+
 		
 var c = {};
 $.getJSON("config.json", function(data){
 	
-//-------------------------------------------------------------------------	
-//JSON Validator
-//-------------------------------------------------------------------------	
+//=========================================================================	
+//Start of config.json validator
+//=========================================================================	
 
-	//Checking themeOrder key
+	//Checking if themeOrder key exists
 	if (!("themeOrder" in data)){
             alertMessage("The configuration is incorrect! The themeOrder key is missing!");
     }
@@ -102,7 +127,7 @@ $.getJSON("config.json", function(data){
 		alertMessage("The configuration is incorrect! Array of themeOrder is empty!");
 	}
 	
-	//Checking if the settings of theme were exist
+	//Checking if the settings of theme exist
     for(var t in data.themeOrder){
         for(var key in data.themeOrder[t]){
 			if (!(key in data)){
@@ -139,13 +164,13 @@ $.getJSON("config.json", function(data){
 						if(jQuery.type( theme[ckey][cikey])=="array"){
 							arrayChecking(keyArray,theme[ckey][cikey])
 						}
-						//Checking image //##### Üres is legyen valid!!!
-						if(cikey=="logoImg"){
+						//Checking image
+						if((cikey=="logoImg") && (theme[ckey][cikey]!="")){
 							if(imgType.indexOf(theme[ckey][cikey].slice(-3))==-1){
 								alertMessage("The configuration is incorrect! The value of the "+ckey+"/"+cikey+" key in the theme of '"+key+"' is not valid. Only png, jpg, tif, gif and bmp allowed!")
 							}
 						}
-						
+												
 						//Loading the diagram of the actual theme into chartArray
 						if((ckey=="chartPositions") && (theme[ckey][cikey]!="")){
 							chartArray.push(theme[ckey][cikey]);
@@ -168,6 +193,13 @@ $.getJSON("config.json", function(data){
 					if(ckey=="dataServiceURL"){
 						urlChecking(keyArray,theme[ckey]);
 					}
+					//Checking type of basemap 
+					if(ckey=="basemap"){
+						if(baseMapType.indexOf(theme[ckey])==-1){
+							alertMessage("The configuration is incorrect! The value of the "+ckey+" key in the theme of '"+key+"' is not a valid basemap type.")
+						}
+					}
+					
 				}
 			}
 
@@ -214,6 +246,14 @@ $.getJSON("config.json", function(data){
 					if(ckey=="colors"){
 						colorChecking(keyArray,chart[ckey]);
 					}
+					//Checking sorting
+					if(ckey=="sorting"){
+						if(sortType.indexOf(chart[ckey])==-1){
+							alertMessage("The configuration is incorrect! Invalid value of "+chartKey+"/"+ckey+"("+chart[ckey]+") is in the theme of '"+key+"'! Valid set of values is asc or desc!")
+						}
+					}
+					
+					
 					//Checking fieldMap
 					if(ckey=="fieldMap"){
 						
@@ -318,7 +358,9 @@ $.getJSON("config.json", function(data){
 		$("div").remove();
 		$("body").append('<p class="configErrorList">'+alertText+'</p>');
 	}
-//-------------------------------------------------------------------------	
+//=========================================================================	
+// End of config.json validator
+//=========================================================================	
 
 	//loading config.json
     for(var key in data){
@@ -329,7 +371,6 @@ $.getJSON("config.json", function(data){
 
 function initWebApp(){
     require(
-    // ##### Nézzük át, kell-e minden, amit itt behúzunk!
         [
             "esri/map",
             "esri/layers/ArcGISDynamicMapServiceLayer",
@@ -341,17 +382,10 @@ function initWebApp(){
             "esri/symbols/SimpleFillSymbol",
             "esri/symbols/SimpleLineSymbol",
             "esri/Color",
-            //"esri/layers/layer",
             "esri/dijit/TimeSlider",
             "esri/TimeExtent",
             
-            //"dojo/dom-construct",
-            //"dojo/_base/array",
-            "dojo/dom",
             "dojo/ready",
-            "dojo/parser",
-            //"dojo/query",
-            //"dijit/registry",
             "dojo/on"
         ],
         function(
@@ -365,27 +399,19 @@ function initWebApp(){
             SimpleFillSymbol,
             SimpleLineSymbol,
             Color,
-            //Layer,
             TimeSlider,
             TimeExtent,
             
-            //domConstruct,
-            //arrayUtils,
-            dom,
             ready,
-            parser,
-            //query,
-            //registry,
             on
         ){
-        // Wait until DOM is ready *and* all outstanding require() calls have been resolved
+        //Wait until DOM is ready *and* all outstanding require() calls have been resolved
         ready(function(){
-            // Parse DOM nodes decorated with the data-dojo-type attribute
-            parser.parse();
             
+            //Show data about creators of Dash-Map-Board project in the console
             console.log(c.creators);
 
-            //Defining variables
+            //Defining variables used globally
             var firstClick = true; //Checks if there was any click on the map or not
             var firstTheme = true; //Checks if the actual is the first theme or not
             var currYear; //The current position of the timeslider	
@@ -393,11 +419,11 @@ function initWebApp(){
             var actFeatureSet = {}; //The featureset you get by clicking on the map
             var actYearFeature; //The feature from the featureSet which corresponds to the current year
             var actAreaName; //The name of the clicked element
-            var terkep;
-            var dataQuery;
-            var timeSlider;
+            var terkep; //The map object
+            var dataQuery; //The query object
+            var timeSlider; //The conroller of the time-awareness
             var legend; //The legend object
-            var isFirstLegend = true;
+            var isFirstLegend = true; //Checks if legend has been created for the first time
             
             //Creates the theme chooser dropdown menu and selects the first theme
             createThemeDropDown();
@@ -405,7 +431,7 @@ function initWebApp(){
             //Sets up the theme according to the first theme's configuration
             initTheme();
             
-            //
+            //Sets the header (logo, title, subtitle, infobox) and the splash screen
             function initHtml(){
                 //Sets the source of the logo according to the layout's setup
                 if(!actTheme.layout.logoImg == ""){
@@ -414,6 +440,7 @@ function initWebApp(){
                     });
                     $(".logo").attr("src",actTheme.layout.logoImg);
                 }
+                //...or hides the logo if logoImg parameter is set to ""
                 else{
                     $(".logo").css({
                         "display" : "none"
@@ -427,6 +454,7 @@ function initWebApp(){
                     });
                     $("#title").html(actTheme.layout.title);
                 }
+                //... or hides the title if the title parameter is set to ""
                 else{
                     $("#title").css({
                         "display" : "none"
@@ -440,6 +468,7 @@ function initWebApp(){
                     });                    
                     $("#subTitle").html(actTheme.layout.subTitle);
                 }
+                //... or hides the subtitle if the subtitle parameter is set to ""
                 else{
                     $("#subTitle").css({
                         "display" : "none"
@@ -485,8 +514,10 @@ function initWebApp(){
             }
             
             function initTheme(){
-                
+                //Set the header and splash screen
                 initHtml();
+                
+                //Set the colophon
                 initColophon();
             
                 //Define spatial reference system
@@ -506,10 +537,10 @@ function initWebApp(){
                 //Create map object
                 terkep = new Map("map", {
                     spatialReference: spRef,
-                    basemap: actTheme.basemap, //##### config?
+                    basemap: actTheme.basemap,
                     extent : extHun,
-                    logo : false, //##### config?
-                    showAttribution : false //##### config?
+                    logo : false, // @@@ config
+                    showAttribution : false // @@@ config
                 });
                 
                 //Resizing and repositioning map when changing theme
@@ -527,7 +558,7 @@ function initWebApp(){
                     terkep.addLayer(new ArcGISDynamicMapServiceLayer(entry));
                 });
                 
-                //Add or hide legend depending on the config.json setup
+                //Add or hide legend (icon) depending on the config.json setup
                 if(actTheme.layout.legendOn && isFirstLegend){
                     isFirstLegend = false;
                     $("#legendIcon").css({
@@ -535,7 +566,7 @@ function initWebApp(){
                     });
                     legend = new Legend({
                         map: terkep,
-                        autoUpdate: true,
+                        autoUpdate: true, // @@@ config
                         layerInfos : [{
                             layer : terkep.getLayer(terkep.layerIds[actTheme.dataServiceLayerPosition + 1])
                         }]
@@ -555,13 +586,16 @@ function initWebApp(){
                 }
 
                 //Defining query - this will be used when clicking on the map
+                // => What you want to find?
                 dataQuery = new esri.tasks.Query();
                 dataQuery.returnGeometry = true;
                 dataQuery.outFields = ["*"];
 
-                //TimeSlider inicializálása
+                //Defining the query task - this uses the query defined earlier
+                // => Where you want to find it?
                 dataQueryTask = new QueryTask(actTheme["dataServiceURL"] + "/" + actTheme.dataServiceLayerIndex);
 
+                //Setting the initial hint string next to the dropdown menu
                 $("#placeYear").html(actTheme.layout.clickOnWhat);
                 
                 //Starting the timeslider
@@ -571,39 +605,48 @@ function initWebApp(){
                 terkep.on("click", initDashBoard);
             }
             
-            //A kattintásra inicializálódik(később frissül) a dashboard
+            //This function starts when user clicks on the map
             function initDashBoard(evt){
-                //A kattintás által metszett geometria
+                //Gets the geometry on which the user clicked and gives it to the query as a parameter
                 dataQuery.geometry = evt.mapPoint;
-                //A lekérdezés futtatása
+                //Runs the query using the geometry on which the user clicked and creates the dashboard
                 dataQueryTask.execute(dataQuery, createDashBoard);
             }
 
-            //Kattintásra a dashboard inicializálása/frissítése
+            //This function starts after the user clicked and query finished
+            //Initializes or refeshes the dashboard
             function createDashBoard(featureSet){
+                //Runs only if the click/query has any results
+                // => Won't start if user clicks outside the thematic map boundary or clicks between features
                 if (featureSet.features.length > 0){
+                    //Temporarily assigns a class to the left panel that makes it disappear
                     $("#leftPanel").addClass("fadeOut");
-                    actFeatureSet=featureSet;
-                    //Első kattintáskor inicializálás a képernyőbeosztás elkészítése
+                    
+                    //Assigns the query result to a global variable so we can use it in other functions as well
+                    actFeatureSet = featureSet;
+                    
+                    //If this was the first click switches to dashboard layout
                     if (firstClick){
                         firstClick = false;
                         setLayout();
                     }
                     
-                    //A kijelölt település kirajzolása
+                    //Puts the clicked geometry on the map
                     selectFeature(actFeatureSet.features[0]);
                     
-                    //Aktuális év szűrése
+                    //Gets the features of the current year
                     searchCurrentYear(actFeatureSet);
                     
                     // ##### Kezeli azt a helyzetet, ha nincs adat az adott évhez?
+                    //Replaces the hint text with the current feature's name and the current year
                     $("#placeYear").html(actAreaName+ " - " + currYear);
 
-                    //Diagramm adatok előállítása
+                    //Decides which charts will be needed in the dashboard
                     chooseChart(0);
                 }			
             }
 
+            //This function creates the theme chooser dropdown menu and sets the first theme
             function createThemeDropDown(){
                 for(var t in c.themeOrder){
                     for(var key in c.themeOrder[t]){
@@ -621,16 +664,19 @@ function initWebApp(){
                         }
                     }
                 }
+                //Assigns a click event to the items in the dropdown menu
                 $("#dropDownContent a").click(function(){
+                    //Change the actual theme to the clicked theme
                     changeTheme($(this).attr("id"));
                 });
             }
             
+            //This function changes the actual theme and resets the webapp's layout
             function changeTheme(elem){
                 for(var t in c.themeOrder){
                     for(var key in c.themeOrder[t]){
                         if(key == elem){
-                            firstTheme=false;
+                            firstTheme = false;
                             terkep.destroy();
                             actTheme = c[elem];
                             $(".dropDownButton").html(c.themeOrder[t][elem]);
@@ -648,6 +694,7 @@ function initWebApp(){
                 }
             }
             
+            //This function resets' the webapp's layout to the original "big map" style
             function initLayout(){
                 $("#ser, #pie, #rad, #bub, #tab, #rightPanel").remove();
                 $("#leftPanel").css({
@@ -660,13 +707,16 @@ function initWebApp(){
                 });
             }
             
+            //This function changes from the "big map" layout to the dashboard layout
+            //Uses a the config.json [theme]/layout parameters like leftPanelWidthPercent
             function setLayout(){
+                //Sets the left-right panel width
                 if(actTheme.layout.leftPanelWidthPercent == 0){
-                    // A bal oldali panel eltüntetése
+                    //Makes the left panel disappear
                     $("#leftPanel").css({
                         "display" : "none"
                     });
-                    // A jobb oldali panel létrehozása
+                    //Creates the right panel and sets it to full width
                     $("body").append('<div id="rightPanel" class="fadeOut"></div>');
                     $("#rightPanel").css({			
                         "width" : "calc(100% - 16px)",
@@ -674,52 +724,51 @@ function initWebApp(){
                     });		
                 }
                 else if(actTheme.layout.leftPanelWidthPercent == 100){
-                    // A bal oldali panel átméretezése
+                    //Resizes the left panel to full width
                     $("#leftPanel").css({
                         "width" : "calc(100% - 16px)"
                     });
                 }
                 else{
-                    // A bal oldali panel átméretezése
+                    //Resizes the left panel
                     $("#leftPanel").css({
                         "width" : "calc(" + actTheme.layout.leftPanelWidthPercent + "% - 12px)",
                         "margin" : "4px 4px 8px 8px"
                     });
-                    // A jobb oldali panel létrehozása
+                    //Creates the right panel and resizes it to the correct width
                     $("body").append('<div id="rightPanel" class="fadeOut"></div>');
-                    //$('<div id="rightPanel" class="fadeOut"></div>').after("#leftPanel");
                     var w = 100 - actTheme.layout.leftPanelWidthPercent;
                     $("#rightPanel").css({			
                         "width" : "calc(" + w + "% - 12px)"
                     });
                 }
             
-                // A baloldali panel függőleges tagolásának kialakítása
+                //Sets the vertical splitting of the left panel
                 if($("#leftPanel").css("display") != "none"){
                     if(actTheme.layout.mapHeightPercent == 0){
-                        // A térkép eltüntetése
+                        //Make the map panel disappear
                         $("#map").css({
                             "display" : "none"
                         });
-                        // A bal alsó diagram panel létrehozása
+                        //Creates the lower left panel and resizes it to full height
                         $("#leftPanel").append('<div id="' + actTheme.chartPositions.LL + '" class="roundedBox panels"></div>');
                         $("#" + actTheme.chartPositions.LL).css({
                             "height" : "calc(100% - 2px)"
                         });
                     }
                     else if(actTheme.layout.mapHeightPercent == 100){
-                        // A térkép átméretezése
+                        //Resizes the map to full height
                         $("#map").css({
                             "height" : "calc(100% - 2px)"
                         });
                     }
                     else{
-                        // A térkép magasságának átméretezése
+                        //Resizes the map
                         $("#map").css({
                             "height" : "calc(" + actTheme.layout.mapHeightPercent + "% - 6px)",
                             "margin-bottom" : "4px"
                         });
-                        // A bal alsó diagram panel létrehozása, méretezése
+                        //Creates the lower left panel and resizes it to the correct height
                         $("#leftPanel").append('<div id="' + actTheme.chartPositions.LL + '" class="roundedBox panels"></div>');
                         var h = 100 - actTheme.layout.mapHeightPercent;
                         $("#" + actTheme.chartPositions.LL).css({
@@ -729,30 +778,30 @@ function initWebApp(){
                     }
                 }
 
-                // A jobb oldali panel tagolásának kitalakítása
+                //Sets the vertical splitting of the right panel
                 if($("#rightPanel").css("display") != "none"){
                     if(actTheme.layout.upperRightChartHeightPercent == 0){
-                        // A jobb alsó diagram panel létrehozása és méretezése
+                        //Creates the lower right panel and resizes it to full height
                         $("#rightPanel").append('<div id="' + actTheme.chartPositions.LR + '" class="roundedBox panels"></div>');
                         $("#" + actTheme.chartPositions.LR).css({
                             "height" : "calc(100% - 2px)"
                         });
                     }
                     else if(actTheme.layout.upperRightChartHeightPercent == 100){
-                        // A bal felső diagram panel létrehozása és méretezése
+                        //Creates the upper right panel and resizes it to full height
                         $("#rightPanel").append('<div id="' + actTheme.chartPositions.UR + '" class="roundedBox panels"></div>');
                         $("#" + actTheme.chartPositions.UR).css({
                             "height" : "calc(100% - 2px)"
                         });
                     }
-                    else if(actTheme.layout.upperRightChartHeightPercent > 0 && actTheme.layout.upperRightChartHeightPercent < 100){
-                        // A bal felső diagram panel létrehozása és méretezése
+                    else{
+                        //Creates the upper right panel and resizes it to the correct height
                         $("#rightPanel").append('<div id="' + actTheme.chartPositions.UR + '" class="roundedBox panels"></div>');			
                         $("#" + actTheme.chartPositions.UR).css({
                             "height" : "calc(" + actTheme.layout.upperRightChartHeightPercent + "% - 6px)",
                             "margin-bottom" : "4px"
                         });
-                        // A jobb alsó diagram panel létrehozása és méretezése
+                        //Creates the lower right panel and resizes it to the correct height
                         $("#rightPanel").append('<div id="' + actTheme.chartPositions.LR + '" class="roundedBox panels"></div>');
                         var h = 100 - actTheme.layout.upperRightChartHeightPercent;
                         $("#" + actTheme.chartPositions.LR).css({
@@ -761,87 +810,92 @@ function initWebApp(){
                             "display" : "inline-block"
                         });
                     }
-                    else{
-                        alert("Hibás konfigurációs beállítás! Ellenőrizd a config.json fájlban a upperRightChartHeightPercent értékét! (Érvényes értékkészlet: 0-100)");
-                    }
                 }
+                
+                //Resizes the map object according to the map div
                 terkep.width = $("#map").outerWidth();
                 terkep.height = $("#map").outerHeight();
+                
+                //Zoom and change extent of the map to show the selected geometry in the center
                 terkep.centerAndZoom(dataQuery.geometry,terkep.getLevel());
             }
             
-            //A configból a szükséges diagramtípusok kiolvasása és diagramépítések meghívása
+            //This function decides which chart types will be used and creates those charts
             function chooseChart(timeSliderChange){	
+                //Checks which chart types are assigned to the different positions
                 for (var keyTitle in actTheme["chartPositions"]) {
-                    if(actTheme["chartPositions"][keyTitle]=="pie"){
+                    if(actTheme["chartPositions"][keyTitle] == "pie"){
                         createPieDP();
                     }					
-                    else if(actTheme["chartPositions"][keyTitle]=="ser" && !timeSliderChange){
+                    else if(actTheme["chartPositions"][keyTitle] == "ser" && !timeSliderChange){
                         createSerDP();
                     }
-                    else if(actTheme["chartPositions"][keyTitle]=="tab"){
+                    else if(actTheme["chartPositions"][keyTitle] == "tab"){
                         createTabDP();
                     }
-                    else if(actTheme["chartPositions"][keyTitle]=="bub"){
-                        //Kezelni kell ha nincs adat az adott évhez
+                    else if(actTheme["chartPositions"][keyTitle] == "bub"){
                         var keys = Object.keys(actYearFeature);
-                        if(keys.length==0){
-                            //Nincs adat üresen hívja meg a diagram készítést
+                        if(keys.length == 0){
+                            //Creates an empty chart if there's no data
                             createBubbleChart([]);						
                         }
                         else{
+                            //Gets the data of the neighbours of the selected geometry for the bubble chart
                             var neighQuery = new esri.tasks.Query();
                             neighQuery.geometry = actYearFeature.geometry;
                             neighQuery.returnGeometry = true;
-                            outFields=["*"];
+                            outFields = ["*"];
                             neighQuery.outFields = outFields;
                             neighQuery.spatialRelationship = esri.tasks.Query.SPATIAL_REL_TOUCHES;
                             var selNeighbour = new QueryTask(actTheme.dataServiceURL + "/" + actTheme.dataServiceLayerIndex); 
                             selNeighbour.execute(neighQuery, createBubDP);
                         }
-                        
-
                     }
-                    else if(actTheme["chartPositions"][keyTitle]=="rad"){
+                    else if(actTheme["chartPositions"][keyTitle] == "rad"){
                         createRadDP(actFeatureSet);
                     }
                 }
+                //Removes the class that made the left and right panel disappear so they will slowly reappear
                 $("#leftPanel, #rightPanel").addClass("fadeIn");
                 $("#leftPanel, #rightPanel").removeClass("fadeOut");
             }		
             
-            //A FeatureSet szűrése a timeslider-nek megfelelő évre
+            //This function selects the feature for the actual timestop
             function searchCurrentYear(featureSet){
-                actYearFeature={};
-                actAreaName="";
-                featureSet.features.forEach(function(entry) {
-                    actAreaName=entry.attributes[actTheme["areaNameField"]];
+                actYearFeature = {};
+                actAreaName = "";
+                featureSet.features.forEach(function(entry){
+                    actAreaName = entry.attributes[actTheme["areaNameField"]];
                     if(entry.attributes[actTheme["timeField"]] == currYear){
                         actYearFeature = entry;
                     }
-                });				
+                });
             }
             
-            //A térképen kijelöli a kiválasztott objektumot
+            //Shows the clicked feature on the map
             function selectFeature(graphic){
-                //Esetleges korábbi jelölések törlése
+                //Removes any graphic (former selections)
                 terkep.graphics.clear();
-                // Kiválasztott területi egység szimbóluma
+                
+                //Sets the symbology of the selected geometry
+                // @@@ config
                 var symbol = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID,
                              new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
                              new Color([248, 239, 34]), 2), new Color([200, 200, 200, 0.25]));
                 graphic.setSymbol(symbol);
+                
+                //Add the geometry with the new symbology to the map
                 terkep.graphics.add(graphic);
             }
 
-            //A pie diagram dataprovider-nek feltöltése
+            //Prepares data for pie chart
             function createPieDP(){
                 var pieDP = [];				
                 for (var key in actYearFeature.attributes){
                     json = {};
                     for (var keyTitle in actTheme["pieSettings"].fieldMap) {
-                        if(key==keyTitle){
-                            json["title"]=actTheme["pieSettings"].fieldMap[keyTitle];
+                        if(key == keyTitle){
+                            json["title"] = actTheme["pieSettings"].fieldMap[keyTitle];
                             json["value"] = actYearFeature.attributes[key];
                             pieDP.push(json);
                         }
@@ -850,33 +904,30 @@ function initWebApp(){
                 createPieChart(pieDP);
             }		
             
-            //A serial diagram dataprovider-nek feltöltése
+            //Prepares data for serial chart
             function createSerDP(){
                 var serDP = [];		
                 var json;
-                actFeatureSet.features.forEach(function(entry) {
-
-                    if(actTheme["timeStops"].indexOf(entry.attributes[actTheme["timeField"]].toString())!=-1){
+                actFeatureSet.features.forEach(function(entry){
+                    if(actTheme["timeStops"].indexOf(entry.attributes[actTheme["timeField"]].toString()) != -1){
                         json = {};
                         json["year"] = entry.attributes[actTheme["timeField"]];
-
                         for (var key in entry.attributes){
-                            for (var keyTitle in actTheme["serialSettings"].fieldMap) {
-                                if(key==keyTitle){
-                                    json[keyTitle]=entry.attributes[key];
+                            for (var keyTitle in actTheme["serialSettings"].fieldMap){
+                                if(key == keyTitle){
+                                    json[keyTitle] = entry.attributes[key];
                                 }
                             }
                         }
                         serDP.push(json);
                     }
                 });
-
-                var serOrderedDP = orderArrayByAttribute(serDP,"year","asc");
-                
+                //Reorder prepared dataset by time
+                var serOrderedDP = orderArrayByAttribute(serDP,"year",actTheme["serialSettings"].sorting);               
                 createSerialChart(serOrderedDP);
             }
 
-            //A táblázat dataprovider-nek feltöltése
+            //Prepares data for table
             function createTabDP(){
                 var tabDP = [];		
                 var json;
@@ -886,41 +937,46 @@ function initWebApp(){
 
                     for (var key in entry.attributes){
                         for (var keyTitle in actTheme["tableSettings"].fieldMap) {
-                            if(key==keyTitle){
+                            if(key == keyTitle){
                                 json[keyTitle]=entry.attributes[key];
                             }
                         }
                     }
                     tabDP.push(json);				
                 });
-                var tabOrderedDP = orderArrayByAttribute(tabDP,"year","asc");
+                //Reorder prepared dataset by time
+                var tabOrderedDP = orderArrayByAttribute(tabDP,"year",actTheme["tableSettings"].sorting); // @@@ config (asc vagy desc)
                 createTable(tabOrderedDP);
             }
 
-            //A bubble diagram dataprovider-nek feltöltése
+            //Prepare data for bubble chart
             function createBubDP(featureSet){
                 var bubDP=[];
-                
-                if(actYearFeature.attributes[actTheme["timeField"]]==currYear){
+				//Filter the actual timestop data
+                if(actYearFeature.attributes[actTheme["timeField"]] == currYear){
+					//Add actual place data
                     bubDP.push(actYearFeature.attributes);
                     bubDP[0]["color"] = actTheme["bubbleSettings"].colors[0];			
                 }
             
+				//Filter the actual timestop data
                 featureSet.features.forEach(function(entry) {
+					//Add neighbour place date
                     if(entry.attributes[actTheme["timeField"]]==currYear){
                         bubDP.push(entry.attributes);
                     }
                 });
                 var keys = [];
                 for(var k in actTheme["bubbleSettings"].fieldMap) keys.push(k);
-                //A z értéknek a tömb harmadik elemének kell lennie!!! Sorrend [0]: x, [1]:y, [2]:z
-                //Sorba rendezés z érték alapján
+				
+                //The fieldmap order is important! FieldMap[0]: x, [1]:y, [2]:z (axis)
+                //Order the data (based on z value) 
                 var bubOrderedDP = orderArrayByAttribute(bubDP,keys[2],"desc");
-
                 createBubbleChart(bubOrderedDP);
             }
                         
-            //Sorbarendezés attributum alapján (Bubble diagramnál a kisebb kerüljön felülre, Serial fordítva)
+						
+            //Order the data ascending(asc) or descending(desc).
             function orderArrayByAttribute(arr,att,order){
                 var newArr = [];
                 for (i=0;i<arr.length;i++){
@@ -939,47 +995,51 @@ function initWebApp(){
                                 break;
                             }
                         }
-                        
                     }
                     newArr.splice(index,0,arr[i]);
                 }
                 return newArr;
             }        
           
-            function createRadDP(dp){
+            //Prepare data for bubble chart            
+			function createRadDP(dp){
                 var radDP = [];				
                 for (var key in actYearFeature.attributes){
                     json = {};
                     for (var keyTitle in actTheme["radarSettings"].fieldMap) {
                         if(key==keyTitle){
-    //						json[keyTitle]=entry.attributes[key];
                             json["title"]=actTheme["radarSettings"].fieldMap[keyTitle];
                             json["value"] = actYearFeature.attributes[key];
-                            radDP.push(json);
+							if(actYearFeature.attributes[key]!=null){
+								radDP.push(json);
+							}	
                         }
                     }
                 }
                 createRadarChart(radDP);
             }
             
-            //TimeSlider beállítások
+            //Initialize time slider
             function initTimeSlider(){
 
                 if(firstTheme){
                     timeSlider = new TimeSlider({},"timeSlider");
                     firstTheme=false;
                 }
+				//Add timeslider to map
                 terkep.setTimeSlider(timeSlider);
-              
+				//Create time extent change event
                 timeSlider.on("time-extent-change",extentChanged);
                 
-                timeSlider.setThumbCount(1);
-                timeSlider.setThumbIndexes([0]);
-                timeSlider.setThumbMovingRate(actTheme["timeSliderMovingRate"]); 
+				//Load timeSop array from config.json
                 var timeStops=[];
                 actTheme["timeStops"].forEach(function(entry) {
                     timeStops.push(new Date(entry));
                 });
+				//Timeslider settings
+                timeSlider.setThumbCount(1);
+                timeSlider.setThumbIndexes([0]);
+                timeSlider.setThumbMovingRate(actTheme["timeSliderMovingRate"]);				
                 timeSlider.setTimeStops(timeStops);
                 timeSlider.singleThumbAsTimeInstant(true);
                 timeSlider.setLabels(actTheme["timeStops"]);
@@ -987,7 +1047,7 @@ function initWebApp(){
                 timeSlider.startup();
             }
             
-            //Timeslider változás esemény
+            //Timeslider change event
             function extentChanged(evt){
                 currYear = timeSlider.getCurrentTimeExtent().startTime.getFullYear();
                 if(!firstClick){
@@ -998,13 +1058,13 @@ function initWebApp(){
                 }
             }		
             
-            //Pie chart elkészítése
+            //Create pie chart            
             function createPieChart(dp){
                 var pieChart = AmCharts.makeChart("pie",{
                     "type": "pie",
                     "theme": "light",
                     "titles": [{
-                       "text": actTheme["pieSettings"].title + ", " + currYear,
+                       "text": actTheme["pieSettings"].title,
                        "size": 14,
                        "bold": true
                     }],
@@ -1039,7 +1099,7 @@ function initWebApp(){
                 });
             }
             
-            //Serial chart elkészítése
+            //Create serial chart            
             function createSerialChart(dp){
                 var graphs=[];
                 var json;
@@ -1106,14 +1166,14 @@ function initWebApp(){
                     "export": {"enabled": true}
                 });
             
-                // x tengely értekek maximumának és minimumának beállítása, ha az meg volt adva a configba
+                //Set axes max and min value from config.json
                 if ($.isNumeric(actTheme["serialSettings"].yAxesMax)){
                     serialChart.valueAxes[0].maximum=actTheme["serialSettings"].yAxesMax;
                 }
                 if ($.isNumeric(actTheme["serialSettings"].yAxesMin)){
                     serialChart.valueAxes[0].minimum=actTheme["serialSettings"].yAxesMin;
                 }
-                //az értékeket újra meg kell adni, hogy tengelybeállítás érvényes legyen
+                //Add graph to chart
                 for (i = 0; i < graphs.length; i++) {
                     serialChart.addGraph(graphs[i]);			
                 }
@@ -1124,19 +1184,27 @@ function initWebApp(){
                 $("#tab").append('<div id="tableTitle"></div>');
                 $("#tab").append('<div id="tableContent"></div>');
                 var htmlString = '<table>';
+				//Header
                 htmlString = htmlString + '<tr class="tableHeading"><td>' + actTheme.tableSettings.heading + '</td>';
-                for(var ev in actTheme.timeStops){
-                    htmlString = htmlString + '<td class="' + actTheme.timeStops[ev] + '">' + actTheme.timeStops[ev] + '</td>';
-                }
+				for (var i = 0; i < dp.length; i++) {
+					//Only for those years that are in timeStop array
+					if(actTheme.timeStops.indexOf(dp[i]["year"].toString())!=-1){
+						htmlString = htmlString + '<td class="' + dp[i]["year"] + '">' + dp[i]["year"] + '</td>';					
+					}
+				}
+				//Rows
                 htmlString = htmlString + '</tr>';
                 for (var keyTitle in actTheme.tableSettings.fieldMap){
                     htmlString = htmlString + '<tr><td class="tableRowId">' + actTheme.tableSettings.fieldMap[keyTitle] + '</td>';
                     for (var i = 0; i < dp.length; i++) {
-                        var cValue = checkRounding(dp[i][keyTitle],actTheme.tableSettings.dataPrecision);
-                        htmlString = htmlString + '<td class="' + dp[i]["year"] + '">' + cValue + '</td>';
-                        if(i == dp.length - 1){
-                            htmlString = htmlString + '</tr>';
-                        }
+						//Only for those years that are in timeStop array
+						if(actTheme.timeStops.indexOf(dp[i]["year"].toString())!=-1){
+							var cValue = checkRounding(dp[i][keyTitle],actTheme.tableSettings.dataPrecision);
+							htmlString = htmlString + '<td class="' + dp[i]["year"] + '">' + cValue + '</td>';
+							if(i == dp.length - 1){
+								htmlString = htmlString + '</tr>';
+							}
+						}
                     }
                 }
                 htmlString = htmlString + '</table>';
@@ -1145,6 +1213,7 @@ function initWebApp(){
                 colorTable();
             }    
 
+			//Change color in actual timestop
             function colorTable(){
                 $(".actualYearColumn").removeClass("actualYearColumn");
                 $("." + currYear).addClass("actualYearColumn");
@@ -1164,26 +1233,21 @@ function initWebApp(){
                 }
             }
             
-            //Bubble chart elkészítése
+            //Create bubble chart
             function createBubbleChart(dp){
                 var xField, yField, zField, xTitle, yTitle;
                 var xField=actTheme["bubbleSettings"].fieldMap;
                 var x=1;
                 var keys = [];
-
                 
                 for(var k in actTheme["bubbleSettings"].fieldMap) keys.push(k);
-                
-                
-                //Lényeges a sorrend x,y,z
+                //Field order is important!
                 xField=keys[0];
                 xTitle=actTheme["bubbleSettings"].fieldMap[keys[0]];
                 yField=keys[1];
                 yTitle=actTheme["bubbleSettings"].fieldMap[keys[1]];
                 zField=keys[2];
                 zTitle=actTheme["bubbleSettings"].fieldMap[keys[2]];
-
-                
 
                 var bubbleChart = AmCharts.makeChart( "bub", {
                     "type": "xy",
@@ -1250,17 +1314,17 @@ function initWebApp(){
                         "zoomable": true
                     },               
                     "export": {"enabled": false}
-                });            
-            
-                // x tengely értekek maximumának és minimumának beállítása, ha az meg volt adva a configba
+                });                        
+                //Set axes max and min value from config.json
+				//X axes
                 if ($.isNumeric(actTheme["bubbleSettings"].xAxesMax)){
                     bubbleChart.valueAxes[0].maximum=actTheme["bubbleSettings"].xAxesMax;
                 }
                 if ($.isNumeric(actTheme["bubbleSettings"].xAxesMin)){
                     bubbleChart.valueAxes[0].minimum=actTheme["bubbleSettings"].xAxesMin;
                 }
-                // y tengely értekek maximumának és minimumának beállítása, ha az meg volt adva a configba
-                //Y-nál valamennyit ráhagy pl beállítom 9000 és 10000 rak ki...
+                //Set axes max and min value from config.json
+				//Y axes
                 if ($.isNumeric(actTheme["bubbleSettings"].yAxesMax)){
                     bubbleChart.valueAxes[1].maximum=actTheme["bubbleSettings"].yAxesMax;
                 }
@@ -1268,7 +1332,7 @@ function initWebApp(){
                     bubbleChart.valueAxes[1].mimimum=actTheme["bubbleSettings"].yAxesMin;
                 }
 
-                //az értékeket újra meg kell adni, az értékeket újra meg kell adni, hogy tengelybeállítás érvényes legyen
+                //Create graph
                 var graphs= [{
                         "balloonText": "<b>[[description]]</b><br>"+xTitle+": <b>[[x]] "+actTheme["bubbleSettings"].xUnit+"</b><br>"+yTitle+": <b>[[y]] "+actTheme["bubbleSettings"].yUnit+"</b><br>"+zTitle+": <b>[[value]] "+actTheme["bubbleSettings"].zUnit+"</b>",
                         "bullet": "circle",
@@ -1284,9 +1348,11 @@ function initWebApp(){
                         "maxBulletSize": 100,
                         "fontSize": 12
                     }];
+				//Add graph
                 bubbleChart.addGraph(graphs[0]);
             }
             
+			//Create radar chart
             function createRadarChart(dp){
                 var radarChart = AmCharts.makeChart( "rad", {
                     "type": "radar",
@@ -1306,7 +1372,7 @@ function initWebApp(){
                     "categoryField": "title",
                     "export": {"enabled": false}
                 });
-                // x tengely értekek maximumának és minimumának beállítása, ha az meg volt adva a configba
+                //Set axes max and min value from config.json
                 if ($.isNumeric(actTheme["radarSettings"].xAxesMax)){
                     radarChart.valueAxes[0].maximum=actTheme["radarSettings"].xAxesMax;
                 }
@@ -1326,7 +1392,7 @@ function initWebApp(){
     });
 }
 
-//A jelmagyarázat ikonra kattintást szabályozó funkció.
+//Click on legend icon event
 function controlLegend(){
     var state = $("#legend").css("display");
     if (state == "block"){        
@@ -1339,7 +1405,7 @@ function controlLegend(){
     }            
 }
 
-//Az üdvözlőképernyőt eltüntető funkció.
+//Hide splash window
 //##### Pointer-events-et átnézni!!!
 function hideSplash(){
 	$("#splash").css("display","none");
@@ -1348,7 +1414,7 @@ function hideSplash(){
     });
 }
 
-//Az infóablakot megjelenítő és elrejtő funkció.
+//The function that shows and hides infowindow
 //##### Pointer-events-et átnézni!!!
 function controlInfoBox(){
     if ($("#infoBox").css("display") == "block"){

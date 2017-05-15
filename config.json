@@ -38,8 +38,9 @@
         "colors" : ["Please give array of hex colors as strings!"],
         "dataPrecision" : Please give a number!,
         "dataUnit" : "Please give the data unit of the serial chart as a string!",
-        "yAxesMax" : Please give the maximum Y axis value as a number!,
-        "yAxesMin" : Please give the minimum Y axis value as a number!,
+        "yAxesMax" : "Please give the maximum Y axis value as a string containing number!",
+        "yAxesMin" : "Please give the minimum Y axis value as a string containing number!",
+        "sorting" : "Please give the type of sorting as a string! (Valid values: "asc", "desc")",
         "fieldMap" : {
             "field" : "alias",
             "field" : "alias"
@@ -58,8 +59,8 @@
 		"colors" : ["Please give array of hex colors as strings!"],
 		"dataPrecision" : Please give a number!,
 		"dataUnit": "Please give the data unit of the radar chart as a string!",
-        "xAxesMax" : "Please give the maximum axis value as a number!",
-        "xAxesMin" : "Please give the minimum axis value as a number!",        
+        "xAxesMax" : "Please give the maximum axis value as a string containing number!",
+        "xAxesMin" : "Please give the minimum axis value as a string containing number!",        
         "fieldMap" : {
             "field" : "alias",
             "field" : "alias"
@@ -72,10 +73,10 @@
 		"xUnit": "Please give the data unit of the bubble chart's X axis as a string!",
 		"yUnit": "Please give the data unit of the bubble chart's Y axis as a string!",
 		"zUnit": "Please give the data unit of the bubble chart bubble size as a string!",
-		"xAxesMax": "Please give the maximum X axis value as a number!",
-		"xAxesMin": "Please give the minimum X axis value as a number!",
-		"yAxesMax": "Please give the maximum Y axis value as a number!",	
-		"yAxesMin": "Please give the minimum Y axis value as a number!",
+		"xAxesMax": "Please give the maximum X axis value as a string containing number!",
+		"xAxesMin": "Please give the minimum X axis value as a string containing number!",
+		"yAxesMax": "Please give the maximum Y axis value as a string containing number!",	
+		"yAxesMin": "Please give the minimum Y axis value as a string containing number!",
         "fieldMap" : {
             "field" : "alias",
             "field" : "alias",
@@ -86,6 +87,7 @@
 		"title" : "Please give the title of the table as a string!",
 		"heading" : "Please give the heading of the table as a string!",
 		"dataPrecision" : Please give a number!,
+        "sorting" : "Please give the type of sorting as a string! (Valid values: "asc", "desc")",
         "fieldMap" : {
             "field" : "alias",
             "field" : "alias"
@@ -129,8 +131,9 @@
         "colors" : ["Please give array of hex colors as strings!"],
         "dataPrecision" : Please give a number!,
         "dataUnit" : "Please give the data unit of the serial chart as a string!",
-        "yAxesMax" : Please give the maximum Y axis value as a number!,
-        "yAxesMin" : Please give the minimum Y axis value as a number!,
+        "yAxesMax" : "Please give the maximum Y axis value as a string containing number!",
+        "yAxesMin" : "Please give the minimum Y axis value as a string containing number!",
+        "sorting" : "Please give the type of sorting as a string! (Valid values: "asc", "desc")",
         "fieldMap" : {
             "field" : "alias",
             "field" : "alias"
@@ -149,8 +152,8 @@
 		"colors" : ["Please give array of hex colors as strings!"],
 		"dataPrecision" : Please give a number!,
 		"dataUnit": "Please give the data unit of the radar chart as a string!",
-        "xAxesMax" : "Please give the maximum axis value as a number!",
-        "xAxesMin" : "Please give the minimum axis value as a number!",        
+        "xAxesMax" : "Please give the maximum axis value as a string containing number!",
+        "xAxesMin" : "Please give the minimum axis value as a string containing number!",        
         "fieldMap" : {
             "field" : "alias",
             "field" : "alias"
@@ -163,10 +166,10 @@
 		"xUnit": "Please give the data unit of the bubble chart's X axis as a string!",
 		"yUnit": "Please give the data unit of the bubble chart's Y axis as a string!",
 		"zUnit": "Please give the data unit of the bubble chart bubble size as a string!",
-		"xAxesMax": "Please give the maximum X axis value as a number!",
-		"xAxesMin": "Please give the minimum X axis value as a number!",
-		"yAxesMax": "Please give the maximum Y axis value as a number!",	
-		"yAxesMin": "Please give the minimum Y axis value as a number!",
+		"xAxesMax": "Please give the maximum X axis value as a string containing number!",
+		"xAxesMin": "Please give the minimum X axis value as a string containing number!",
+		"yAxesMax": "Please give the maximum Y axis value as a string containing number!",	
+		"yAxesMin": "Please give the minimum Y axis value as a string containing number!",
         "fieldMap" : {
             "field" : "alias",
             "field" : "alias",
@@ -177,6 +180,7 @@
 		"title" : "Please give the title of the table as a string!",
 		"heading" : "Please give the heading of the table as a string!",
 		"dataPrecision" : Please give a number!,
+        "sorting" : "Please give the type of sorting as a string! (Valid values: "asc", "desc")",
         "fieldMap" : {
             "field" : "alias",
             "field" : "alias"
