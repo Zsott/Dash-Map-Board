@@ -1,6 +1,5 @@
 ToDo
 ----------------------------------------------------
-L - Alert logikáját módosítani: csak egy alert, aztán hibalista az oldal helyén.
 
 Z - Configuration Guide összevetése a config validatorral.
 Z - Configuration Guide befejezése
