@@ -107,9 +107,9 @@ Pl. bubble-nél a szomszédosokat szedi ki, így csak poligonnál alkalmazható
 **Example value**: "Welcome to the <b>Demography of Hungary</b> project's webpage!</br>Click on any settlement to check its population related data!"  
 **Tips**: Use empty string ("") if you don't want to use splash window. You can use HTML tags in the string.
 
-#### [theme]/layout/infoBoxTest
+#### [theme]/layout/infoBoxText
 ```
-"infoBoxTest" : "Please give the HTML text you want to show in the info window!"
+"infoBoxText" : "Please give the HTML text you want to show in the info window!"
 ```
 **Description**: Sets the content of the information window (shown if info icon clicked).  
 **Type**: string  
@@ -364,6 +364,17 @@ Pl. bubble-nél a szomszédosokat szedi ki, így csak poligonnál alkalmazható
 **Example value**: 10000  
 **Tips**: If you don't want to use minimum value, use empty string as value (""). In some cases the minimum value can be override by amChart logic. (For mor information check amChart JS documentation.)
 
+### [theme]/serialSettings/sorting
+```
+"sorting" : "Please give the type of sorting as a string! (Valid values: 'asc', 'desc')"
+```
+**Description**: Sets the order of the time stops in the serial chart.  
+**Type**: string  
+**Valid values**:  
+- 'desc' for descending order  
+- 'asc' for ascending order  
+**Example value**: 'desc'  
+
 #### [theme]/serialSettings/fieldMap
 ```
 "fieldMap" : {
@@ -566,7 +577,7 @@ Pl. bubble-nél a szomszédosokat szedi ki, így csak poligonnál alkalmazható
 **Example value**: 100  
 **Tips**: If you don't want to use maximum value, use empty string as value (""). In some cases the maximum value can be override by amChart logic. (For mor information check amChart JS documentation.)
 
-#### [theme]/bubbleSettings/xAxesMin
+#### [theme]/bubbleSettings/yAxesMin
 ```
 "xAxesMin" : "Please give the minimum axis value as a number!"
 ```
