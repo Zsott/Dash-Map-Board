@@ -1,13 +1,23 @@
 # Configuration Guide
 _How to set up config.json?_
-The purpose of this document is to help you with the proper configuration of you own Dash-Map-Board webapp. To edit the config.json file you'll need a text editor. We suggest Notepad++, but you can use any kind of editor you prefer (normal Notepad, SublimeText, etc.).
-Open the config.json and follow the [config.json parameters](### config.json parameters) chapter written below to change every parameter's value.
+The purpose of this document is to help you with the proper configuration of you own Dash-Map-Board webapp. To edit the config.json file you'll need a text editor. We suggest Notepad++, but you can use any kind of editor you prefer (normal Notepad, SublimeText, etc.).  
+Open the config.json and follow the [config.json parameters](configurationGuide.md#configjson-parameters) chapter written below to change every parameter's value. Do not leave any parameter with it's default value (technically a hint) because it can cause errors!
 
 ### Common advices
-- JSON, key-value, special characters : , {} [] ""
-- ___comment___
-- time avare service
-- 
+JSON format has a very strict structure about which you can read a lot for example [here](http://json.org/), [here](https://www.w3schools.com/js/js_json_intro.asp) or [here](https://www.w3schools.com/js/js_json_syntax.asp).
+- We use key-value pairs in the config.json file. Key is always a string located on the left. Following the key there's a colon `:` and after that there's the value corresponding to the key. For exampl: `"key" : "value"`.
+- The value can be several type of data. We use `string`, `number`, `boolean`, `array` and `object` types, sometimes combined with each other like `array of strings`.
+- If the type of parameter is string, use quotation marks `"` around the value. Like: `"title" : "Demography of Hungary"`
+- If the type of parameter is number, simply put the number after the colon. Like: `"wkid" : 3857`
+- If the type of parameter is boolean, simply put `true` or `false` after the colon (without quotation marks). Like: `"legendOn" : true`
+- If the type of parameter is array (of something), put square brackets after the colon. Between the brackets you can put every item in the array (or list) separated by comma. Like: `"timeStops" : ["2000","2001","2002","2003","2004"]`
+- If the type of parameter is object, put curly brackets after the colon. Inside an object we expect key-value pairs with the same rules written above. Like: `"fieldMap" : {"male2000" : "Male population, 2000,"female2000" : "Female population, 2000"}`
+- In a JSON file comma `,` has a very important role as this is the character for separating key-value pairs.
+- JSON rarely gives any feedback if something goes wrong so be very precise! **IMPORTANT: There will be no error message if you accidently delete a comma oryou give an invalid value (like a string without quotation marks). If you can't figure out what's wrong with the webapp we suggest to check the config.json!**
+- In general we suggest to change the config.json step-by-step until you gain some confidence with it.
+
+### Time-aware service(s)
+For the Dash-Map-Board webapp you'll need at least one time-aware, shared ESRI MapService. A common mistake you can make is after you've published the service you forget to share it. If the webapp loads but it's empty, check the sharing options of the service!
 
 ### Available chart types
 Pl. bubble-nél a szomszédosokat szedi ki, így csak poligonnál alkalmazható
@@ -629,6 +639,17 @@ Pl. bubble-nél a szomszédosokat szedi ki, így csak poligonnál alkalmazható
 **Valid values**: 0 or greater integer  
 **Example value**: 0  
 **Tips**: 0 dataPrecision means integer numbers.
+
+### [theme]/tableSettings/sorting
+```
+"sorting" : "Please give the type of sorting as a string! (Valid values: 'asc', 'desc')"
+```
+**Description**: Sets the order of the time stops in the table.  
+**Type**: string  
+**Valid values**:  
+- 'desc' for descending order  
+- 'asc' for ascending order  
+**Example value**: 'desc'  
 
 #### [theme]/tableSettings/fieldMap
 ```
