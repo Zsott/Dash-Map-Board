@@ -1,6 +1,7 @@
 # Configuration Guide
 _How to set up config.json?_
-The purpose of this document is to help you with the 
+The purpose of this document is to help you with the proper configuration of you own Dash-Map-Board webapp. To edit the config.json file you'll need a text editor. We suggest Notepad++, but you can use any kind of editor you prefer (normal Notepad, SublimeText, etc.).
+Open the config.json and follow the [config.json parameters](### config.json parameters) chapter written below to change every parameter's value.
 
 ### Common advices
 - JSON, key-value, special characters : , {} [] ""
