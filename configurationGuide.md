@@ -20,7 +20,17 @@ JSON format has a very strict structure about which you can read a lot for examp
 For the Dash-Map-Board webapp you'll need at least one time-aware, shared ESRI MapService. A common mistake you can make is after you've published the service you forget to share it. If the webapp loads but it's empty, check the sharing options of the service!
 
 ### Available chart types
-Pl. bubble-nél a szomszédosokat szedi ki, így csak poligonnál alkalmazható
+At this point Dash-Map-Board gives you the opportunity to use several chart types.
+##### Serial chart
+This chart shows all timeStops so you can examine the whole period at a glance.
+##### Pie chart
+This chart can be used to show any kind of distribution.
+##### Radar chart
+This is a multidimensional chart that uses as many axes as there's available at the current time stop. For example if you don't have the data of internet users for 2007, in 2007 there will be only 4 axes (electricity / gas / drinking water /sewage) and there will be 5 axes for any other year in the period.
+##### Bubble chart
+This multidimensional chart can show exactly three different data on its X, Y and Z axes, where Z is the size of the bubble. It can also show multiple record where one bubble will be the clicked record and the others will be its neighbours. At this point this works only with polygon features.
+##### Table
+Though it's not a chart it can be a very useful tool to show the most important data in a structured way. The column of the actual time stop will be colored in a different way.
 
 ### config.json parameters
 #### themeOrder
@@ -375,7 +385,7 @@ Pl. bubble-nél a szomszédosokat szedi ki, így csak poligonnál alkalmazható
 **Example value**: 10000  
 **Tips**: If you don't want to use minimum value, use empty string as value (""). In some cases the minimum value can be override by amChart logic. (For mor information check amChart JS documentation.)
 
-### [theme]/serialSettings/sorting
+#### [theme]/serialSettings/sorting
 ```
 "sorting" : "Please give the type of sorting as a string! (Valid values: 'asc', 'desc')"
 ```
@@ -640,7 +650,7 @@ Pl. bubble-nél a szomszédosokat szedi ki, így csak poligonnál alkalmazható
 **Example value**: 0  
 **Tips**: 0 dataPrecision means integer numbers.
 
-### [theme]/tableSettings/sorting
+#### [theme]/tableSettings/sorting
 ```
 "sorting" : "Please give the type of sorting as a string! (Valid values: 'asc', 'desc')"
 ```
