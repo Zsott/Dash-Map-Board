@@ -23,7 +23,7 @@ Pl. bubble-nél a szomszédosokat szedi ki, így csak poligonnál alkalmazható
 **Example value**: [{"demography" : "Demography of Hungary"},{"crime" : "Crime statistics of Budapest"}]  
 **Tips**:
 
-- This is one of the very rare occasions when you have to change the key.
+- This is one of the very rare occasions when you can change the key.
 - You can have only one theme it's not necessary to have more.
 - Too long aliases will cause line break in the dropdown menu.
 - Too long aliases may cause that the hint for clicking and the dropdown menu may overlap.
@@ -74,15 +74,15 @@ Pl. bubble-nél a szomszédosokat szedi ki, így csak poligonnál alkalmazható
 **Description**: Sets which image is used as a logo in the header.  
 **Type**: string  
 **Valid values**: Any filename (with extension) between quotation marks.  
-**Example value**: "logo.png"  
-**Tips**: To use your own logo copy it first into the 'img' folder!
+**Example value**: "img/logo.png"  
+**Tips**: You have to add the path related to the index.html.
 
 #### [theme]/layout/title
 ```
 "title" : "Please give the title in the header as a string!"
 ```
 **Description**: Sets the text of the title shown in the header.  
-**Type**: string  
+**Type**: string
 **Valid values**: Any string  
 **Example value**: "Demography of Hungary"  
 **Tips**: Too long title may cause that the title and/or the subtitle will disappear.
@@ -133,7 +133,7 @@ Pl. bubble-nél a szomszédosokat szedi ki, így csak poligonnál alkalmazható
 ```
 **Description**: Sets the spatial reference system of the map.  
 **Type**: number  
-**Valid values**: Any EPSG code  
+**Valid values**: Any [EPSG code](http://spatialreference.org/ref/epsg/)  
 **Example value**: 3857
 
 #### [theme]/xmin
@@ -171,6 +171,15 @@ Pl. bubble-nél a szomszédosokat szedi ki, így csak poligonnál alkalmazható
 **Type**: number  
 **Valid values**: Any number inside the spatial reference system's extent  
 **Example value**: 6150000  
+
+### [theme]/basemap
+```
+"basemap" : "Please give the keyword (as a string) of the ESRI basemap! (Valid values: 'streets' , 'satellite' , 'hybrid', 'topo', 'gray', 'dark-gray', 'oceans', 'national-geographic', 'terrain', 'osm', 'dark-gray-vector', 'gray-vector', 'streets-vector', 'streets-night-vector', 'streets-relief-vector', 'streets-navigation-vector', 'topo-vector')"
+```
+**Description**: Sets the type of the basemap used under the thematic layer(s). Any valid [ESRI Map basemap keyword](https://developers.arcgis.com/javascript/3/jsapi/map-amd.html#map1) is accepted.  
+**Type**: string  
+**Valid values**: 'streets' , 'satellite' , 'hybrid', 'topo', 'gray', 'dark-gray', 'oceans', 'national-geographic', 'terrain', 'osm', 'dark-gray-vector', 'gray-vector', 'streets-vector', 'streets-night-vector', 'streets-relief-vector', 'streets-navigation-vector', 'topo-vector'  
+**Example value**: 'topo'  
 
 #### [theme]/timeStops
 ```
