@@ -40,6 +40,7 @@
         "dataUnit" : "Please give the data unit of the serial chart as a string!",
         "yAxesMax" : "Please give the maximum Y axis value as a string containing number!",
         "yAxesMin" : "Please give the minimum Y axis value as a string containing number!",
+        "sorting" : "Please give the type of sorting as a string! (Valid values: "asc", "desc")",
         "fieldMap" : {
             "field" : "alias",
             "field" : "alias"
@@ -86,6 +87,7 @@
 		"title" : "Please give the title of the table as a string!",
 		"heading" : "Please give the heading of the table as a string!",
 		"dataPrecision" : Please give a number!,
+        "sorting" : "Please give the type of sorting as a string! (Valid values: "asc", "desc")",
         "fieldMap" : {
             "field" : "alias",
             "field" : "alias"
@@ -131,6 +133,7 @@
         "dataUnit" : "Please give the data unit of the serial chart as a string!",
         "yAxesMax" : "Please give the maximum Y axis value as a string containing number!",
         "yAxesMin" : "Please give the minimum Y axis value as a string containing number!",
+        "sorting" : "Please give the type of sorting as a string! (Valid values: "asc", "desc")",
         "fieldMap" : {
             "field" : "alias",
             "field" : "alias"
@@ -177,6 +180,7 @@
 		"title" : "Please give the title of the table as a string!",
 		"heading" : "Please give the heading of the table as a string!",
 		"dataPrecision" : Please give a number!,
+        "sorting" : "Please give the type of sorting as a string! (Valid values: "asc", "desc")",
         "fieldMap" : {
             "field" : "alias",
             "field" : "alias"
