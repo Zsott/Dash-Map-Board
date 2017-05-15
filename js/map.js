@@ -1,5 +1,3 @@
-// ##### Change all comments to English!!!
-
 //The common part of config.json: the key and the type of values (in all theme)
 var configMainJson={
     "layout" : {
@@ -14,7 +12,7 @@ var configMainJson={
         "infoBoxText" : "string",
         "clickOnWhat" : "string"
         },
-	"basemap": "string",
+	"basemap" : "string",
     "wkid" : "number",
     "xmin" : "number",
     "ymin" : "number",
@@ -265,9 +263,9 @@ $.getJSON("config.json", function(data){
                             if(Object.getOwnPropertyNames(chart[ckey]).length === 0){
                                 alertMessage("The configuration is incorrect! The " + chartKey + "/" + ckey + " key in the theme of '" + key + "' is empty!");
                             }
-                            for(var fmkey in chart[ckey]){ //##### Ezt az ellenőrzést átnézni, angolosítani.
+                            for(var fmkey in chart[ckey]){
                                 if (jQuery.type(chart[ckey][fmkey]) != "string"){
-                                    alertMessage("The configuration is incorrect! A " + key + " kulcsú téma " + chartKey + "/" + ckey + "/" + fmkey + " értéke csak string lehet!");
+                                    alertMessage("The configuration is incorrect! The value of " + chartKey + "/" + ckey + "/" + fmkey + " in the theme of '" + key + "' has to be string!");
                                 }
                             }
                         }
@@ -655,7 +653,6 @@ function initWebApp(){
                     //Gets the features of the current year
                     searchCurrentYear(actFeatureSet);
                     
-                    // ##### Kezeli azt a helyzetet, ha nincs adat az adott évhez?
                     //Replaces the hint text with the current feature's name and the current year
                     $("#placeYear").html(actAreaName+ " - " + currYear);
 
