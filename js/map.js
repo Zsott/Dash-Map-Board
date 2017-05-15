@@ -91,37 +91,40 @@ var configPieSettingsJson={
 var imgType=["png","jpg","tif","bmp","gif"];
 
 var baseMapType=[
-					"dark-gray",
-					"dark-gray-vector",
-					"gray",
-					"gray-vector",
-					"hybrid",
-					"national-geographic",
-					"oceans",
-					"osm",
-					"satellite",
-					"streets",
-					"streets-navigation-vector",
-					"streets-night-vector",
-					"streets-relief-vector",
-					"streets-vector",
-					"terrain",
-					"topo",
-					"topo-vector"
-				];
+    "dark-gray",
+    "dark-gray-vector",
+    "gray",
+    "gray-vector",
+    "hybrid",
+    "national-geographic",
+    "oceans",
+    "osm",
+    "satellite",
+    "streets",
+    "streets-navigation-vector",
+    "streets-night-vector",
+    "streets-relief-vector",
+    "streets-vector",
+    "terrain",
+    "topo",
+    "topo-vector"
+];
 var sortType=["asc","desc"];
 
-		
 var c = {};
+
 $.getJSON("config.json", function(data){
-	
+
 //=========================================================================	
 //Start of config.json validator
 //=========================================================================	
 
+    var configError = false;
+    var configErrorList = [];
+
 	//Checking if themeOrder key exists
 	if (!("themeOrder" in data)){
-            alertMessage("The configuration is incorrect! The themeOrder key is missing!");
+        alertMessage("The configuration is incorrect! The themeOrder key is missing!");
     }
 	if(jQuery.isEmptyObject(data["themeOrder"])){
 		alertMessage("The configuration is incorrect! Array of themeOrder is empty!");
@@ -151,174 +154,175 @@ $.getJSON("config.json", function(data){
 					for(var cikey in configMainJson[ckey]){
 						//Checking keys	
 						if (!(cikey in theme[ckey])){
-							alertMessage("The configuration is incorrect! The "+ckey+"/"+cikey+" key in the theme of '"+key+"' is missing!");
+							alertMessage("The configuration is incorrect! The " + ckey + "/" + cikey + " key in the theme of '" + key + "' is missing!");
 						}
 						//Checking type
-						var keyArray=[key,ckey,cikey];
+						var keyArray = [key,ckey,cikey];
 						typeChecking(keyArray,configMainJson[ckey][cikey],jQuery.type( theme[ckey][cikey]))
 						//Checking number
-						if(jQuery.type( theme[ckey][cikey])=="number"){
+						if(jQuery.type(theme[ckey][cikey]) == "number"){
 							numberChecking(keyArray,theme[ckey][cikey])
 						}
 						//Checking array
-						if(jQuery.type( theme[ckey][cikey])=="array"){
+						if(jQuery.type(theme[ckey][cikey]) == "array"){
 							arrayChecking(keyArray,theme[ckey][cikey])
 						}
 						//Checking image
-						if((cikey=="logoImg") && (theme[ckey][cikey]!="")){
-							if(imgType.indexOf(theme[ckey][cikey].slice(-3))==-1){
-								alertMessage("The configuration is incorrect! The value of the "+ckey+"/"+cikey+" key in the theme of '"+key+"' is not valid. Only png, jpg, tif, gif and bmp allowed!")
+						if((cikey == "logoImg") && (theme[ckey][cikey] != "")){
+							if(imgType.indexOf(theme[ckey][cikey].slice(-3)) == -1){
+								alertMessage("The configuration is incorrect! The value of the " + ckey + "/" + cikey + " key in the theme of '" + key + "' is not valid. Only png, jpg, tif, gif and bmp allowed!")
 							}
 						}
-												
+						
 						//Loading the diagram of the actual theme into chartArray
-						if((ckey=="chartPositions") && (theme[ckey][cikey]!="")){
+						if((ckey == "chartPositions") && (theme[ckey][cikey]!="")){
 							chartArray.push(theme[ckey][cikey]);
 						}
 					}
 				}
 				else{
-					var keyArray=[key,ckey];
+					var keyArray = [key,ckey];
 					//Checking type
 					typeChecking(keyArray,configMainJson[ckey],jQuery.type(theme[ckey]));
 					//Checking number
-					if(jQuery.type( theme[ckey])=="number"){
+					if(jQuery.type( theme[ckey]) == "number"){
 						numberChecking(keyArray,theme[ckey])
 					}
 					//Checking array
-					if(jQuery.type( theme[ckey])=="array"){
+					if(jQuery.type( theme[ckey]) == "array"){
 						arrayChecking(keyArray,theme[ckey])
 					}
 					//Checking url
-					if(ckey=="dataServiceURL"){
+					if(ckey == "dataServiceURL"){
 						urlChecking(keyArray,theme[ckey]);
 					}
 					//Checking type of basemap 
-					if(ckey=="basemap"){
-						if(baseMapType.indexOf(theme[ckey])==-1){
-							alertMessage("The configuration is incorrect! The value of the "+ckey+" key in the theme of '"+key+"' is not a valid basemap type.")
+					if(ckey == "basemap"){
+						if(baseMapType.indexOf(theme[ckey]) == -1){
+							alertMessage("The configuration is incorrect! The value of the " + ckey + " key in the theme of '" + key + "' is not a valid basemap type.")
 						}
 					}
-					
 				}
 			}
 
 			//Choosing the type of actual diagram
-			chartArray.forEach(function(chartType) {				
-				switch(chartType) {
+			chartArray.forEach(function(chartType){				
+				switch(chartType){
 					case "ser":
-						chartKey="serialSettings";
-						chartJson=configSerialSettingsJson;
+						chartKey = "serialSettings";
+						chartJson = configSerialSettingsJson;
 						break;
 					case "pie":
-						chartKey="pieSettings";
-						chartJson=configPieSettingsJson;
+						chartKey = "pieSettings";
+						chartJson = configPieSettingsJson;
 						break;
 					case "bub":
-						chartKey="bubbleSettings";
-						chartJson=configBubbleSettingsJson;
+						chartKey = "bubbleSettings";
+						chartJson = configBubbleSettingsJson;
 						break;
 					case "rad":
-						chartKey="radarSettings";
-						chartJson=configRadarSettingsJson;
+						chartKey = "radarSettings";
+						chartJson = configRadarSettingsJson;
 						break;
 					case "tab":
-						chartKey="tableSettings";
-						chartJson=configTableSettingsJson;
+						chartKey = "tableSettings";
+						chartJson = configTableSettingsJson;
 						break;
 				    default:
-						alertMessage("The configuration is incorrect! Invalid type of diagram ("+chartType+") is in the theme of '"+key+"'! Valid set of values is ser, pie, bub, rad, tab!");
+                        chartKey = undefined;
+                        chartJson = undefined;
+						alertMessage("The configuration is incorrect! Invalid type of diagram (" + chartType + ") is in the theme of '" + key + "'! Valid set of values is ser, pie, bub, rad, tab!");
 				}
-				var chart=data[key][chartKey];
 
-				//Checking diagram settings
-				for(var ckey in chartJson){
-					var keyArray=[key,ckey];
+				if(typeof chartKey != 'undefined'){
+                    var chart = data[key][chartKey];
 
-					//Checking keys					
-					if (!(ckey in chart)){
-						alertMessage("The configuration is incorrect!  The "+chartKey+"/"+ckey+" key in the theme of '"+key+"' is missing!");
-					}
-					//Checking type	
-					typeChecking(keyArray,chartJson[ckey],jQuery.type(chart[ckey]));
-					
-					//Checking color
-					if(ckey=="colors"){
-						colorChecking(keyArray,chart[ckey]);
-					}
-					//Checking sorting
-					if(ckey=="sorting"){
-						if(sortType.indexOf(chart[ckey])==-1){
-							alertMessage("The configuration is incorrect! Invalid value of "+chartKey+"/"+ckey+"("+chart[ckey]+") is in the theme of '"+key+"'! Valid set of values is asc or desc!")
-						}
-					}
-					
-					
-					//Checking fieldMap
-					if(ckey=="fieldMap"){
-						
-						if(Object.getOwnPropertyNames(chart[ckey]).length === 0){
-							alertMessage("The configuration is incorrect! The "+chartKey+"/"+ckey+" key in the theme of '"+key+"' is empty!");
-						}
-						for(var fmkey in chart[ckey]){ //##### Ezt az ellenőrzést átnézni, angolosítani.
-							if (jQuery.type(chart[ckey][fmkey])!="string"){
-								alertMessage("The configuration is incorrect! A "+key+" kulcsú téma "+chartKey+"/"+ckey+"/"+fmkey+" értéke csak string lehet!");
-							}
-						}
-					}
-				}	
+                    //Checking diagram settings
+                    for(var ckey in chartJson){
+                        var keyArray = [key, ckey];
+
+                        //Checking keys					
+                        if (!(ckey in chart)){
+                            alertMessage("The configuration is incorrect!  The " + chartKey + "/" + ckey + " key in the theme of '" + key + "' is missing!");
+                        }
+                        //Checking type	
+                        typeChecking(keyArray,chartJson[ckey],jQuery.type(chart[ckey]));
+                        
+                        //Checking color
+                        if(ckey == "colors"){
+                            colorChecking(keyArray,chart[ckey]);
+                        }
+                        //Checking sorting
+                        if(ckey == "sorting"){
+                            if(sortType.indexOf(chart[ckey]) == -1){
+                                alertMessage("The configuration is incorrect! Invalid value of " + chartKey + "/" + ckey + " (" + chart[ckey] + ") is in the theme of '" + key + "'! Valid set of values is asc or desc!")
+                            }
+                        }
+                        
+                        //Checking fieldMap
+                        if(ckey == "fieldMap"){
+                            
+                            if(Object.getOwnPropertyNames(chart[ckey]).length === 0){
+                                alertMessage("The configuration is incorrect! The " + chartKey + "/" + ckey + " key in the theme of '" + key + "' is empty!");
+                            }
+                            for(var fmkey in chart[ckey]){ //##### Ezt az ellenőrzést átnézni, angolosítani.
+                                if (jQuery.type(chart[ckey][fmkey]) != "string"){
+                                    alertMessage("The configuration is incorrect! A " + key + " kulcsú téma " + chartKey + "/" + ckey + "/" + fmkey + " értéke csak string lehet!");
+                                }
+                            }
+                        }
+                    }                    
+                }
 			});			
         }
     }
 
 	//Validating the type of configuration values
     function typeChecking(keyArray,type1,type2){
-		if(type1!=type2){
-			var keyString=keyArray[1];
+		if(type1 != type2){
+			var keyString = keyArray[1];
 			for (i = 2; i < keyArray.length; i++) {
-				keyString +="/"+keyArray[i];
+				keyString += "/" + keyArray[i];
 			}
-			alertMessage("The configuration is incorrect! The type of the value of the "+keyString+" in the theme of '"+keyArray[0]+"' is incorrect, have "+type1+" instead of "+type2+"!");
+			alertMessage("The configuration is incorrect! The type of the value of the " + keyString + " in the theme of '" + keyArray[0] + "' is incorrect, have " + type1 + " instead of " + type2 + "!");
 		}
     }	
 
 	//Validating of the arrays
     function arrayChecking(keyArray,dataArray){
-		var keyString=keyArray[1];
+		var keyString = keyArray[1];
 		for (i = 2; i < keyArray.length; i++) {
-			keyString +="/"+keyArray[i];
+			keyString += "/" + keyArray[i];
 		}
 
 		if(keyArray[keyArray.length-1] == "timeStops"){
-			if(dataArray.length<2){
-				alertMessage("The configuration is incorrect! The value of "+keyString+" in the theme of '"+keyArray[0]+"' is incorrect! The timeStops array must contain at least two elements!");
+			if(dataArray.length < 2){
+				alertMessage("The configuration is incorrect! The value of " + keyString + " in the theme of '" + keyArray[0] + "' is incorrect! The timeStops array must contain at least two elements!");
 			}
 		}
 		
 		if(keyArray[keyArray.length-1] == "additionalLayerURLs"){
 			dataArray.forEach(function(entry) {
 				urlChecking(keyArray,entry);
-
 			})
 		}	
     }	
 
-
 	//Validating of the numbers
     function numberChecking(keyArray, value){
-		var keyString=keyArray[1];
+		var keyString = keyArray[1];
 		for (i = 2; i < keyArray.length; i++) {
-			keyString +="/"+keyArray[i];
+			keyString += "/" + keyArray[i];
 		}
 
 		var lastKey=keyArray[keyArray.length-1];
 				
-		if(value<0){
-			alertMessage("The configuration is incorrect! The value of "+keyString+" in the theme of '"+keyArray[0]+"' is incorrect! This value must not be negative!");
+		if(value < 0){
+			alertMessage("The configuration is incorrect! The value of " + keyString + " in the theme of '" + keyArray[0] + "' is incorrect! This value must not be negative!");
 		}
 		
-		if((lastKey=="leftPanelWidthPercent" || lastKey=="mapHeightPercent" || lastKey=="upperRightChartHeightPercent" ) && (value>100 || value <0)){
-			alertMessage("The configuration is incorrect! The value of "+keyString+" in the theme of '"+keyArray[0]+"' is incorrect! Valid set of values is 0 to 100!");			
+		if((lastKey == "leftPanelWidthPercent" || lastKey == "mapHeightPercent" || lastKey == "upperRightChartHeightPercent" ) && (value > 100 || value < 0)){
+			alertMessage("The configuration is incorrect! The value of " + keyString + " in the theme of '" + keyArray[0] + "' is incorrect! Valid set of values is 0 to 100!");			
 		}		
     }	
 
@@ -330,14 +334,12 @@ $.getJSON("config.json", function(data){
 
 			var keyString=keyArray[1];
 			for (i = 2; i < keyArray.length; i++) {
-				keyString +="/"+keyArray[i];
+				keyString += "/" + keyArray[i];
 			}
 			if(!isOk){
-				alertMessage("The configuration is incorrect! One of the "+keyString+" array value in the theme of '"+keyArray[0]+"' is incorrect! ");
+				alertMessage("The configuration is incorrect! One of the " + keyString + " array value in the theme of '" + keyArray[0] + "' is incorrect! ");
 			}
-			
 		});
-		
     }	
 	
 	//Validating of urls
@@ -352,12 +354,28 @@ $.getJSON("config.json", function(data){
 		}
 	}
 
-	//Showing the error message
+	//Add the alert message to the error list
 	function alertMessage(alertText){
-		alert(alertText);
-		$("div").remove();
-		$("body").append('<p class="configErrorList">'+alertText+'</p>');
+        if(!configError){
+            configError = true;
+        }
+        configErrorList.push(alertText);
 	}
+    
+    //Put the error list on screen
+    function printErrors(list){
+        $("div").remove();
+		var errorHtml = '<p class="configErrorList">ERROR LIST<br/>Please check and solve every single error on this list and try to launch the webapp again!</p>';
+        list.forEach(function(err){
+            errorHtml = errorHtml + '<p class="configErrorList">' + err + '</p>'
+        });
+        $("body").append(errorHtml);
+        alert("Error in config.json! Please check and solve every single error on the Error List and try again!");        
+    }
+    
+    if(configError){
+        printErrors(configErrorList);
+    }
 //=========================================================================	
 // End of config.json validator
 //=========================================================================	
@@ -694,7 +712,7 @@ function initWebApp(){
                 }
             }
             
-            //This function resets' the webapp's layout to the original "big map" style
+            //This function resets the webapp's layout to the original "big map" style
             function initLayout(){
                 $("#ser, #pie, #rad, #bub, #tab, #rightPanel").remove();
                 $("#leftPanel").css({
@@ -923,7 +941,7 @@ function initWebApp(){
                     }
                 });
                 //Reorder prepared dataset by time
-                var serOrderedDP = orderArrayByAttribute(serDP,"year",actTheme["serialSettings"].sorting);               
+                var serOrderedDP = orderArrayByAttribute(serDP,"year",actTheme.serialSettings.sorting);               
                 createSerialChart(serOrderedDP);
             }
 
@@ -938,36 +956,36 @@ function initWebApp(){
                     for (var key in entry.attributes){
                         for (var keyTitle in actTheme["tableSettings"].fieldMap) {
                             if(key == keyTitle){
-                                json[keyTitle]=entry.attributes[key];
+                                json[keyTitle] = entry.attributes[key];
                             }
                         }
                     }
                     tabDP.push(json);				
                 });
                 //Reorder prepared dataset by time
-                var tabOrderedDP = orderArrayByAttribute(tabDP,"year",actTheme["tableSettings"].sorting); // @@@ config (asc vagy desc)
+                var tabOrderedDP = orderArrayByAttribute(tabDP, "year", actTheme.tableSettings.sorting);
                 createTable(tabOrderedDP);
             }
 
             //Prepare data for bubble chart
             function createBubDP(featureSet){
-                var bubDP=[];
+                var bubDP = [];
 				//Filter the actual timestop data
                 if(actYearFeature.attributes[actTheme["timeField"]] == currYear){
 					//Add actual place data
                     bubDP.push(actYearFeature.attributes);
-                    bubDP[0]["color"] = actTheme["bubbleSettings"].colors[0];			
+                    bubDP[0]["color"] = actTheme.bubbleSettings.colors[0];			
                 }
             
 				//Filter the actual timestop data
                 featureSet.features.forEach(function(entry) {
 					//Add neighbour place date
-                    if(entry.attributes[actTheme["timeField"]]==currYear){
+                    if(entry.attributes[actTheme["timeField"]] == currYear){
                         bubDP.push(entry.attributes);
                     }
                 });
                 var keys = [];
-                for(var k in actTheme["bubbleSettings"].fieldMap) keys.push(k);
+                for(var k in actTheme.bubbleSettings.fieldMap) keys.push(k);
 				
                 //The fieldmap order is important! FieldMap[0]: x, [1]:y, [2]:z (axis)
                 //Order the data (based on z value) 
@@ -979,17 +997,17 @@ function initWebApp(){
             //Order the data ascending(asc) or descending(desc).
             function orderArrayByAttribute(arr,att,order){
                 var newArr = [];
-                for (i=0;i<arr.length;i++){
+                for (i = 0;i < arr.length;i++){
                     var item = arr[i][att];
                     var index = newArr.length;
                     for (j=0;j < newArr.length;j++){
-                        if(order=="desc"){
+                        if(order == "desc"){
                             if(item > newArr[j][att]){
                                 index = j;
                                 break;
                             }
                         }
-                        if(order=="asc"){
+                        if(order == "asc"){
                             if(item < newArr[j][att]){
                                 index = j;
                                 break;
@@ -1006,9 +1024,9 @@ function initWebApp(){
                 var radDP = [];				
                 for (var key in actYearFeature.attributes){
                     json = {};
-                    for (var keyTitle in actTheme["radarSettings"].fieldMap) {
-                        if(key==keyTitle){
-                            json["title"]=actTheme["radarSettings"].fieldMap[keyTitle];
+                    for (var keyTitle in actTheme.radarSettings.fieldMap) {
+                        if(key == keyTitle){
+                            json["title"] = actTheme.radarSettings.fieldMap[keyTitle];
                             json["value"] = actYearFeature.attributes[key];
 							if(actYearFeature.attributes[key]!=null){
 								radDP.push(json);
@@ -1031,7 +1049,7 @@ function initWebApp(){
 				//Create time extent change event
                 timeSlider.on("time-extent-change",extentChanged);
                 
-				//Load timeSop array from config.json
+				//Load timeStop array from config.json
                 var timeStops=[];
                 actTheme["timeStops"].forEach(function(entry) {
                     timeStops.push(new Date(entry));
@@ -1058,7 +1076,8 @@ function initWebApp(){
                 }
             }		
             
-            //Create pie chart            
+            //Create pie chart
+            // @@@ config
             function createPieChart(dp){
                 var pieChart = AmCharts.makeChart("pie",{
                     "type": "pie",
@@ -1070,13 +1089,13 @@ function initWebApp(){
                     }],
                     "dataProvider": dp,
                     "numberFormatter": {
-                        "precision": actTheme["pieSettings"].dataPrecision, //### Itt sajnos nem működik, mert a percent van kiiírva
+                        "precision": actTheme["pieSettings"].dataPrecision,
                         "decimalSeparator": ",",
                         "thousandsSeparator": " "
                     },
                     "colors":  actTheme["pieSettings"].colors,
-                    "balloonText": "[[title]]: [[percents]]%", //##### config?
-                    "fontSize": 14, //##### config?
+                    "balloonText": "[[title]]: [[percents]]%",
+                    "fontSize": 14,
                     "valueField": "value",
                     "titleField": "title",
                     "labelRadius": -40,
@@ -1099,7 +1118,8 @@ function initWebApp(){
                 });
             }
             
-            //Create serial chart            
+            //Create serial chart
+            // @@@ config
             function createSerialChart(dp){
                 var graphs=[];
                 var json;
@@ -1180,6 +1200,7 @@ function initWebApp(){
             }
 
             //Create HTML table in #tab div
+            // @@@ config
             function createTable(dp){
                 $("#tab").append('<div id="tableTitle"></div>');
                 $("#tab").append('<div id="tableContent"></div>');
@@ -1214,13 +1235,14 @@ function initWebApp(){
             }    
 
 			//Change color in actual timestop
+            // @@@ config
             function colorTable(){
                 $(".actualYearColumn").removeClass("actualYearColumn");
                 $("." + currYear).addClass("actualYearColumn");
             }
             
             //Rounding function for table creation
-            function checkRounding(value,prec){
+            function checkRounding(value, prec){
                 var rValue = value.toFixed(prec).split(".");
                 if(rValue[0] == 0 && rValue[1] == 0){
                     return 0;
@@ -1234,45 +1256,46 @@ function initWebApp(){
             }
             
             //Create bubble chart
+            // @@@ config
             function createBubbleChart(dp){
                 var xField, yField, zField, xTitle, yTitle;
-                var xField=actTheme["bubbleSettings"].fieldMap;
-                var x=1;
+                var xField = actTheme.bubbleSettings.fieldMap;
+                var x = 1;
                 var keys = [];
                 
-                for(var k in actTheme["bubbleSettings"].fieldMap) keys.push(k);
+                for(var k in actTheme.bubbleSettings.fieldMap) keys.push(k);
                 //Field order is important!
-                xField=keys[0];
-                xTitle=actTheme["bubbleSettings"].fieldMap[keys[0]];
-                yField=keys[1];
-                yTitle=actTheme["bubbleSettings"].fieldMap[keys[1]];
-                zField=keys[2];
-                zTitle=actTheme["bubbleSettings"].fieldMap[keys[2]];
+                xField = keys[0];
+                xTitle = actTheme.bubbleSettings.fieldMap[keys[0]];
+                yField = keys[1];
+                yTitle = actTheme.bubbleSettings.fieldMap[keys[1]];
+                zField = keys[2];
+                zTitle = actTheme.bubbleSettings.fieldMap[keys[2]];
 
                 var bubbleChart = AmCharts.makeChart( "bub", {
                     "type": "xy",
                     "theme": "light",
                     "titles": [{
-                       "text": actTheme["bubbleSettings"].title,
+                       "text": actTheme.bubbleSettings.title,
                        "size": 14,
                        "bold": true
                     }],
                     "balloon":{"fixedPosition": true},
                     "dataProvider": dp,
                     "numberFormatter": {
-                        "precision": actTheme["bubbleSettings"].dataPrecision,
+                        "precision": actTheme.bubbleSettings.dataPrecision,
                         "decimalSeparator": ",",
                         "thousandsSeparator": " "
                     },
-                    "colors":[actTheme["bubbleSettings"].colors[1]],
+                    "colors":[actTheme.bubbleSettings.colors[1]],
                     "zoomOutText": "Mind",
                     "valueAxes": [{
-                        "title": xTitle + "(" + actTheme["bubbleSettings"].xUnit + ")",
+                        "title": xTitle + "(" + actTheme.bubbleSettings.xUnit + ")",
                         "position": "bottom",
                         "axisAlpha": 0,
                         "fontSize": 12
                     },{
-                        "title": yTitle + "(" + actTheme["bubbleSettings"].yUnit + ")",
+                        "title": yTitle + "(" + actTheme.bubbleSettings.yUnit + ")",
                         "minMaxMultiplier": 1.2,
                         "axisAlpha": 0,
                         "position": "left",
@@ -1284,12 +1307,12 @@ function initWebApp(){
                         "fontSize": 12,
                         "data": [{
                             "title": actAreaName,
-                            "color": actTheme["bubbleSettings"].colors[0],
+                            "color": actTheme.bubbleSettings.colors[0],
                             "fillAlphas": 0.65
                             },
                             {
-                            "title": actAreaName+ " szomszédai",
-                            "color": actTheme["bubbleSettings"].colors[1],
+                            "title": actAreaName + " szomszédai",
+                            "color": actTheme.bubbleSettings.colors[1],
                             "fillAlpha": 0.65
                         }],
                         "markerSize": 20,
@@ -1317,24 +1340,24 @@ function initWebApp(){
                 });                        
                 //Set axes max and min value from config.json
 				//X axes
-                if ($.isNumeric(actTheme["bubbleSettings"].xAxesMax)){
-                    bubbleChart.valueAxes[0].maximum=actTheme["bubbleSettings"].xAxesMax;
+                if ($.isNumeric(actTheme.bubbleSettings.xAxesMax)){
+                    bubbleChart.valueAxes[0].maximum = actTheme.bubbleSettings.xAxesMax;
                 }
-                if ($.isNumeric(actTheme["bubbleSettings"].xAxesMin)){
-                    bubbleChart.valueAxes[0].minimum=actTheme["bubbleSettings"].xAxesMin;
+                if ($.isNumeric(actTheme.bubbleSettings.xAxesMin)){
+                    bubbleChart.valueAxes[0].minimum = actTheme.bubbleSettings.xAxesMin;
                 }
                 //Set axes max and min value from config.json
 				//Y axes
-                if ($.isNumeric(actTheme["bubbleSettings"].yAxesMax)){
-                    bubbleChart.valueAxes[1].maximum=actTheme["bubbleSettings"].yAxesMax;
+                if ($.isNumeric(actTheme.bubbleSettings.yAxesMax)){
+                    bubbleChart.valueAxes[1].maximum = actTheme.bubbleSettings.yAxesMax;
                 }
-                if ($.isNumeric(actTheme["bubbleSettings"].yAxesMin)){
-                    bubbleChart.valueAxes[1].mimimum=actTheme["bubbleSettings"].yAxesMin;
+                if ($.isNumeric(actTheme.bubbleSettings.yAxesMin)){
+                    bubbleChart.valueAxes[1].mimimum = actTheme.bubbleSettings.yAxesMin;
                 }
 
                 //Create graph
                 var graphs= [{
-                        "balloonText": "<b>[[description]]</b><br>"+xTitle+": <b>[[x]] "+actTheme["bubbleSettings"].xUnit+"</b><br>"+yTitle+": <b>[[y]] "+actTheme["bubbleSettings"].yUnit+"</b><br>"+zTitle+": <b>[[value]] "+actTheme["bubbleSettings"].zUnit+"</b>",
+                        "balloonText": "<b>[[description]]</b><br>" + xTitle + ": <b>[[x]] " + actTheme.bubbleSettings.xUnit + "</b><br>" + yTitle + ": <b>[[y]] " + actTheme.bubbleSettings.yUnit + "</b><br>" + zTitle + ": <b>[[value]] " + actTheme.bubbleSettings.zUnit + "</b>",
                         "bullet": "circle",
                         "bulletBorderAlpha": 0.2,
                         "bulletAlpha": 0.65,
@@ -1344,7 +1367,7 @@ function initWebApp(){
                         "xField": xField,
                         "yField": yField,
                         "colorField": "color",
-                        "descriptionField": actTheme["areaNameField"],
+                        "descriptionField": actTheme.areaNameField,
                         "maxBulletSize": 100,
                         "fontSize": 12
                     }];
@@ -1358,12 +1381,12 @@ function initWebApp(){
                     "type": "radar",
                     "theme": "light",
                     "titles": [{
-                       "text": actTheme["radarSettings"].title,
+                       "text": actTheme.radarSettings.title,
                        "size": 14,
                        "bold": true
                     }],
                     "numberFormatter": {
-                        "precision": actTheme["radarSettings"].dataPrecision,
+                        "precision": actTheme.radarSettings.dataPrecision,
                         "decimalSeparator": ",",
                         "thousandsSeparator": " "
                     },
@@ -1373,14 +1396,14 @@ function initWebApp(){
                     "export": {"enabled": false}
                 });
                 //Set axes max and min value from config.json
-                if ($.isNumeric(actTheme["radarSettings"].xAxesMax)){
-                    radarChart.valueAxes[0].maximum=actTheme["radarSettings"].xAxesMax;
+                if ($.isNumeric(actTheme.radarSettings.xAxesMax)){
+                    radarChart.valueAxes[0].maximum = actTheme.radarSettings.xAxesMax;
                 }
-                if ($.isNumeric(actTheme["radarSettings"].xAxesMin)){
-                    radarChart.valueAxes[0].minimum=actTheme["radarSettings"].xAxesMin;
+                if ($.isNumeric(actTheme.radarSettings.xAxesMin)){
+                    radarChart.valueAxes[0].minimum = actTheme.radarSettings.xAxesMin;
                 }
                 var graphs=[{
-                        "balloonText": "[[title]]: [[value]]" + actTheme["radarSettings"].dataUnit,
+                        "balloonText": "[[title]]: [[value]]" + actTheme.radarSettings.dataUnit,
                         "bullet": "round",
                         "lineThickness": 2,
                         "valueField": "value",
@@ -1406,26 +1429,24 @@ function controlLegend(){
 }
 
 //Hide splash window
-//##### Pointer-events-et átnézni!!!
 function hideSplash(){
 	$("#splash").css("display","none");
-	$("#map, #heading, #chart, #table, #timeSlider, #legend").css({
+	$("#heading, #leftPanel, #rightPanel, #timeSlider, #legend, #colophonIcon, #infoIcon, #theme").css({
         "pointer-events" : "auto"
     });
 }
 
 //The function that shows and hides infowindow
-//##### Pointer-events-et átnézni!!!
 function controlInfoBox(){
     if ($("#infoBox").css("display") == "block"){
 		$("#infoBox").css("display","none");
-		$("#map, #heading, #chart, #table, #timeSlider, #legend").css({
+		$("#heading, #leftPanel, #rightPanel, #timeSlider, #legend, #colophonIcon, #theme").css({
             "pointer-events" : "auto"
         });
     }
     else{
 		$("#infoBox").css("display","block");
-		$("#map, #heading, #chart, #table, #timeSlider, #legend").css({
+		$("#heading, #leftPanel, #rightPanel, #timeSlider, #legend, #colophonIcon, #theme").css({
             "pointer-events" : "none"
         });
 		$("#infoIcon").css("pointer-events","auto");
@@ -1433,17 +1454,16 @@ function controlInfoBox(){
 }
 
 //The function that shows and hides the colophon ("Created by") window
-//##### Pointer-events-et átnézni!!!
 function controlColophonBox(){
     if ($("#colophon").css("display") == "block"){
 		$("#colophon").css("display","none");
-		$("#map, #heading, #chart, #table, #timeSlider, #legend").css({
+		$("#heading, #leftPanel, #rightPanel, #timeSlider, #legend, #infoIcon, #theme").css({
             "pointer-events" : "auto"
         });
     }
     else{
 		$("#colophon").css("display","block");
-		$("#map, #heading, #chart, #table, #timeSlider, #legend").css({
+		$("#heading, #leftPanel, #rightPanel, #timeSlider, #legend, #infoIcon, #theme").css({
             "pointer-events" : "none"
         });
 		$("#colophonIcon").css("pointer-events","auto");
