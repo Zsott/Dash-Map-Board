@@ -19,7 +19,7 @@
     "ymin" : Please give the southernmost coordinate (as a number) of the initial extent!,
     "xmax" : Please give the easternmost coordinate (as a number) of the initial extent!,
     "ymax" : Please give the northernmost coordinate (as a number) of the initial extent!,
-    "basemap" : Please give the keyword (as a string) of the ESRI basemap! (Valid values: 'streets' , 'satellite' , 'hybrid', 'topo', 'gray', 'dark-gray', 'oceans', 'national-geographic', 'terrain', 'osm', 'dark-gray-vector', 'gray-vector', 'streets-vector', 'streets-night-vector', 'streets-relief-vector', 'streets-navigation-vector', 'topo-vector')
+    "basemap" : "Please give the keyword (as a string) of the ESRI basemap! (Valid values: 'streets' , 'satellite' , 'hybrid', 'topo', 'gray', 'dark-gray', 'oceans', 'national-geographic', 'terrain', 'osm', 'dark-gray-vector', 'gray-vector', 'streets-vector', 'streets-night-vector', 'streets-relief-vector', 'streets-navigation-vector', 'topo-vector')",
 	"timeStops" : ["Please give array of timestops as strings!"],
 	"timeSliderMovingRate" : Please give a number!,
     "dataServiceURL" : "Please give the URL of the time-aware Map Service as a string!",
@@ -40,7 +40,7 @@
         "dataUnit" : "Please give the data unit of the serial chart as a string!",
         "yAxesMax" : "Please give the maximum Y axis value as a string containing number!",
         "yAxesMin" : "Please give the minimum Y axis value as a string containing number!",
-        "sorting" : "Please give the type of sorting as a string! (Valid values: "asc", "desc")",
+        "sorting" : "Please give the type of sorting as a string! (Valid values: 'asc', 'desc')",
         "fieldMap" : {
             "field" : "alias",
             "field" : "alias"
@@ -87,7 +87,7 @@
 		"title" : "Please give the title of the table as a string!",
 		"heading" : "Please give the heading of the table as a string!",
 		"dataPrecision" : Please give a number!,
-        "sorting" : "Please give the type of sorting as a string! (Valid values: "asc", "desc")",
+        "sorting" : "Please give the type of sorting as a string! (Valid values: 'asc', 'desc')",
         "fieldMap" : {
             "field" : "alias",
             "field" : "alias"
@@ -112,7 +112,7 @@
     "ymin" : Please give the southernmost coordinate (as a number) of the initial extent!,
     "xmax" : Please give the easternmost coordinate (as a number) of the initial extent!,
     "ymax" : Please give the northernmost coordinate (as a number) of the initial extent!,
-    "basemap" : Please give the keyword (as a string) of the ESRI basemap! (Valid values: 'streets' , 'satellite' , 'hybrid', 'topo', 'gray', 'dark-gray', 'oceans', 'national-geographic', 'terrain', 'osm', 'dark-gray-vector', 'gray-vector', 'streets-vector', 'streets-night-vector', 'streets-relief-vector', 'streets-navigation-vector', 'topo-vector')
+    "basemap" : "Please give the keyword (as a string) of the ESRI basemap! (Valid values: 'streets' , 'satellite' , 'hybrid', 'topo', 'gray', 'dark-gray', 'oceans', 'national-geographic', 'terrain', 'osm', 'dark-gray-vector', 'gray-vector', 'streets-vector', 'streets-night-vector', 'streets-relief-vector', 'streets-navigation-vector', 'topo-vector')",
 	"timeStops" : ["Please give array of timestops as strings!"],
 	"timeSliderMovingRate" : Please give a number!,
     "dataServiceURL" : "Please give the URL of the time-aware Map Service as a string!",
@@ -133,7 +133,7 @@
         "dataUnit" : "Please give the data unit of the serial chart as a string!",
         "yAxesMax" : "Please give the maximum Y axis value as a string containing number!",
         "yAxesMin" : "Please give the minimum Y axis value as a string containing number!",
-        "sorting" : "Please give the type of sorting as a string! (Valid values: "asc", "desc")",
+        "sorting" : "Please give the type of sorting as a string! (Valid values: 'asc', 'desc')",
         "fieldMap" : {
             "field" : "alias",
             "field" : "alias"
@@ -180,7 +180,7 @@
 		"title" : "Please give the title of the table as a string!",
 		"heading" : "Please give the heading of the table as a string!",
 		"dataPrecision" : Please give a number!,
-        "sorting" : "Please give the type of sorting as a string! (Valid values: "asc", "desc")",
+        "sorting" : "Please give the type of sorting as a string! (Valid values: 'asc', 'desc')",
         "fieldMap" : {
             "field" : "alias",
             "field" : "alias"
