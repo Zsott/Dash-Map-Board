@@ -7,7 +7,7 @@
 		"mapHeightPercent" : Please give a number!,
 		"upperRightChartHeightPercent" : Please give a number!,
 		"legendOn" : Please give a 'true' or 'false' value!,
-		"logoImg" : "Pleas give the logo image's filename as a string!",
+		"logoImg" : "Please give the logo image's path as a string!",
 		"title" : "Please give the title in the header as a string!",
 		"subTitle" : "Please give the subtitle in the header as a string!",
 		"splashText" : "Please give the HTML text you want to show in the splash window!",
