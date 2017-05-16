@@ -1,7 +1,5 @@
 ToDo
 ----------------------------------------------------
-Z - Configuration Guide összevetése a config validatorral.
-Z - Configuration Guide befejezése
 K - gyakorló time-aware map service készítése (EUROSTAT adatok)
 K - A konferenciára megcsinálni a bemutatós config.json-t
 
@@ -12,8 +10,6 @@ K - Tesztelni az alkalmazást:
   -> nem poligon adatokkal
   -> olyan service-el, ahol lehet null adat
   -> nem évenként változik az adat
-K - Readme készítése
-K - License kitöltése
 
 Later development:
 ----------------------------------------------------
@@ -23,4 +19,4 @@ Két azonos típusú diagram is elhelyezhető legyen (pl. 2 pie)
 Minden panelen legördülőben lehessen választani a diagram típusok között (front-end diagramtípus állítás)
 Még több paraméter kihelyezése a config.json-be
 Keresési funkció beépítése (Search Class or AdvancedSearch Class)
-Böngésző fejléc testreszabhatósága
+Böngésző fejléc testreszabhatósága (<title></title>)
