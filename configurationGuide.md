@@ -90,11 +90,11 @@ Though it's not a chart it can be a very useful tool to show the most important 
 
 #### [theme]/layout/logoImg
 ```
-"logoImg" : "Pleas give the logo image's filename as a string!"
+"logoImg" : "Pleas give the logo image's path as a string!"
 ```
 **Description**: Sets which image is used as a logo in the header.  
 **Type**: string  
-**Valid values**: Any filename (with extension) between quotation marks.  
+**Valid values**: Any path (folder/filename with extension) between quotation marks.  
 **Example value**: "img/logo.png"  
 **Tips**: You have to add the path related to the index.html.
 
