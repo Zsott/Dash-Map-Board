@@ -135,6 +135,14 @@ $.getJSON("config.json", function(data){
 				alertMessage("The configuration is incorrect! The theme of '" + key + "' is missing!");
 			}
         }
+
+    }
+    
+    // Check point in config validation
+    // Validator won't continue until you correct the errors listed on the Error List
+    if(configError){
+        printErrors(configErrorList);
+        exit();            
     }
 	
 	//Checking the settings of all theme
@@ -1080,18 +1088,18 @@ function initWebApp(){
                     "type": "pie",
                     "theme": "light",
                     "titles": [{
-                       "text": actTheme["pieSettings"].title,
+                       "text": actTheme.pieSettings.title,
                        "size": 14,
                        "bold": true
                     }],
-                    "dataProvider": dp,
-                    "numberFormatter": {
-                        "precision": actTheme["pieSettings"].dataPrecision,
+                    "dataProvider" : dp,
+                    "numberFormatter" : {
+                        "precision" : 1,
                         "decimalSeparator": ",",
                         "thousandsSeparator": " "
                     },
-                    "colors":  actTheme["pieSettings"].colors,
-                    "balloonText": "[[title]]: [[percents]]%",
+                    "colors": actTheme.pieSettings.colors,
+                    "balloonText" : "[[title]]: [[percents]]%",
                     "fontSize": 14,
                     "valueField": "value",
                     "titleField": "title",
