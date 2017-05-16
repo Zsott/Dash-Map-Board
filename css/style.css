@@ -374,7 +374,7 @@ html, body{
     opacity: 1;
 }
 
-#heading, #leftPanel, #rightPanel, #timeSlider, #legend, #infoIcon, #theme{
+#heading, #leftPanel, #timeSlider, #legend, #infoIcon, #theme{
     pointer-events: none;
 }
 
