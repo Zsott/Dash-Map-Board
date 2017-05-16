@@ -2,6 +2,7 @@ ToDo
 ----------------------------------------------------
 K - gyakorló time-aware map service készítése (EUROSTAT adatok)
 K - A konferenciára megcsinálni a bemutatós config.json-t
+Z - README.md készítése
 
 Z - Dashboard MapService Creation Guide készítése (PDF)
 
