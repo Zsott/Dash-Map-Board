@@ -3,7 +3,6 @@ ToDo
 K - gyakorló time-aware map service-k készítése (EUROSTAT adatok)
 K - gyakorló service-k metázása
 K - config.json kitöltése a gyakorló service-k alapján
-K - LTK kiszedése az alkalmazásból
 K - alkalmazás megosztása (05.26.)
 
 Z - README.md készítése
