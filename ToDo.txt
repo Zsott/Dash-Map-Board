@@ -1,9 +1,12 @@
 ToDo
 ----------------------------------------------------
-K - gyakorló time-aware map service készítése (EUROSTAT adatok)
-K - A konferenciára megcsinálni a bemutatós config.json-t
-Z - README.md készítése
+K - gyakorló time-aware map service-k készítése (EUROSTAT adatok)
+K - gyakorló service-k metázása
+K - config.json kitöltése a gyakorló service-k alapján
+K - LTK kiszedése az alkalmazásból
+K - alkalmazás megosztása (05.26.)
 
+Z - README.md készítése
 Z - Dashboard MapService Creation Guide készítése (PDF)
 
 K - Teszt time-aware service-ek készítése
