@@ -1,8 +1,7 @@
-##About the Sample Dash-Map-Board Webapp
+## About the Sample Dash-Map-Board Webapp
 
-###Purpose
+### Purpose
 
-###Services
+### Services
 
-
-###Data sources
+### Data sources
