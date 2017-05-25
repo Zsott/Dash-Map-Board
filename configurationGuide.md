@@ -288,6 +288,7 @@ Though it's not a chart it can be a very useful tool to show the most important 
 - "rad" (for radar chart)
 - "bub" (for bubble chart)
 - "tab" (for table)  
+
 **Example value**: "ser"  
 **Tips**:
 - If layout has been set not to show lower left panel, the chart/table won't appear on screen.
@@ -305,6 +306,7 @@ Though it's not a chart it can be a very useful tool to show the most important 
 - "rad" (for radar chart)
 - "bub" (for bubble chart)
 - "tab" (for table)  
+
 **Example value**: "tab"  
 **Tips**:
 - If layout has been set not to show upper right panel, the chart/table won't appear on screen.
@@ -322,6 +324,7 @@ Though it's not a chart it can be a very useful tool to show the most important 
 - "rad" (for radar chart)
 - "bub" (for bubble chart)
 - "tab" (for table)  
+
 **Example value**: "pie"  
 **Tips**:
 - If layout has been set not to show lower right panel, the chart/table won't appear on screen.
