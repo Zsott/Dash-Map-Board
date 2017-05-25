@@ -11,8 +11,22 @@ If you're new with this whole programming stuff, you only have to change some pa
 If you like to dive into codes you can also alter HTML, CSS and JS files as well to create a custom dashboard with map.
 
 ## Preparations and preconfigurations
-You will need at least one ESRI service which can be time-aware
+You will need at least one time-aware ESRI MapService. You can find several guides and tutorials on the internet or you can follow our MapService Creation Guide _[COMING SOON]_.
+When you've created or found at least one time-aware service you're ready to change the configuration file ([config.json](config.json)) following our [Configuration Guide](configurationGuide.md).
 
 ## Change log
-### v0.1
-Create map
+### v1.0
+- You can create a map-based time-aware dashboard web application.
+- You can combine several themes in one application.
+- The webapp contains one map and zero to three charts for each theme.
+- You can choose serial, pie, radar, bubble charts and table.
+- You can use a chart type only once.
+
+## Future plans
+- Multiple charts of the same type in one dashboard.
+- Multiple maps in one dashboard.
+- Search box
+- Resizable (map/chart) boxes.
+- Front-end chart type seletion for each box.
+- Move more parameter from JS to config.json.
+- More chart types
