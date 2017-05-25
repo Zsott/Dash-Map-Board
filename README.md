@@ -23,8 +23,10 @@ But first you may want to check our sample webapp [config.json](sampleWebappConf
 - You can create a map-based time-aware dashboard web application.
 - You can combine several themes in one application.
 - The webapp contains one map and zero to three charts for each theme.
-- You can choose serial, pie, radar, bubble charts and table.
-- You can use a chart type only once.
+- You can choose serial, pie, radar, bubble charts and table. But you can use a chart type only once in each dashboard.
+- You can set the width and height of the boxes containing the map and the charts.
+- You can set the chart's content by defining fields and aliases.
+- You can set the chart's title, colors, data precision and so on...  
 
 ## Future plans
 - Multiple charts of the same type in one dashboard.
