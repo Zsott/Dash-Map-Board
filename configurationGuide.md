@@ -103,7 +103,7 @@ Though it's not a chart it can be a very useful tool to show the most important 
 "title" : "Please give the title in the header as a string!"
 ```
 **Description**: Sets the text of the title shown in the header.  
-**Type**: string
+**Type**: string  
 **Valid values**: Any string  
 **Example value**: "Demography of Hungary"  
 **Tips**: Too long title may cause that the title and/or the subtitle will disappear.
@@ -199,8 +199,8 @@ Though it's not a chart it can be a very useful tool to show the most important 
 ```
 **Description**: Sets the type of the basemap used under the thematic layer(s). Any valid [ESRI Map basemap keyword](https://developers.arcgis.com/javascript/3/jsapi/map-amd.html#map1) is accepted.  
 **Type**: string  
-**Valid values**: 'streets' , 'satellite' , 'hybrid', 'topo', 'gray', 'dark-gray', 'oceans', 'national-geographic', 'terrain', 'osm', 'dark-gray-vector', 'gray-vector', 'streets-vector', 'streets-night-vector', 'streets-relief-vector', 'streets-navigation-vector', 'topo-vector'  
-**Example value**: 'topo'  
+**Valid values**: "streets" , "satellite" , "hybrid", "topo", "gray", "dark-gray", "oceans", "national-geographic", "terrain", "osm", "dark-gray-vector", "gray-vector", "streets-vector", "streets-night-vector", "streets-relief-vector", "streets-navigation-vector", "topo-vector"  
+**Example value**: "topo"  
 
 #### [theme]/timeStops
 ```
@@ -287,7 +287,7 @@ Though it's not a chart it can be a very useful tool to show the most important 
 - "pie" (for pie chart)
 - "rad" (for radar chart)
 - "bub" (for bubble chart)
-- "tab" (for table)
+- "tab" (for table)  
 **Example value**: "ser"  
 **Tips**:
 - If layout has been set not to show lower left panel, the chart/table won't appear on screen.
@@ -304,7 +304,7 @@ Though it's not a chart it can be a very useful tool to show the most important 
 - "pie" (for pie chart)
 - "rad" (for radar chart)
 - "bub" (for bubble chart)
-- "tab" (for table)
+- "tab" (for table)  
 **Example value**: "tab"  
 **Tips**:
 - If layout has been set not to show upper right panel, the chart/table won't appear on screen.
@@ -321,7 +321,7 @@ Though it's not a chart it can be a very useful tool to show the most important 
 - "pie" (for pie chart)
 - "rad" (for radar chart)
 - "bub" (for bubble chart)
-- "tab" (for table)
+- "tab" (for table)  
 **Example value**: "pie"  
 **Tips**:
 - If layout has been set not to show lower right panel, the chart/table won't appear on screen.
@@ -464,7 +464,7 @@ Though it's not a chart it can be a very useful tool to show the most important 
 ```
 "dataPrecision" : Please give a number!
 ```
-**Description**: Sets the number of decimal places for rounding values. 
+**Description**: Sets the number of decimal places for rounding values.  
 **Type**: number  
 **Valid values**: 0 or greater integer  
 **Example value**: 0  
@@ -535,7 +535,7 @@ Though it's not a chart it can be a very useful tool to show the most important 
 ```
 "dataPrecision" : Please give a number!
 ```
-**Description**: Sets the number of decimal places for rounding values. 
+**Description**: Sets the number of decimal places for rounding values.  
 **Type**: number  
 **Valid values**: 0 or greater integer  
 **Example value**: 0  
@@ -644,7 +644,7 @@ Though it's not a chart it can be a very useful tool to show the most important 
 ```
 "dataPrecision" : Please give a number!
 ```
-**Description**: Sets the number of decimal places for rounding values. 
+**Description**: Sets the number of decimal places for rounding values.  
 **Type**: number  
 **Valid values**: 0 or greater integer  
 **Example value**: 0  
