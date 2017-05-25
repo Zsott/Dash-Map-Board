@@ -1,0 +1,191 @@
+{
+"themeOrder" : [{"theme2" : "Theme2 alias"},
+                {"theme1" : "Theme1 alias"}],
+"theme1" : {
+	"layout" : {
+		"leftPanelWidthPercent" : Please give a number!,
+		"mapHeightPercent" : Please give a number!,
+		"upperRightChartHeightPercent" : Please give a number!,
+		"legendOn" : Please give a 'true' or 'false' value!,
+		"logoImg" : "Please give the logo image's path as a string!",
+		"title" : "Please give the title in the header as a string!",
+		"subTitle" : "Please give the subtitle in the header as a string!",
+		"splashText" : "Please give the HTML text you want to show in the splash window!",
+		"infoBoxText" : "Please give the HTML text you want to show in the info window!",
+        "clickOnWhat" : "Please give the text you want to show as a hint for the users!"
+		},
+    "wkid" : Please give the EPSG code (as a number) of the spatial reference system!,
+    "xmin" : Please give the westernmost coordinate (as a number) of the initial extent!,
+    "ymin" : Please give the southernmost coordinate (as a number) of the initial extent!,
+    "xmax" : Please give the easternmost coordinate (as a number) of the initial extent!,
+    "ymax" : Please give the northernmost coordinate (as a number) of the initial extent!,
+    "basemap" : "Please give the keyword (as a string) of the ESRI basemap! (Valid values: "streets" , "satellite" , "hybrid", "topo", "gray", "dark-gray", "oceans", "national-geographic", "terrain", "osm", "dark-gray-vector", "gray-vector", "streets-vector", "streets-night-vector", "streets-relief-vector", "streets-navigation-vector", "topo-vector")",
+	"timeStops" : ["Please give array of timestops as strings!"],
+	"timeSliderMovingRate" : Please give a number!,
+    "dataServiceURL" : "Please give the URL of the time-aware Map Service as a string!",
+    "dataServiceLayerIndex" : Please give a number!,
+	"dataServiceLayerPosition" : Please give a number!,
+    "additionalLayerURLs" : ["Please give array of Map Service URLs as strings!"],
+	"areaNameField" : "Please give the fieldname (as a string) that contains the name of map objects!",
+    "timeField" : "Please give the fieldname (as a string) that contains the time information!",
+    "chartPositions" : {
+        "LL" : "Please give the codename of the chart type as a string!",
+        "UR" : "Please give the codename of the chart type as a string!", 
+        "LR" : "Please give the codename of the chart type as a string!" 
+        },
+    "serialSettings" : {
+        "title" : "Please give the title of the serial chart as a string!",
+        "colors" : ["Please give array of hex colors as strings!"],
+        "dataPrecision" : Please give a number!,
+        "dataUnit" : "Please give the data unit of the serial chart as a string!",
+        "yAxesMax" : "Please give the maximum Y axis value as a string containing number!",
+        "yAxesMin" : "Please give the minimum Y axis value as a string containing number!",
+        "sorting" : "Please give the type of sorting as a string! (Valid values: 'asc', 'desc')",
+        "fieldMap" : {
+            "field" : "alias",
+            "field" : "alias"
+			}
+        },
+    "pieSettings" : {
+		"title" : "Please give the title of the pie chart as a string!",
+		"colors" : ["Please give array of hex colors as strings!"],        
+        "fieldMap" : {
+            "field" : "alias",
+            "field" : "alias"
+			}
+		},
+    "radarSettings" : {
+		"title" : "Please give the title of the radar chart as a string!",
+		"colors" : ["Please give array of hex colors as strings!"],
+		"dataPrecision" : Please give a number!,
+		"dataUnit": "Please give the data unit of the radar chart as a string!",
+        "xAxesMax" : "Please give the maximum axis value as a string containing number!",
+        "xAxesMin" : "Please give the minimum axis value as a string containing number!",        
+        "fieldMap" : {
+            "field" : "alias",
+            "field" : "alias"
+			}
+		},
+    "bubbleSettings" : {
+		"title" : "Please give the title of the bubble chart as a string!",
+		"colors" : ["Please give array of hex colors as strings!"],
+        "dataPrecision" : Please give a number!,
+		"xUnit": "Please give the data unit of the bubble chart's X axis as a string!",
+		"yUnit": "Please give the data unit of the bubble chart's Y axis as a string!",
+		"zUnit": "Please give the data unit of the bubble chart bubble size as a string!",
+		"xAxesMax": "Please give the maximum X axis value as a string containing number!",
+		"xAxesMin": "Please give the minimum X axis value as a string containing number!",
+		"yAxesMax": "Please give the maximum Y axis value as a string containing number!",	
+		"yAxesMin": "Please give the minimum Y axis value as a string containing number!",
+        "fieldMap" : {
+            "field" : "alias",
+            "field" : "alias",
+            "field" : "alias"
+			}	
+		},
+    "tableSettings" : {
+		"title" : "Please give the title of the table as a string!",
+		"heading" : "Please give the heading of the table as a string!",
+		"dataPrecision" : Please give a number!,
+        "sorting" : "Please give the type of sorting as a string! (Valid values: 'asc', 'desc')",
+        "fieldMap" : {
+            "field" : "alias",
+            "field" : "alias"
+			}	
+		}
+    },
+"theme2" : {
+	"layout" : {
+		"leftPanelWidthPercent" : Please give a number!,
+		"mapHeightPercent" : Please give a number!,
+		"upperRightChartHeightPercent" : Please give a number!,
+		"legendOn" : Please give a 'true' or 'false' value!,
+		"logoImg" : "Pleas give the logo image's filename as a string!",
+		"title" : "Please give the title in the header as a string!",
+		"subTitle" : "Please give the subtitle in the header as a string!",
+		"splashText" : "Please give the HTML text you want to show in the splash window!",
+		"infoBoxText" : "Please give the HTML text you want to show in the info window!",
+        "clickOnWhat" : "Please give the text you want to show as a hint for the users!"
+		},
+    "wkid" : Please give the EPSG code (as a number) of the spatial reference system!,
+    "xmin" : Please give the westernmost coordinate (as a number) of the initial extent!,
+    "ymin" : Please give the southernmost coordinate (as a number) of the initial extent!,
+    "xmax" : Please give the easternmost coordinate (as a number) of the initial extent!,
+    "ymax" : Please give the northernmost coordinate (as a number) of the initial extent!,
+    "basemap" : "Please give the keyword (as a string) of the ESRI basemap! (Valid values: "streets" , "satellite" , "hybrid", "topo", "gray", "dark-gray", "oceans", "national-geographic", "terrain", "osm", "dark-gray-vector", "gray-vector", "streets-vector", "streets-night-vector", "streets-relief-vector", "streets-navigation-vector", "topo-vector")",
+	"timeStops" : ["Please give array of timestops as strings!"],
+	"timeSliderMovingRate" : Please give a number!,
+    "dataServiceURL" : "Please give the URL of the time-aware Map Service as a string!",
+    "dataServiceLayerIndex" : Please give a number!,
+	"dataServiceLayerPosition" : Please give a number!,
+    "additionalLayerURLs" : ["Please give array of Map Service URLs as strings!"],
+	"areaNameField" : "Please give the fieldname (as a string) that contains the name of map objects!",
+    "timeField" : "Please give the fieldname (as a string) that contains the time information!",
+    "chartPositions" : {
+        "LL" : "Please give the codename of the chart type as a string!",
+        "UR" : "Please give the codename of the chart type as a string!", 
+        "LR" : "Please give the codename of the chart type as a string!" 
+        },
+    "serialSettings" : {
+        "title" : "Please give the title of the serial chart as a string!",
+        "colors" : ["Please give array of hex colors as strings!"],
+        "dataPrecision" : Please give a number!,
+        "dataUnit" : "Please give the data unit of the serial chart as a string!",
+        "yAxesMax" : "Please give the maximum Y axis value as a string containing number!",
+        "yAxesMin" : "Please give the minimum Y axis value as a string containing number!",
+        "sorting" : "Please give the type of sorting as a string! (Valid values: 'asc', 'desc')",
+        "fieldMap" : {
+            "field" : "alias",
+            "field" : "alias"
+			}
+        },
+    "pieSettings" : {
+		"title" : "Please give the title of the pie chart as a string!",
+		"colors" : ["Please give array of hex colors as strings!"],        
+        "fieldMap" : {
+            "field" : "alias",
+            "field" : "alias"
+			}
+		},
+    "radarSettings" : {
+		"title" : "Please give the title of the radar chart as a string!",
+		"colors" : ["Please give array of hex colors as strings!"],
+		"dataPrecision" : Please give a number!,
+		"dataUnit": "Please give the data unit of the radar chart as a string!",
+        "xAxesMax" : "Please give the maximum axis value as a string containing number!",
+        "xAxesMin" : "Please give the minimum axis value as a string containing number!",        
+        "fieldMap" : {
+            "field" : "alias",
+            "field" : "alias"
+			}
+		},
+    "bubbleSettings" : {
+		"title" : "Please give the title of the bubble chart as a string!",
+		"colors" : ["Please give array of hex colors as strings!"],
+        "dataPrecision" : Please give a number!,
+		"xUnit": "Please give the data unit of the bubble chart's X axis as a string!",
+		"yUnit": "Please give the data unit of the bubble chart's Y axis as a string!",
+		"zUnit": "Please give the data unit of the bubble chart bubble size as a string!",
+		"xAxesMax": "Please give the maximum X axis value as a string containing number!",
+		"xAxesMin": "Please give the minimum X axis value as a string containing number!",
+		"yAxesMax": "Please give the maximum Y axis value as a string containing number!",	
+		"yAxesMin": "Please give the minimum Y axis value as a string containing number!",
+        "fieldMap" : {
+            "field" : "alias",
+            "field" : "alias",
+            "field" : "alias"
+			}	
+		},
+    "tableSettings" : {
+		"title" : "Please give the title of the table as a string!",
+		"heading" : "Please give the heading of the table as a string!",
+		"dataPrecision" : Please give a number!,
+        "sorting" : "Please give the type of sorting as a string! (Valid values: 'asc', 'desc')",
+        "fieldMap" : {
+            "field" : "alias",
+            "field" : "alias"
+			}	
+		}
+    },
+"creators" : "Creators of the Dash-Map-Board project: László Lellei (spatial data expert), Zsolt Ónodi (GIS expert)"
+}
