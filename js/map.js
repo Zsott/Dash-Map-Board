@@ -323,7 +323,7 @@ $.getJSON("config.json", function(data){
 
 		var lastKey=keyArray[keyArray.length-1];
 				
-		if(value < 0){
+		if((value < 0) && (lastKey!="xmin") && (lastKey!="ymin") && (lastKey!="xmax") && (lastKey!="ymax")){
 			alertMessage("The configuration is incorrect! The value of " + keyString + " in the theme of '" + keyArray[0] + "' is incorrect! This value must not be negative!");
 		}
 		
@@ -624,6 +624,11 @@ function initWebApp(){
                 
                 //Starting the timeslider
                 initTimeSlider();
+                
+                //Activate pointer events if there's no splash screen
+                if(actTheme.layout.splashText == ""){
+                    hideSplash();
+                }                
                      
                 //Defining the click event on the map
                 terkep.on("click", initDashBoard);
@@ -631,6 +636,8 @@ function initWebApp(){
             
             //This function starts when user clicks on the map
             function initDashBoard(evt){
+
+
                 //Gets the geometry on which the user clicked and gives it to the query as a parameter
                 dataQuery.geometry = evt.mapPoint;
                 //Runs the query using the geometry on which the user clicked and creates the dashboard
@@ -640,7 +647,8 @@ function initWebApp(){
             //This function starts after the user clicked and query finished
             //Initializes or refeshes the dashboard
             function createDashBoard(featureSet){
-                //Runs only if the click/query has any results
+
+				//Runs only if the click/query has any results
                 // => Won't start if user clicks outside the thematic map boundary or clicks between features
                 if (featureSet.features.length > 0){
                     //Temporarily assigns a class to the left panel that makes it disappear
@@ -732,7 +740,7 @@ function initWebApp(){
             
             //This function changes from the "big map" layout to the dashboard layout
             //Uses a the config.json [theme]/layout parameters like leftPanelWidthPercent
-            function setLayout(){
+            function setLayout(){				
                 //Sets the left-right panel width
                 if(actTheme.layout.leftPanelWidthPercent == 0){
                     //Makes the left panel disappear
@@ -764,8 +772,9 @@ function initWebApp(){
                     $("#rightPanel").css({			
                         "width" : "calc(" + w + "% - 12px)"
                     });
-                }
-            
+                }	
+
+				
                 //Sets the vertical splitting of the left panel
                 if($("#leftPanel").css("display") != "none"){
                     if(actTheme.layout.mapHeightPercent == 0){
@@ -780,7 +789,7 @@ function initWebApp(){
                         });
                     }
                     else if(actTheme.layout.mapHeightPercent == 100){
-                        //Resizes the map to full height
+                        //Resizes the map to full height						
                         $("#map").css({
                             "height" : "calc(100% - 2px)"
                         });
@@ -834,11 +843,11 @@ function initWebApp(){
                         });
                     }
                 }
-                
+
                 //Resizes the map object according to the map div
                 terkep.width = $("#map").outerWidth();
                 terkep.height = $("#map").outerHeight();
-                
+         
                 //Zoom and change extent of the map to show the selected geometry in the center
                 terkep.centerAndZoom(dataQuery.geometry,terkep.getLevel());
             }
@@ -899,7 +908,7 @@ function initWebApp(){
             function selectFeature(graphic){
                 //Removes any graphic (former selections)
                 terkep.graphics.clear();
-                
+               
                 //Sets the symbology of the selected geometry
                 // @@@ config
                 var symbol = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID,
@@ -967,6 +976,7 @@ function initWebApp(){
                     }
                     tabDP.push(json);				
                 });
+
                 //Reorder prepared dataset by time
                 var tabOrderedDP = orderArrayByAttribute(tabDP, "year", actTheme.tableSettings.sorting);
                 createTable(tabOrderedDP);
@@ -1072,6 +1082,7 @@ function initWebApp(){
             
             //Timeslider change event
             function extentChanged(evt){
+				
                 currYear = timeSlider.getCurrentTimeExtent().startTime.getFullYear();
                 if(!firstClick){
                     searchCurrentYear(actFeatureSet);
@@ -1248,6 +1259,10 @@ function initWebApp(){
             
             //Rounding function for table creation
             function checkRounding(value, prec){
+				if(value == null){
+					//@@@ config no data text
+					return("n.d.")
+				}					
                 var rValue = value.toFixed(prec).split(".");
                 if(rValue[0] == 0 && rValue[1] == 0){
                     return 0;
@@ -1395,6 +1410,7 @@ function initWebApp(){
                         "decimalSeparator": ",",
                         "thousandsSeparator": " "
                     },
+                    "colors": actTheme.radarSettings.colors,					
                     "dataProvider": dp,
                     "startDuration": 1,
                     "categoryField": "title",
@@ -1412,7 +1428,8 @@ function initWebApp(){
                         "bullet": "round",
                         "lineThickness": 2,
                         "valueField": "value",
-                        "bullet": "round"
+                        "bullet": "round",
+						
                 }];
                 radarChart.addGraph(graphs[0]);			
             }
