@@ -193,7 +193,7 @@ Though it's not a chart it can be a very useful tool to show the most important 
 **Valid values**: Any number inside the spatial reference system's extent  
 **Example value**: 6150000  
 
-### [theme]/basemap
+#### [theme]/basemap
 ```
 "basemap" : "Please give the keyword (as a string) of the ESRI basemap! (Valid values: 'streets' , 'satellite' , 'hybrid', 'topo', 'gray', 'dark-gray', 'oceans', 'national-geographic', 'terrain', 'osm', 'dark-gray-vector', 'gray-vector', 'streets-vector', 'streets-night-vector', 'streets-relief-vector', 'streets-navigation-vector', 'topo-vector')"
 ```
@@ -397,6 +397,7 @@ Though it's not a chart it can be a very useful tool to show the most important 
 **Valid values**:  
 - 'desc' for descending order  
 - 'asc' for ascending order  
+
 **Example value**: 'desc'  
 
 #### [theme]/serialSettings/fieldMap
