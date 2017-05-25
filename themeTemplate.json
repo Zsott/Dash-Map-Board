@@ -16,7 +16,7 @@
     "ymin" : Please give the southernmost coordinate (as a number) of the initial extent!,
     "xmax" : Please give the easternmost coordinate (as a number) of the initial extent!,
     "ymax" : Please give the northernmost coordinate (as a number) of the initial extent!,
-    "basemap" : "Please give the keyword (as a string) of the ESRI basemap! (Valid values: 'streets' , 'satellite' , 'hybrid', 'topo', 'gray', 'dark-gray', 'oceans', 'national-geographic', 'terrain', 'osm', 'dark-gray-vector', 'gray-vector', 'streets-vector', 'streets-night-vector', 'streets-relief-vector', 'streets-navigation-vector', 'topo-vector')",
+    "basemap" : "Please give the keyword (as a string) of the ESRI basemap! (Valid values: "streets" , "satellite" , "hybrid", "topo", "gray", "dark-gray", "oceans", "national-geographic", "terrain", "osm", "dark-gray-vector", "gray-vector", "streets-vector", "streets-night-vector", "streets-relief-vector", "streets-navigation-vector", "topo-vector")",
 	"timeStops" : ["Please give array of timestops as strings!"],
 	"timeSliderMovingRate" : Please give a number!,
     "dataServiceURL" : "Please give the URL of the time-aware Map Service as a string!",
