@@ -36,3 +36,4 @@ But first you may want to check our sample webapp [config.json](sampleWebappConf
 - Front-end chart type seletion for each box.
 - Move more parameter from JS to config.json.
 - More selectable chart types.
+- Form-driven webapp creation.
