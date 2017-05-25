@@ -1,191 +1,273 @@
 {
-"themeOrder" : [{"theme2" : "Theme2 alias"},
-                {"theme1" : "Theme1 alias"}],
-"theme1" : {
+"themeOrder" : [{"DEM" : "Demography"},
+                {"CRI" : "Crime"},
+                {"INT" : "Internet usage"},
+                {"RND" : "Research and development"}
+			   ],
+"DEM" : {
 	"layout" : {
-		"leftPanelWidthPercent" : Please give a number!,
-		"mapHeightPercent" : Please give a number!,
-		"upperRightChartHeightPercent" : Please give a number!,
-		"legendOn" : Please give a 'true' or 'false' value!,
-		"logoImg" : "Please give the logo image's path as a string!",
-		"title" : "Please give the title in the header as a string!",
-		"subTitle" : "Please give the subtitle in the header as a string!",
+		"leftPanelWidthPercent" : 50,
+		"mapHeightPercent" : 50,
+		"upperRightChartHeightPercent" : 60,
+		"legendOn" : true,
+		"logoImg" : "",
+		"title" : "Demography dashboard",
+		"subTitle" : "Map: Population density",
 		"splashText" : "Please give the HTML text you want to show in the splash window!",
 		"infoBoxText" : "Please give the HTML text you want to show in the info window!",
-        "clickOnWhat" : "Please give the text you want to show as a hint for the users!"
+        "clickOnWhat" : "Please click on the map"
 		},
-    "wkid" : Please give the EPSG code (as a number) of the spatial reference system!,
-    "xmin" : Please give the westernmost coordinate (as a number) of the initial extent!,
-    "ymin" : Please give the southernmost coordinate (as a number) of the initial extent!,
-    "xmax" : Please give the easternmost coordinate (as a number) of the initial extent!,
-    "ymax" : Please give the northernmost coordinate (as a number) of the initial extent!,
-    "basemap" : "Please give the keyword (as a string) of the ESRI basemap! (Valid values: 'streets' , 'satellite' , 'hybrid', 'topo', 'gray', 'dark-gray', 'oceans', 'national-geographic', 'terrain', 'osm', 'dark-gray-vector', 'gray-vector', 'streets-vector', 'streets-night-vector', 'streets-relief-vector', 'streets-navigation-vector', 'topo-vector')",
-	"timeStops" : ["Please give array of timestops as strings!"],
-	"timeSliderMovingRate" : Please give a number!,
-    "dataServiceURL" : "Please give the URL of the time-aware Map Service as a string!",
-    "dataServiceLayerIndex" : Please give a number!,
-	"dataServiceLayerPosition" : Please give a number!,
-    "additionalLayerURLs" : ["Please give array of Map Service URLs as strings!"],
-	"areaNameField" : "Please give the fieldname (as a string) that contains the name of map objects!",
-    "timeField" : "Please give the fieldname (as a string) that contains the time information!",
+    "wkid" : 3857,
+    "xmin" : -1200000,
+    "ymin" : 3500000,
+    "xmax" : 5000000,
+    "ymax" : 12000000,
+    "basemap" : "osm",
+	"timeStops" : ["2009","2010","2011","2012","2013","2014","2015"],
+	"timeSliderMovingRate" : 1500,
+    "dataServiceURL" : "http://arcgisserver.lechnerkozpont.hu/arcgisserverwa/rest/services/homokozo/DashMapBoardSampleDemography/MapServer",
+    "dataServiceLayerIndex" : 0,
+	"dataServiceLayerPosition" : 1,
+    "additionalLayerURLs" : ["http://arcgisserver.lechnerkozpont.hu/arcgisserverwa/rest/services/homokozo/DashMapBoardSampleNuts0/MapServer","http://hydrology.esri.com/arcgis/rest/services/WorldHydroReferenceOverlay/MapServer"],
+	"areaNameField" : "areaname",
+    "timeField" : "year",
     "chartPositions" : {
-        "LL" : "Please give the codename of the chart type as a string!",
-        "UR" : "Please give the codename of the chart type as a string!", 
-        "LR" : "Please give the codename of the chart type as a string!" 
+        "LL" : "ser",
+        "UR" : "pie", 
+        "LR" : "tab" 
         },
     "serialSettings" : {
-        "title" : "Please give the title of the serial chart as a string!",
-        "colors" : ["Please give array of hex colors as strings!"],
-        "dataPrecision" : Please give a number!,
-        "dataUnit" : "Please give the data unit of the serial chart as a string!",
-        "yAxesMax" : "Please give the maximum Y axis value as a string containing number!",
-        "yAxesMin" : "Please give the minimum Y axis value as a string containing number!",
-        "sorting" : "Please give the type of sorting as a string! (Valid values: 'asc', 'desc')",
+        "title" : "Population (male/female)",
+        "colors" : ["#BFC46B","#85ACCE"],
+        "dataPrecision" : 1,
+        "dataUnit" : "persons",
+        "yAxesMax" : "",
+        "yAxesMin" : "",
+        "sorting" : "asc",
         "fieldMap" : {
-            "field" : "alias",
-            "field" : "alias"
+            "pmale" : "Male population",
+            "pfemale" : "Female population"
 			}
         },
     "pieSettings" : {
-		"title" : "Please give the title of the pie chart as a string!",
-		"colors" : ["Please give array of hex colors as strings!"],        
+		"title" : "Population by age",
+		"colors" : ["#BFC46B","#85ACCE","#914441","#444444"],        
         "fieldMap" : {
-            "field" : "alias",
-            "field" : "alias"
+            "ylt15" : "Less than 15 years",
+            "y1564" : "From 15 to 64 years",
+            "yge65" : "From 15 to 64 years",
+            "yunk" : "Unknown age"
 			}
-		},
-    "radarSettings" : {
-		"title" : "Please give the title of the radar chart as a string!",
-		"colors" : ["Please give array of hex colors as strings!"],
-		"dataPrecision" : Please give a number!,
-		"dataUnit": "Please give the data unit of the radar chart as a string!",
-        "xAxesMax" : "Please give the maximum axis value as a string containing number!",
-        "xAxesMin" : "Please give the minimum axis value as a string containing number!",        
-        "fieldMap" : {
-            "field" : "alias",
-            "field" : "alias"
-			}
-		},
-    "bubbleSettings" : {
-		"title" : "Please give the title of the bubble chart as a string!",
-		"colors" : ["Please give array of hex colors as strings!"],
-        "dataPrecision" : Please give a number!,
-		"xUnit": "Please give the data unit of the bubble chart's X axis as a string!",
-		"yUnit": "Please give the data unit of the bubble chart's Y axis as a string!",
-		"zUnit": "Please give the data unit of the bubble chart bubble size as a string!",
-		"xAxesMax": "Please give the maximum X axis value as a string containing number!",
-		"xAxesMin": "Please give the minimum X axis value as a string containing number!",
-		"yAxesMax": "Please give the maximum Y axis value as a string containing number!",	
-		"yAxesMin": "Please give the minimum Y axis value as a string containing number!",
-        "fieldMap" : {
-            "field" : "alias",
-            "field" : "alias",
-            "field" : "alias"
-			}	
 		},
     "tableSettings" : {
-		"title" : "Please give the title of the table as a string!",
-		"heading" : "Please give the heading of the table as a string!",
-		"dataPrecision" : Please give a number!,
-        "sorting" : "Please give the type of sorting as a string! (Valid values: 'asc', 'desc')",
+		"title" : "Change of population",
+		"heading" : "Type of change",
+		"dataPrecision" : 2,
+        "sorting" : "asc",
         "fieldMap" : {
-            "field" : "alias",
-            "field" : "alias"
+			"lbirth" : "Live births - total(persosns)",
+			"death" : "Deaths - total(persosns)",
+			"natgrow" : "Natural change of population(persosns)",
+			"cnmigrat" : "Net migration plus statistical adjustment(persosns)",
+			"grow" : "Total population change(persosns)",
+			"natgrowrt" : "Crude rate of natural change of population(thousandths)",
+			"cnmigratrt" : "Crude rate of net migration plus statistical adjustment(thousandths)",
+			"growrt" : "Crude rate of total population change(thousandths)"	
 			}	
 		}
     },
-"theme2" : {
+"CRI" : {
 	"layout" : {
-		"leftPanelWidthPercent" : Please give a number!,
-		"mapHeightPercent" : Please give a number!,
-		"upperRightChartHeightPercent" : Please give a number!,
-		"legendOn" : Please give a 'true' or 'false' value!,
-		"logoImg" : "Pleas give the logo image's filename as a string!",
-		"title" : "Please give the title in the header as a string!",
-		"subTitle" : "Please give the subtitle in the header as a string!",
-		"splashText" : "Please give the HTML text you want to show in the splash window!",
-		"infoBoxText" : "Please give the HTML text you want to show in the info window!",
-        "clickOnWhat" : "Please give the text you want to show as a hint for the users!"
+		"leftPanelWidthPercent" : 60,
+		"mapHeightPercent" : 100,
+		"upperRightChartHeightPercent" : 70,
+		"legendOn" : true,
+		"logoImg" : "",
+		"title" : "Criminal dashboard",
+		"subTitle" : "Map: Crime pollution",
+		"splashText" : "aa",
+		"infoBoxText" : "",
+        "clickOnWhat" : "Please click on the map"
 		},
-    "wkid" : Please give the EPSG code (as a number) of the spatial reference system!,
-    "xmin" : Please give the westernmost coordinate (as a number) of the initial extent!,
-    "ymin" : Please give the southernmost coordinate (as a number) of the initial extent!,
-    "xmax" : Please give the easternmost coordinate (as a number) of the initial extent!,
-    "ymax" : Please give the northernmost coordinate (as a number) of the initial extent!,
-    "basemap" : "Please give the keyword (as a string) of the ESRI basemap! (Valid values: 'streets' , 'satellite' , 'hybrid', 'topo', 'gray', 'dark-gray', 'oceans', 'national-geographic', 'terrain', 'osm', 'dark-gray-vector', 'gray-vector', 'streets-vector', 'streets-night-vector', 'streets-relief-vector', 'streets-navigation-vector', 'topo-vector')",
-	"timeStops" : ["Please give array of timestops as strings!"],
-	"timeSliderMovingRate" : Please give a number!,
-    "dataServiceURL" : "Please give the URL of the time-aware Map Service as a string!",
-    "dataServiceLayerIndex" : Please give a number!,
-	"dataServiceLayerPosition" : Please give a number!,
-    "additionalLayerURLs" : ["Please give array of Map Service URLs as strings!"],
-	"areaNameField" : "Please give the fieldname (as a string) that contains the name of map objects!",
-    "timeField" : "Please give the fieldname (as a string) that contains the time information!",
+    "wkid" : 3857,
+    "xmin" : -1200000,
+    "ymin" : 3500000,
+    "xmax" : 5000000,
+    "ymax" : 12000000,
+    "basemap" : "osm",
+	"timeStops" : ["2008","2009","2010"],
+	"timeSliderMovingRate" : 1500,
+    "dataServiceURL" : "http://arcgisserver.lechnerkozpont.hu/arcgisserverwa/rest/services/homokozo/DashMapBoardSampleCrime/MapServer",
+    "dataServiceLayerIndex" : 0,
+	"dataServiceLayerPosition" : 1,
+    "additionalLayerURLs" : ["http://arcgisserver.lechnerkozpont.hu/arcgisserverwa/rest/services/homokozo/DashMapBoardSampleNuts0/MapServer","http://hydrology.esri.com/arcgis/rest/services/WorldHydroReferenceOverlay/MapServer"],
+	"areaNameField" : "areaname",
+    "timeField" : "year",
     "chartPositions" : {
-        "LL" : "Please give the codename of the chart type as a string!",
-        "UR" : "Please give the codename of the chart type as a string!", 
-        "LR" : "Please give the codename of the chart type as a string!" 
-        },
-    "serialSettings" : {
-        "title" : "Please give the title of the serial chart as a string!",
-        "colors" : ["Please give array of hex colors as strings!"],
-        "dataPrecision" : Please give a number!,
-        "dataUnit" : "Please give the data unit of the serial chart as a string!",
-        "yAxesMax" : "Please give the maximum Y axis value as a string containing number!",
-        "yAxesMin" : "Please give the minimum Y axis value as a string containing number!",
-        "sorting" : "Please give the type of sorting as a string! (Valid values: 'asc', 'desc')",
-        "fieldMap" : {
-            "field" : "alias",
-            "field" : "alias"
-			}
+        "LL" : "",
+        "UR" : "pie", 
+        "LR" : "tab" 
         },
     "pieSettings" : {
-		"title" : "Please give the title of the pie chart as a string!",
-		"colors" : ["Please give array of hex colors as strings!"],        
+		"title" : "Type of crime",
+		"colors" : ["#d11141","#00b159","#00aedb","#f37735"],        
         "fieldMap" : {
-            "field" : "alias",
-            "field" : "alias"
+			"theftvehicle" : "Theft of a motorized land vehicle",
+			"homicide" : "Intentional homicide",
+			"robbery" : "Robbery",
+			"burglary" : "Burglary of private residential premises"
 			}
-		},
-    "radarSettings" : {
-		"title" : "Please give the title of the radar chart as a string!",
-		"colors" : ["Please give array of hex colors as strings!"],
-		"dataPrecision" : Please give a number!,
-		"dataUnit": "Please give the data unit of the radar chart as a string!",
-        "xAxesMax" : "Please give the maximum axis value as a string containing number!",
-        "xAxesMin" : "Please give the minimum axis value as a string containing number!",        
-        "fieldMap" : {
-            "field" : "alias",
-            "field" : "alias"
-			}
-		},
-    "bubbleSettings" : {
-		"title" : "Please give the title of the bubble chart as a string!",
-		"colors" : ["Please give array of hex colors as strings!"],
-        "dataPrecision" : Please give a number!,
-		"xUnit": "Please give the data unit of the bubble chart's X axis as a string!",
-		"yUnit": "Please give the data unit of the bubble chart's Y axis as a string!",
-		"zUnit": "Please give the data unit of the bubble chart bubble size as a string!",
-		"xAxesMax": "Please give the maximum X axis value as a string containing number!",
-		"xAxesMin": "Please give the minimum X axis value as a string containing number!",
-		"yAxesMax": "Please give the maximum Y axis value as a string containing number!",	
-		"yAxesMin": "Please give the minimum Y axis value as a string containing number!",
-        "fieldMap" : {
-            "field" : "alias",
-            "field" : "alias",
-            "field" : "alias"
-			}	
 		},
     "tableSettings" : {
-		"title" : "Please give the title of the table as a string!",
-		"heading" : "Please give the heading of the table as a string!",
-		"dataPrecision" : Please give a number!,
-        "sorting" : "Please give the type of sorting as a string! (Valid values: 'asc', 'desc')",
+		"title" : "Crime datas",
+		"heading" : "Type of crime",
+		"dataPrecision" : 2,
+        "sorting" : "asc",
         "fieldMap" : {
-            "field" : "alias",
-            "field" : "alias"
+			"pop" : "Population on 1 January - total",
+			"total" : "Examined crime types together",
+			"theftvehicle" : "Theft of a motorized land vehicle",
+			"homicide" : "Intentional homicide",
+			"robbery" : "Robbery",
+			"burglary" : "Burglary of private residential premises"
 			}	
 		}
     },
-"creators" : "Creators of the Dash-Map-Board project: László Lellei (spatial data expert), Zsolt Ónodi (GIS expert)"
+"INT" : {
+	"layout" : {
+		"leftPanelWidthPercent" : 50,
+		"mapHeightPercent" : 100,
+		"upperRightChartHeightPercent" : 45,
+		"legendOn" : true,
+		"logoImg" : "",
+		"title" : "Internet usage dashboard",
+		"subTitle" : "Map: Percentage of households with broadband access",
+		"splashText" : "Please give the HTML text you want to show in the splash window!",
+		"infoBoxText" : "Please give the HTML text you want to show in the info window!",
+        "clickOnWhat" : "Please click on the map"
+		},
+    "wkid" : 3857,
+    "xmin" : -1200000,
+    "ymin" : 3500000,
+    "xmax" : 5000000,
+    "ymax" : 12000000,
+    "basemap" : "streets",
+	"timeStops" : ["2013","2014","2015","2016"],
+	"timeSliderMovingRate" : 1500,
+    "dataServiceURL" : "http://arcgisserver.lechnerkozpont.hu/arcgisserverwa/rest/services/homokozo/DashMapBoardSampleInternet/MapServer",
+    "dataServiceLayerIndex" : 0,
+	"dataServiceLayerPosition" : 1,
+    "additionalLayerURLs" : ["http://arcgisserver.lechnerkozpont.hu/arcgisserverwa/rest/services/homokozo/DashMapBoardSampleNuts0/MapServer","http://hydrology.esri.com/arcgis/rest/services/WorldHydroReferenceOverlay/MapServer"],
+	"areaNameField" : "areaname",
+    "timeField" : "year",
+    "chartPositions" : {
+        "LL" : "",
+        "UR" : "pie", 
+        "LR" : "bub" 
+        },
+    "pieSettings" : {
+		"title" : "Last online purchase",
+		"colors" : ["#334455","#999999","#ddddee","#88ccff"],        
+        "fieldMap" : {
+			"i_buy3" : "In the last 3 months",
+			"i_b3_12" : "Between 3 and 12 months ago",
+			"i_blt12" : "In the 12 months",
+			"i_bumt12" : "More than a year ago"
+			}
+		},
+    "bubbleSettings" : {
+		"title" : "Neighbouring area internet using (Selling goods or services)",
+		"colors" : ["#808000", "#008080"],
+        "dataPrecision" : 1,
+		"xUnit": "percents",
+		"yUnit": "percents",
+		"zUnit": "percents",
+		"xAxesMax": "",
+		"xAxesMin": "",
+		"yAxesMax": "",		
+		"yAxesMin": "",		
+        "fieldMap" : {			
+			"i_iubk" : "Internet banking",
+			"i_iusnet" : "Participating in social networks ",
+			"i_iusell" : "Selling goods or services"
+			}	
+		}
+    },
+"RND" : {
+	"layout" : {
+		"leftPanelWidthPercent" : 45,
+		"mapHeightPercent" : 50,
+		"upperRightChartHeightPercent" : 35,
+		"legendOn" : true,
+		"logoImg" : "",
+		"title" : "Research and development dashboard",
+		"subTitle" : "Map: R&D expenditure per capita",
+		"splashText" : "Please give the HTML text you want to show in the splash window!",
+		"infoBoxText" : "Please give the HTML text you want to show in the info window!",
+        "clickOnWhat" : "Please click on the map"
+		},
+    "wkid" : 3857,
+    "xmin" : -1200000,
+    "ymin" : 3500000,
+    "xmax" : 5000000,
+    "ymax" : 12000000,
+    "basemap" : "topo",
+	"timeStops" : ["2005","2006","2007","2008","2009","2010","2011","2012","2013","2014"],
+	"timeSliderMovingRate" : 1500,
+    "dataServiceURL" : "http://arcgisserver.lechnerkozpont.hu/arcgisserverwa/rest/services/homokozo/DashMapBoardSampleResearchAndDevelopment/MapServer",
+    "dataServiceLayerIndex" : 0,
+	"dataServiceLayerPosition" : 1,
+    "additionalLayerURLs" : ["http://arcgisserver.lechnerkozpont.hu/arcgisserverwa/rest/services/homokozo/DashMapBoardSampleNuts0/MapServer","http://hydrology.esri.com/arcgis/rest/services/WorldHydroReferenceOverlay/MapServer"],
+	"areaNameField" : "areaname",
+    "timeField" : "year",
+    "chartPositions" : {
+        "LL" : "ser",
+        "UR" : "tab", 
+        "LR" : "rad" 
+        },
+    "serialSettings" : {
+        "title" : "Total expenditure (all sectors)",
+        "colors" : ["#a67c00"],
+        "dataPrecision" : 1,
+        "dataUnit" : "million euros",
+        "yAxesMax" : "",
+        "yAxesMin" : "",
+        "sorting" : "asc",
+        "fieldMap" : {
+            "total" : "Total"
+			}
+        },
+    "radarSettings" : {
+		"title" : "Expenditure in different sectors",
+		"colors" : ["#ffbf00"],
+		"dataPrecision" : 1,
+		"dataUnit": "million euros",
+		"xAxesMax": "",
+		"xAxesMin": "",		
+		"yAxesMax": "",
+		"yAxesMin":"",		
+        "fieldMap" : {
+			"bes" : "Business enterprise sector",
+			"gov" : "Government sector",
+			"hes" : "Higher education sector",
+			"pnp" : "Private non-profit sector"
+			}
+		},
+    "tableSettings" : {
+		"title" : "R&D personnel",
+		"heading" : "Type of sectors",
+		"dataPrecision" : 2,
+        "sorting" : "asc",
+        "fieldMap" : {
+			"totalpers" : "R&D personnel in all sectors",
+			"bespers" : "R&D personnel in business enterprise sector",
+			"govpers" : "R&D personnel in government sector",
+			"hespers" : "R&D personnel in higher education sector",
+			"pnppers" : "R&D personnel in private non-profit sector"	
+			}	
+		}
+    },
+
+"creators" : "Készítők: Lellei László (Lechner Tudásközpont), Ónodi Zsolt (Lechner Tudásközpont)"
+	
 }
