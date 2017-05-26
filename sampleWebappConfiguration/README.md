@@ -40,7 +40,7 @@ Supporting layer MapServices:
 **Alias**:  Name of NUTS3 unit  
 **Where to use?**: `areaNameField`  
 
-**Field name**: year
+**Field name**: year  
 **Data type**: number  
 **Alias**: Year  
 **Where to use?**: `timeField`  
@@ -72,16 +72,16 @@ Supporting layer MapServices:
 **Where to use?**: pie, table  
 
 **Field name**: total  
-**Data type**: number
+**Data type**: number  
 **Alias**: Examined crime types together  
-**Unit**: incidents
+**Unit**: incidents  
 **Where to use?**: table  
 
 **Field name**: pop  
 **Data type**: number  
 **Alias**: Population on 1 January - total  
 **Unit**: persons  
-**Where to use?**: table  
+**Where to use?**: bubble, table  
 
 **Field name**: crimepoll  
 **Data type**: number  
@@ -90,22 +90,203 @@ Supporting layer MapServices:
 **Where to use?**: map, table  
 
 ##### Demography theme
+**Field name**: pop  
+**Data type**: number  
+**Alias**: Population on 1 January - total  
+**Unit**: persons  
+**Where to use?**: table  
+
+**Field name**: area  
+**Data type**: number  
+**Alias**: Total area  
+**Unit**: square kilometers  
+**Where to use?**: table  
+
+**Field name**: popden  
+**Data type**: number  
+**Alias**: Population density  
+**Unit**: persons per square kilometers  
+**Where to use?**: map, table  
+
+**Field name**: pmale  
+**Data type**: number  
+**Alias**: Male population  
+**Unit**: persons  
+**Where to use?**: serial, pie, table  
+
+**Field name**: pfemale  
+**Data type**: number  
+**Alias**: Female population  
+**Unit**: persons  
+**Where to use?**: serial, pie, table  
+
+**Field name**: ylt15  
+**Data type**: number  
+**Alias**: Population - Less than 15 years  
+**Unit**: persons  
+**Where to use?**: serial, pie, table  
+
+**Field name**: y1564  
+**Data type**: number  
+**Alias**: Population - From 15 to 64 years  
+**Unit**: persons  
+**Where to use?**: serial, pie, table  
+
+**Field name**: yge65  
+**Data type**: number  
+**Alias**: Population - 65 years or over  
+**Unit**: persons  
+**Where to use?**: serial, pie, table  
+
+**Field name**: yunk  
+**Data type**: number  
+**Alias**: Population - Unknown age  
+**Unit**: persons  
+**Where to use?**: serial, pie, table  
+
+**Field name**: cnmigrat  
+**Data type**: number  
+**Alias**: Net migration plus statistical adjustment  
+**Unit**: persons  
+**Where to use?**: table  
+
+**Field name**: cnmigratrt  
+**Data type**: number  
+**Alias**: Crude rate of net migration plus statistical adjustment  
+**Unit**: thousandths  
+**Where to use?**: table  
+
+**Field name**: death  
+**Data type**: number  
+**Alias**: Deaths - total  
+**Unit**: persons  
+**Where to use?**: table  
+
+**Field name**: gbirthrt  
+**Data type**: number  
+**Alias**: Crude birth rate  
+**Unit**: thousandths  
+**Where to use?**: bubble, table  
+
+**Field name**: gdeathrt  
+**Data type**: number  
+**Alias**: Crude death rate  
+**Unit**: thousandths  
+**Where to use?**: bubble, table  
+
+**Field name**: grow  
+**Data type**: number  
+**Alias**: Total population change  
+**Unit**: persons  
+**Where to use?**: table  
+
+**Field name**: growrt  
+**Data type**: number  
+**Alias**: Crude rate of total population change  
+**Unit**: thousandths  
+**Where to use?**: table  
+
+**Field name**: lbirth  
+**Data type**: number  
+**Alias**: Live births - total  
+**Unit**: persons  
+**Where to use?**: table  
+
+**Field name**: natgrow  
+**Data type**: number  
+**Alias**: Natural change of population  
+**Unit**: persons  
+**Where to use?**: table  
+
+**Field name**: natgrowrt  
+**Data type**: number  
+**Alias**: Crude rate of natural change of population  
+**Unit**: thousandths  
+**Where to use?**: table  
+
+##### Internet theme
+**Field name**: pc_hh  
+**Data type**: number  
+**Alias**: Percentage of households with broadband access  
+**Unit**: percents  
+**Where to use?**: map, table  
+
+**Field name**: i_iubk  
+**Data type**: number  
+**Alias**: Internet use: Internet banking
+**Unit**: percents  
+**Where to use?**: bubble, table  
+
+**Field name**: i_iusnet  
+**Data type**: number  
+**Alias**: Internet use: participating in social networks (creating user profile, posting messages or other contributions to facebook, twitter, etc.)  
+**Unit**: percents  
+**Where to use?**: bubble, table  
+
+**Field name**: i_iusell  
+**Data type**: number  
+**Alias**: Internet use: selling goods or services  
+**Unit**: percents  
+**Where to use?**: bubble, table  
+
 **Field name**: 
-**Data type**:
+**Data type**: number  
 **Alias**:
-**Unit**:
+**Unit**: percents  
 **Where to use?**:
 
 **Field name**: 
-**Data type**:
+**Data type**: number  
 **Alias**:
-**Unit**:
+**Unit**: percents  
 **Where to use?**:
 
 **Field name**: 
-**Data type**:
+**Data type**: number  
 **Alias**:
-**Unit**:
+**Unit**: percents  
+**Where to use?**:
+
+**Field name**: 
+**Data type**: number  
+**Alias**:
+**Unit**: percents  
+**Where to use?**:
+
+**Field name**: 
+**Data type**: number  
+**Alias**:
+**Unit**: percents  
+**Where to use?**:
+
+**Field name**: 
+**Data type**: number  
+**Alias**:
+**Unit**: percents  
+**Where to use?**:
+
+**Field name**: 
+**Data type**: number  
+**Alias**:
+**Unit**: percents  
+**Where to use?**:
+
+**Field name**: 
+**Data type**: number  
+**Alias**:
+**Unit**: percents  
+**Where to use?**:
+
+**Field name**: 
+**Data type**: number  
+**Alias**:
+**Unit**: percents  
+**Where to use?**:
+
+**Field name**: 
+**Data type**: number  
+**Alias**:
+**Unit**: percents  
 **Where to use?**:
 
 ### Data sources
