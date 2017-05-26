@@ -272,7 +272,7 @@ Be creative with the **Where to use?** part. Technically every single numeric da
 **Unit**: percents  
 **Where to use?**: serial, pie, table  
 
-#####Research&Development theme
+##### Research&Development theme
 **Field name**: pop  
 **Data type**: number  
 **Alias**: Population on 1 January - total  
@@ -305,13 +305,13 @@ Be creative with the **Where to use?** part. Technically every single numeric da
 
 **Field name**: hes  
 **Data type**: number  
-**Alias**: Expenditure in higher education sector
+**Alias**: Expenditure in higher education sector  
 **Unit**: million euros  
 **Where to use?**: radar, table  
 
 **Field name**: pnp  
 **Data type**: number  
-**Alias**: Expenditure in private non-profit sector
+**Alias**: Expenditure in private non-profit sector  
 **Unit**: million euros  
 **Where to use?**: radar, table  
 
@@ -346,9 +346,7 @@ Be creative with the **Where to use?** part. Technically every single numeric da
 **Where to use?**: table  
 
 ### Data sources
-All data (both geometry and attributes) are downloaded from EUROSTAT webpage. (Regional statistics by NUTS classification)
+All data (both geometry and attributes) are downloaded from EUROSTAT webpage. (Regional statistics by NUTS classification)  
 
-Attribute data: 
-http://ec.europa.eu/eurostat/data/database#
-Geometry data:
-http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units/nuts
+Attribute data: http://ec.europa.eu/eurostat/data/database#  
+Geometry data: http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units/nuts
