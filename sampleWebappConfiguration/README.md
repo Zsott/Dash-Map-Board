@@ -272,22 +272,83 @@ Be creative with the **Where to use?** part. Technically every single numeric da
 **Unit**: percents  
 **Where to use?**: serial, pie, table  
 
-**Field name**: 
+#####Research&Development theme
+**Field name**: pop  
 **Data type**: number  
-**Alias**:
-**Unit**: percents  
-**Where to use?**:
+**Alias**: Population on 1 January - total  
+**Unit**: persons  
+**Where to use?**: serial, table  
 
-**Field name**: 
+**Field name**: exppop  
 **Data type**: number  
-**Alias**:
-**Unit**: percents  
-**Where to use?**:
+**Alias**: R&D expenditure per capita  
+**Unit**: thousand euros per persons  
+**Where to use?**: map, table  
 
-**Field name**: 
+**Field name**: total  
 **Data type**: number  
-**Alias**:
-**Unit**: percents  
-**Where to use?**:
+**Alias**: Expenditure in all sectors  
+**Unit**: million euros  
+**Where to use?**: serial, table  
+
+**Field name**: bes  
+**Data type**: number  
+**Alias**: Expenditure in business enterprise sector  
+**Unit**: million euros  
+**Where to use?**: radar, table  
+
+**Field name**: gov  
+**Data type**: number  
+**Alias**: Expenditure in government sector  
+**Unit**: million euros  
+**Where to use?**: radar, table  
+
+**Field name**: hes  
+**Data type**: number  
+**Alias**: Expenditure in higher education sector
+**Unit**: million euros  
+**Where to use?**: radar, table  
+
+**Field name**: pnp  
+**Data type**: number  
+**Alias**: Expenditure in private non-profit sector
+**Unit**: million euros  
+**Where to use?**: radar, table  
+
+**Field name**: totalpers  
+**Data type**: number  
+**Alias**: R&D personnel in all sectors  
+**Unit**: full-time equivalent  
+**Where to use?**: table  
+
+**Field name**: bespers  
+**Data type**: number  
+**Alias**: R&D personnel in business enterprise sector  
+**Unit**: full-time equivalent  
+**Where to use?**: table  
+
+**Field name**: govpers  
+**Data type**: number  
+**Alias**: R&D personnel in government sector  
+**Unit**: full-time equivalent  
+**Where to use?**: table  
+
+**Field name**: hespers  
+**Data type**: number  
+**Alias**: R&D personnel in higher education sector  
+**Unit**: full-time equivalent  
+**Where to use?**: table  
+
+**Field name**: pnppers  
+**Data type**: number  
+**Alias**: R&D personnel in private non-profit sector  
+**Unit**: full-time equivalent  
+**Where to use?**: table  
 
 ### Data sources
+All data (both geometry and attributes) are downloaded from EUROSTAT webpage. (Regional statistics by NUTS classification)
+
+Attribute data: 
+http://ec.europa.eu/eurostat/data/database#
+Geometry data:
+http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units/nuts
