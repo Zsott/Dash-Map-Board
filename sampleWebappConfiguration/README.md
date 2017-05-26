@@ -30,6 +30,7 @@ Supporting layer MapServices:
 - Transportation: http://utility.arcgis.com/usrsvcs/servers/851b325051af48e087c5a21e91ce0137/rest/services/Reference/World_Transportation/MapServer  
 
 ### Meta data
+Be creative with the **Where to use?** part. Technically every single numeric data is good for table and serial chart. For stacked serial chart and pie chart you only have to worry about if the selected fields make up to whole. We wrote some hints for almost every field, but you can use them as you like.  
 #### Fields in all sample MapServices
 **Field name**: areacode  
 **Data type**: string  
@@ -229,47 +230,47 @@ Supporting layer MapServices:
 **Unit**: percents  
 **Where to use?**: bubble, table  
 
-**Field name**: 
+**Field name**: i_iu3  
 **Data type**: number  
-**Alias**:
+**Alias**: Last internet use: in last 3 months  
 **Unit**: percents  
-**Where to use?**:
+**Where to use?**: table  
 
-**Field name**: 
+**Field name**: i_ilt12  
 **Data type**: number  
-**Alias**:
+**Alias**: Last internet use: in the last 12 months  
 **Unit**: percents  
-**Where to use?**:
+**Where to use?**: table  
 
-**Field name**: 
+**Field name**: i_iux  
 **Data type**: number  
-**Alias**:
+**Alias**: Internet use: never  
 **Unit**: percents  
-**Where to use?**:
+**Where to use?**: table  
 
-**Field name**: 
+**Field name**: i_buy3  
 **Data type**: number  
-**Alias**:
+**Alias**: Last online purchase: in the last 3 months  
 **Unit**: percents  
-**Where to use?**:
+**Where to use?**: serial, pie, table  
 
-**Field name**: 
+**Field name**: i_b3_12  
 **Data type**: number  
-**Alias**:
+**Alias**: Last online purchase: between 3 and 12 months ago  
 **Unit**: percents  
-**Where to use?**:
+**Where to use?**: serial, pie, table  
 
-**Field name**: 
+**Field name**: i_blt12  
 **Data type**: number  
-**Alias**:
+**Alias**: Last online purchase: in the 12 months  
 **Unit**: percents  
-**Where to use?**:
+**Where to use?**: serial, pie, table  
 
-**Field name**: 
+**Field name**: i_bumt12  
 **Data type**: number  
-**Alias**:
+**Alias**: Last online purchase: more than a year ago  
 **Unit**: percents  
-**Where to use?**:
+**Where to use?**: serial, pie, table  
 
 **Field name**: 
 **Data type**: number  
