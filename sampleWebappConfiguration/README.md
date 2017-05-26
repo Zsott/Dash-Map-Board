@@ -27,8 +27,85 @@ Supporting layer MapServices:
 - NUTS1 borders: http://arcgisserver.lechnerkozpont.hu/arcgisserverwa/rest/services/homokozo/DashMapBoardSampleNuts1/MapServer
 - NUTS2 borders: http://arcgisserver.lechnerkozpont.hu/arcgisserverwa/rest/services/homokozo/DashMapBoardSampleNuts2/MapServer
 - Hydrology: http://hydrology.esri.com/arcgis/rest/services/WorldHydroReferenceOverlay/MapServer
-- Transportation:  
+- Transportation: http://utility.arcgis.com/usrsvcs/servers/851b325051af48e087c5a21e91ce0137/rest/services/Reference/World_Transportation/MapServer  
 
 ### Meta data
+#### Fields in all sample MapServices
+**Field name**: areacode  
+**Data type**: string  
+**Alias**: NUTS3 CODE  
+
+**Field name**: areaname  
+**Data type**: string  
+**Alias**:  Name of NUTS3 unit  
+**Where to use?**: `areaNameField`  
+
+**Field name**: year
+**Data type**: number  
+**Alias**: Year  
+**Where to use?**: `timeField`  
+
+#### Theme specific fields
+##### Crime theme
+**Field name**: homicide  
+**Data type**: number  
+**Alias**: Intentional homicide  
+**Unit**: incidents  
+**Where to use?**: pie, table  
+
+**Field name**: robbery  
+**Data type**: number  
+**Alias**: Robbery  
+**Unit**: incidents  
+**Where to use?**: pie, table  
+
+**Field name**: burglary  
+**Data type**: number  
+**Alias**: Burglary of private residential premises  
+**Unit**: incidents  
+**Where to use?**:  pie, table  
+
+**Field name**: theftvehicle  
+**Data type**: number  
+**Alias**: Theft of a motorized land vehicle  
+**Unit**: incidents  
+**Where to use?**: pie, table  
+
+**Field name**: total  
+**Data type**: number
+**Alias**: Examined crime types together  
+**Unit**: incidents
+**Where to use?**: table  
+
+**Field name**: pop  
+**Data type**: number  
+**Alias**: Population on 1 January - total  
+**Unit**: persons  
+**Where to use?**: table  
+
+**Field name**: crimepoll  
+**Data type**: number  
+**Alias**: Crime pollution  
+**Unit**: incidents / 1000 persons  
+**Where to use?**: map, table  
+
+##### Demography theme
+**Field name**: 
+**Data type**:
+**Alias**:
+**Unit**:
+**Where to use?**:
+
+**Field name**: 
+**Data type**:
+**Alias**:
+**Unit**:
+**Where to use?**:
+
+**Field name**: 
+**Data type**:
+**Alias**:
+**Unit**:
+**Where to use?**:
 
 ### Data sources
